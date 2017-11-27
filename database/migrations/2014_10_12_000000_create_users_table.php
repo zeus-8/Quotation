@@ -89,6 +89,8 @@ class CreateUsersTable extends Migration
             $table->integer('tipo_habi_id')->unsigned();
             $table->foreign('tipo_habi_id')->references('id')->on('tipo_habi')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
+            
         });
                 
         Schema::create('paquetes', function(Blueprint $table){

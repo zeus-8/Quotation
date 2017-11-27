@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $users = DB::table('users')
-                   ->join('tipo_usu', 'users.id_tu', '=', 'tipo_usu.id_tu')
+                   ->join('tipo_usu', 'users.id_tu', '=', 'tipo_usu.id')
                    ->select('users.id', 'users.cedula', 'users.name', 'users.apellido', 'users.id_tu', 'tipo_usu.descripcion_tu')
                    ->whereNull('deleted_at')
                    ->get();

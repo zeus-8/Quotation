@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'apellido' => 'required|string|max:50|min:4|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
             'celular' => 'required|numeric', 
             'direccion' => 'required|string|min:8|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
-            'rol' => 'required|exists:tipo_usu,id_tu',
+            'rol' => 'required|exists:tipo_usu,id',
         ];
     }
 }

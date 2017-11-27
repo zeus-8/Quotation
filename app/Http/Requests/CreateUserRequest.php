@@ -30,7 +30,7 @@ class CreateUserRequest extends FormRequest
             'celular' => 'required|numeric', 
             'direccion' => 'required|string|min:8|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
             'email' => 'required|unique:users,email', 
-            'rol' => 'required|exists:tipo_usu,id_tu',
+            'rol' => 'required|exists:tipo_usu,id',
         ];
     }
 }

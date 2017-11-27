@@ -47,9 +47,9 @@
       <option>-- Seleccione --</option>
       @foreach($role as $rol)
         @if($op == 2)
-          <option value="{{ $rol->id_tu }}" <?php if ($rol->id_tu == $user->id_tu){ ?> SELECTED <?php } ?>>{{ $rol->descripcion_tu }}</option>
+          <option value="{{ $rol->id }}" <?php if ($rol->id == $user->id_tu){ ?> SELECTED <?php } ?>>{{ $rol->descripcion_tu }}</option>
         @else
-          <option value="{{ $rol->id_tu }}">{{ $rol->descripcion_tu }}</option>
+          <option value="{{ $rol->id }}">{{ $rol->descripcion_tu }}</option>
         @endif 
       @endforeach
     </select>
