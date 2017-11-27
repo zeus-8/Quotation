@@ -43,7 +43,7 @@ class BedroomController extends Controller
     {
          // dd($request);
          Type_Room::create([
-                'descripcion_habi' => trim(strtoupper($request['descripcion'])),
+                'descripcion' => trim(strtoupper($request['descripcion'])),
             ]);
         Session::flash('message', 'La HABITACION se guardo exitosamente');
         return Redirect::to('bed');
@@ -70,7 +70,6 @@ class BedroomController extends Controller
     public function edit($id)
     {
         $bed = Type_Room::find($id);
-        $bed->descripcion = $bed->descripcion_habi;
         // dd($bed);
         return view('sys.bedroom.edit', compact('bed'));
     }
@@ -86,7 +85,7 @@ class BedroomController extends Controller
     {
         // dd($request);
         $bed = Type_Room::find($id);
-        $bed->descripcion_habi = trim(strtoupper($request->descripcion));
+        $bed->descripcion = trim(strtoupper($request->descripcion));
         $bed->save();
         Session::flash('message','La habitacion ' .  $request->descripcion . ' fue actualizado con exito');
         return Redirect::to('bed');

@@ -11,17 +11,17 @@ class TypeRoomSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('tipo_habi')->insert([
-			'descripcion_habi'	=>	'SENCILLA'
+		DB::table('habitaciones')->insert([
+			'descripcion'	=>	'SENCILLA'
 		]); 
-		DB::table('tipo_habi')->insert([
-			'descripcion_habi'	=>	'MATRIMONIAL'
+		DB::table('habitaciones')->insert([
+			'descripcion'	=>	'MATRIMONIAL'
 		]); 
-		DB::table('tipo_habi')->insert([
-			'descripcion_habi'	=>	'TRIPLE'
+		DB::table('habitaciones')->insert([
+			'descripcion'	=>	'TRIPLE'
 		]);
-		DB::table('tipo_habi')->insert([
-			'descripcion_habi'	=>	'CUADRUPLE'
+		DB::table('habitaciones')->insert([
+			'descripcion'	=>	'CUADRUPLE'
 		]);
     }
 }

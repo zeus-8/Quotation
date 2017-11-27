@@ -24,16 +24,16 @@
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-								<th>Id</th>
-								<th>Descripcion</th>
-								<th>ACCION</th>
+									<th>Id</th>
+									<th>Descripcion</th>
+									<th>ACCION</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($beds as $bed)
 									<tr>
 										<td>{{ $bed->id }}</td>
-										<td>{{ $bed->descripcion_habi }}</td>
+										<td>{{ $bed->descripcion }}</td>
 										<td align="center">
 											{{-- @if ($bed->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('bed.edit', $bed->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>

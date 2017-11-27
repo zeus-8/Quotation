@@ -15,89 +15,91 @@ class CreateUsersTable extends Migration
     {
         Schema::create('impuestos', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_im');
-            $table->integer('valor_im');
+            $table->string('descripcion');
+            $table->integer('valor');
             $table->timestamps();
+            $table->softDeletes();
         });
                 
         Schema::create('servicios', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_ser');
-            $table->decimal('costo_ser', 4, 2);
+            $table->string('descripcion');
+            $table->decimal('costo', 4, 2);
             $table->timestamps();
+            $table->softDeletes();
         });                
 
         Schema::create('tipo_usu', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_tu'); //descripcion de tipo d usuario
+            $table->string('descripcion'); //descripcion de tipo d usuario
             $table->timestamps();
         });
 
         Schema::create('localidades', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_lo');
+            $table->string('descripcion');
             $table->timestamps();
         });
                 
         Schema::create('guias', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre_g');
-            $table->string('apellido_g');
-            $table->bigInteger('cedula_g');
-            $table->bigInteger('celular_g');
-            $table->integer('fijo_g');
-            $table->string('direccion_g');
-            $table->string('email_g');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->bigInteger('cedula');
+            $table->bigInteger('celular');
+            $table->integer('fijo');
+            $table->string('direccion');
+            $table->string('email');
             $table->timestamps();
+            $table->softDeletes();
         });        
 
         Schema::create('tipo_trans', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_tra');
+            $table->string('descripcion');
             $table->timestamps();
         });
 
         Schema::create('transportes', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre_trans');
+            $table->string('nombre');
             $table->string('nombre_chofer');
             $table->string('apellido_chofer');
             $table->decimal('costo_trans', 4, 2);
             $table->string('descripcion_trans');
-            $table->integer('tipo_trans_id')->unsigned(); //tipo_trans = tt
-            $table->foreign('tipo_trans_id')->references('id')->on('tipo_trans')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
                 
-        Schema::create('tipo_habi', function(Blueprint $table){
+        Schema::create('habitaciones', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_habi');
+            $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
         });
                 
         Schema::create('hoteles', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre_h');
-            $table->string('direccion_h');
-            $table->bigInteger('celular_h');
+            $table->string('nombre');
+            $table->string('direccion');
+            $table->bigInteger('celular');
             $table->bigInteger('fijo');
             $table->string('email');
-            $table->decimal('costo_noche_h', 3, 2);
-            $table->decimal('costo_desayuno_h', 3, 2);
-            $table->decimal('costo_almuerzo_h', 3, 2);
-            $table->decimal('costo_cena_h', 3, 2);
-            $table->integer('tipo_habi_id')->unsigned();
-            $table->foreign('tipo_habi_id')->references('id')->on('tipo_habi')->onUpdate('cascade')->onDelete('cascade');
+            $table->decimal('costo_noche', 3, 2);
+            $table->decimal('costo_desayuno', 3, 2);
+            $table->decimal('costo_almuerzo', 3, 2);
+            $table->decimal('costo_cena', 3, 2);
             $table->timestamps();
             $table->softDeletes();
-            
+
         });
                 
         Schema::create('paquetes', function(Blueprint $table){
             $table->increments('id');
             $table->string('titulo');
-            $table->string('descripcion_p');
+            $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
         });
                 
         Schema::create('users', function (Blueprint $table) {
@@ -119,7 +121,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('cot_ven', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion_cv');
+            $table->string('descripcion');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
@@ -177,6 +179,24 @@ class CreateUsersTable extends Migration
             $table->integer('paquetes_id')->unsigned();
             $table->foreign('servicios_id')->references('id')->on('servicios')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('paquetes_id')->references('id')->on('paquetes')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('hot_hab', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_hot')->unsigned();
+            $table->integer('id_hab')->unsigned();
+            $table->foreign('id_hot')->references('id')->on('hoteles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_hab')->references('id')->on('habitaciones')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('tt_t', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_tt')->unsigned();
+            $table->integer('id_t')->unsigned();
+            $table->foreign('id_tt')->references('id')->on('tipo_trans')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_t')->references('id')->on('transportes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
