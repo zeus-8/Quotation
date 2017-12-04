@@ -65,7 +65,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('nombre_chofer');
             $table->string('apellido_chofer');
-            $table->decimal('costo_trans', 6, 2);
+            $table->integer('telef_chofer');
             $table->string('descripcion_trans');
             $table->timestamps();
             $table->softDeletes();
@@ -195,6 +195,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('id_tt')->unsigned();
             $table->integer('id_t')->unsigned();
+            $table->decimal('costo_trans', 6, 2);
             $table->foreign('id_tt')->references('id')->on('tipo_trans')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_t')->references('id')->on('transportes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
