@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
         Schema::create('servicios', function(Blueprint $table){
             $table->increments('id');
             $table->string('descripcion');
-            $table->decimal('costo', 4, 2);
+            $table->decimal('costo', 6, 2);
             $table->timestamps();
             $table->softDeletes();
         });                
@@ -37,7 +37,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('localidades', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion');
+            $table->string('localidad');
             $table->timestamps();
         });
                 
@@ -65,7 +65,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('nombre_chofer');
             $table->string('apellido_chofer');
-            $table->decimal('costo_trans', 4, 2);
+            $table->decimal('costo_trans', 6, 2);
             $table->string('descripcion_trans');
             $table->timestamps();
             $table->softDeletes();
@@ -85,10 +85,9 @@ class CreateUsersTable extends Migration
             $table->bigInteger('celular');
             $table->bigInteger('fijo');
             $table->string('email');
-            $table->decimal('costo_noche', 3, 2);
-            $table->decimal('costo_desayuno', 3, 2);
-            $table->decimal('costo_almuerzo', 3, 2);
-            $table->decimal('costo_cena', 3, 2);
+            $table->decimal('costo_desayuno', 5, 2);
+            $table->decimal('costo_almuerzo', 5, 2);
+            $table->decimal('costo_cena', 5, 2);
             $table->timestamps();
             $table->softDeletes();
 
@@ -131,7 +130,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('localidades_id')->unsigned();
             $table->integer('guias_id')->unsigned();
-            $table->decimal('costo', 4, 2);
+            $table->decimal('costo', 6, 2);
             $table->foreign('localidades_id')->references('id')->on('localidades')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('guias_id')->references('id')->on('guias')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
@@ -186,6 +185,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('id_hot')->unsigned();
             $table->integer('id_hab')->unsigned();
+            $table->decimal('costo', 6, 2);
             $table->foreign('id_hot')->references('id')->on('hoteles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_hab')->references('id')->on('habitaciones')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

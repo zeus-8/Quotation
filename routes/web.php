@@ -34,3 +34,15 @@ Route::get('bed/{id}/destroy', [
 			'uses'	=>	'BedroomController@destroy',
 			'as'	=>	'bed.destroy'
 		]);
+
+Route::resource('hostel', 'HostelController');
+Route::get('hostel/{id}/destroy', [
+			'uses'	=>	'HostelController@destroy',
+			'as'	=>	'hostel.destroy'
+		]);
+
+Route::resource('location', 'LocationController');
+Route::get('location/{id}/destroy', [
+			'uses'	=>	'LocationController@destroy',
+			'as'	=>	'location.destroy'
+		]);

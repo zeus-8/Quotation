@@ -138,6 +138,24 @@ return [
                     'icon' => 'user-plus',
                 ],
             ],
+        
+        ],
+        [
+            'text' => 'Localidad',
+            'url'  => '',
+            'icon' => 'location-arrow',
+            'submenu' =>[
+                 [
+                    'text' => 'Lista',
+                    'url'  => 'location',
+                    'icon' => 'list-ol',
+                ],
+                [
+                    'text' => 'Nuevo',
+                    'url'  => 'location/create',
+                    'icon' => 'plus',
+                ],
+            ],
         ],
         [
             'text' => 'Habitacion',
@@ -152,6 +170,23 @@ return [
                 [
                     'text' => 'Nuevo',
                     'url'  => 'bed/create',
+                    'icon' => 'plus',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Hotel',
+            'url'  => '',
+            'icon' => 'home',
+            'submenu' =>[
+                 [
+                    'text' => 'Lista',
+                    'url'  => 'hostel',
+                    'icon' => 'list-ol',
+                ],
+                [
+                    'text' => 'Nuevo',
+                    'url'  => 'hostel/create',
                     'icon' => 'plus',
                 ],
             ],
@@ -251,7 +286,8 @@ return [
     */
 
     'plugins' => [
-        'datatables' => true,
-        'select2'    => true,
+        'datatables'    => true,
+        'select2'       => true,
+        'chartjs'       => true ,
     ],
 ];
