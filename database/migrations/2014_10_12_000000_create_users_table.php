@@ -13,6 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::create('empresa', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('nombre');
+            $table->timestamps();
+        });
+
         Schema::create('impuestos', function(Blueprint $table){
             $table->increments('id');
             $table->string('descripcion');
@@ -62,11 +68,15 @@ class CreateUsersTable extends Migration
 
         Schema::create('transportes', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre');
             $table->string('nombre_chofer');
             $table->string('apellido_chofer');
+            $table->integer('cedula');
             $table->integer('telef_chofer');
             $table->string('descripcion_trans');
+            $table->integer('id_emp')->unsigned();
+            $table->foreign('id_emp')->references('id')->on('empresa')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_tt')->unsigned();
+            $table->foreign('id_tt')->references('id')->on('tipo_trans')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -95,8 +105,12 @@ class CreateUsersTable extends Migration
                 
         Schema::create('paquetes', function(Blueprint $table){
             $table->increments('id');
-            $table->string('titulo');
-            $table->string('descripcion');
+            $table->string('nombre');
+            $table->text('descripcion');
+            $table->decimal('costop', 6, 2);
+            $table->text('observaciones');
+            $table->date('comienzo');
+            $table->date('final');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -188,16 +202,6 @@ class CreateUsersTable extends Migration
             $table->decimal('costo', 6, 2);
             $table->foreign('id_hot')->references('id')->on('hoteles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_hab')->references('id')->on('habitaciones')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        Schema::create('tt_t', function(Blueprint $table){
-            $table->increments('id');
-            $table->integer('id_tt')->unsigned();
-            $table->integer('id_t')->unsigned();
-            $table->decimal('costo_trans', 6, 2);
-            $table->foreign('id_tt')->references('id')->on('tipo_trans')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_t')->references('id')->on('transportes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

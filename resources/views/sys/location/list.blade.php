@@ -20,7 +20,7 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('location/create') }}" class="btn btn-success"><i class="fa fa-user-plus"> Nuevo Usiario</i></a> <br><br> 
+						 <a href="{{ URL::to('location/create') }}" class="btn btn-success"><i class="fa fa-location-arrow"> Nueva Localidad</i></a> <br><br> 
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>

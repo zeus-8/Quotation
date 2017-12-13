@@ -37,7 +37,7 @@
 										<td>{{ $user->cedula }}</td>
 										<td>{{ $user->name }}</td>
 										<td>{{ $user->apellido }}</td>
-										<td>{{ $user->descripcion_tu }}</td>
+										<td>{{ $user->descripcion }}</td>
 										<td align="center">
 											{{-- @if ($user->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('usuario.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
@@ -55,3 +55,18 @@
 	</section>
 @stop
 
+@section('js')
+    <script>
+    	$(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+    </script>
+@stop

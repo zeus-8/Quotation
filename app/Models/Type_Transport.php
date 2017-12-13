@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Type_Transport extends Model
 {
 	protected  $table = "tipo_trans";
-	protected  $fillable = ['id', 'descripcion_tran'];
+	protected  $fillable = ['id', 'descripcion'];
 
 	public function transpotation(){
-		return $this->hasmany('hive\Models\Transport');
+		return $this->belongsToMany('hive\Models\Transport');
 	}
 }

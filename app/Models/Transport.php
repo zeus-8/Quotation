@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Transport extends Model
 {
     protected  $table = "transportes";
-    protected  $fillable = ['id', 'nombre_trans', 'nombre_chofer', 'apellido_chofer', 'costo_trans', 'descripcion_trans', 'tipo_trans_id'];
+    protected  $fillable = ['id', 'nombre_chofer', 'apellido_chofer', 'cedula', 'telef_chofer', 'descripcion_trans', 'id_emp', 'id_tt' ];
+
+    public function business(){
+    	return $this->belongsTo('hive\Business');
+    }
 
     public function type_transport(){
-    	return $this->belongsTo('hive\Models\Type_Transport')
+    	return $this->belongsToMany('hive\Models\Type_Transport');
     }
     public function pakage4(){
-    	return $this->belongsToMany('hive\Models\Pakage')
+    	return $this->belongsToMany('hive\Models\Pakage');
     }
 }

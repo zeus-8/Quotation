@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $users = DB::table('users')
                    ->join('tipo_usu', 'users.id_tu', '=', 'tipo_usu.id')
-                   ->select('users.id', 'users.cedula', 'users.name', 'users.apellido', 'users.id_tu', 'tipo_usu.descripcion_tu')
+                   ->select('users.id', 'users.cedula', 'users.name', 'users.apellido', 'users.id_tu', 'tipo_usu.descripcion')
                    ->whereNull('deleted_at')
                    ->get();
                    // dd($users);
@@ -89,7 +89,6 @@ class UserController extends Controller
         $role = Type_User::all();
         // dd($user, $role);
         return view('sys.user.edit', compact('user', 'role'));
-
     }
 
     /**

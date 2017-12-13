@@ -128,7 +128,7 @@ return [
             'icon' => 'user',
             'submenu' =>[
                  [
-                    'text' => 'Lista',
+                    'text' => 'Lista de Usuarios',
                     'url'  => 'usuario',
                     'icon' => 'list-ol',
                 ],
@@ -146,7 +146,7 @@ return [
             'icon' => 'location-arrow',
             'submenu' =>[
                  [
-                    'text' => 'Lista',
+                    'text' => 'Listade Localidades',
                     'url'  => 'location',
                     'icon' => 'list-ol',
                 ],
@@ -158,35 +158,69 @@ return [
             ],
         ],
         [
-            'text' => 'Habitacion',
-            'url'  => '',
-            'icon' => 'bed',
-            'submenu' =>[
-                 [
-                    'text' => 'Lista',
-                    'url'  => 'bed',
-                    'icon' => 'list-ol',
-                ],
-                [
-                    'text' => 'Nuevo',
-                    'url'  => 'bed/create',
-                    'icon' => 'plus',
-                ],
-            ],
-        ],
-        [
             'text' => 'Hotel',
             'url'  => '',
-            'icon' => 'home',
+            'icon' => 'building-o',
             'submenu' =>[
+                [
+                    'text' => 'Habitacion',
+                    'url'  => '',
+                    'icon' => 'bed',
+                    'submenu' =>[
+                         [
+                            'text' => 'Lista de Habitaciones',
+                            'url'  => 'bed',
+                            'icon' => 'list-ol',
+                        ],
+                        [
+                            'text' => 'Nuevo',
+                            'url'  => 'bed/create',
+                            'icon' => 'plus',
+                        ],
+                    ],
+                ],
                  [
-                    'text' => 'Lista',
+                    'text' => 'Lista de Hoteles',
                     'url'  => 'hostel',
                     'icon' => 'list-ol',
                 ],
                 [
                     'text' => 'Nuevo',
                     'url'  => 'hostel/create',
+                    'icon' => 'plus',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Transporte',
+            'url'  => '',
+            'icon' => 'car',
+            'submenu' =>[
+                 [
+                    'text' => 'Lista de Transpote',
+                    'url'  => 'transport',
+                    'icon' => 'list-ol',
+                ],
+                [
+                    'text' => 'Nuevo',
+                    'url'  => 'transport/create',
+                    'icon' => 'plus',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Paquetes',
+            'url'  => '',
+            'icon' => 'cubes',
+            'submenu' =>[
+                 [
+                    'text' => 'Lista de Paquetes',
+                    'url'  => 'transport',
+                    'icon' => 'list-ol',
+                ],
+                [
+                    'text' => 'Nuevo Paquete',
+                    'url'  => 'packages/create',
                     'icon' => 'plus',
                 ],
             ],

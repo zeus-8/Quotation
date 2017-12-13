@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Guides extends Model
 {
-    protected  $tables = "guias";
-    protected  $fillable = ['id', 'nombre_g', 'apellido_g', 'cedula_g', 'celular_g', 'fijo_g', 'direccion_g', 'email_g'];
+    protected  $table = "guias";
+    protected  $fillable = ['id', 'nombre', 'apellido', 'cedula', 'celular', 'fijo', 'direccion', 'email'];
 
     public function pakage3(){
-    	return $this->belongsToMany('hive\Models\Pakages')
+    	return $this->belongsToMany('hive\Models\Pakages');
     }
 
     public function localities(){
-    	return $this->belongsToMany('hive\Models\Localities')
+    	return $this->belongsToMany('hive\Models\Localities');
     }
 }

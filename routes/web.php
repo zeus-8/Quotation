@@ -46,3 +46,14 @@ Route::get('location/{id}/destroy', [
 			'uses'	=>	'LocationController@destroy',
 			'as'	=>	'location.destroy'
 		]);
+
+Route::resource('transport', 'TransportController');
+Route::get('transport/{id}/destroy', [
+			'uses'	=>	'TransportController@destroy',
+			'as'	=>	'transport.destroy'
+		]);
+Route::resource('packages', 'PackagesController');
+Route::get('packages/{id}/destroy', [
+			'uses'	=>	'PackagesController@destroy',
+			'as'	=>	'packages.destroy'
+		]);

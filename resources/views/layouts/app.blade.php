@@ -12,6 +12,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dataTables.css') }}" rel="stylesheet" >
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" >
+    <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/iCheck/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +84,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('jq/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('js/dataTables.js') }}"></script>
+    <script src="{{ asset('js/') }}"></script>
 </body>
 </html>

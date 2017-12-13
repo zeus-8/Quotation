@@ -3,13 +3,17 @@
 namespace hive\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Type_Room extends Model
 {
-	protected  $table = "tipo_habi";
-	protected  $fillable = ['id', 'descripcion_habi'];
+	use SoftDeletes;
+
+	protected  $table = "habitaciones";
+	protected  $fillable = ['id', 'descripcion'];
 
 	public function hostels(){
-		return $this->belongsTo('hive\Models\Hotels');
+		return $this->belongsToMany('hive\Models\Hotels','hot_hab')->withPivot('id_hab', 'costo');
 	}
 }

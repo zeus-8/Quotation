@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pakages extends Model
 {
     protected  $table = "paquetes";
-    protected  $fillable = ['id', 'titulo', 'descripcion_p'];
+    protected  $fillable = ['id', 'titulo', 'descripcion'];
 
     public function cot_ven(){
     	return $this->belongsToMany('hive\Models\Cot_Ven')
