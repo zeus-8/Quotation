@@ -46,7 +46,10 @@ class BedroomController extends Controller
                 'descripcion' => trim(strtoupper($request['descripcion'])),
             ]);
         Session::flash('message', 'La HABITACION se guardo exitosamente');
-        return Redirect::to('bed');
+        return Redirect::to('bed/create');
+       
+        
+        
         
     }
 
