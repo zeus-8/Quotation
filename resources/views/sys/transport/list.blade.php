@@ -20,10 +20,11 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('usuario/create') }}" class="btn btn-success"><i class="fa fa-user-plus"> Nuevo Usiario</i></a> <br><br> 
+						 <a href="{{ URL::to('transport/create') }}" class="btn btn-success"><i class="fa fa-car"> Nuevo Transporte</i></a> <br><br> 
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
+								<th>Id</th>
 								<th>Empresa</th>
 								<th>Nombre</th>
 								<th>Apellido</th>
@@ -35,6 +36,7 @@
 							<tbody>
 								@foreach ($transports as $transport)
 									<tr>
+										<td>{{ $transport->id }}</td>
 										<td>{{ $transport->nombre }}</td>
 										<td>{{ $transport->nombre_chofer }}</td>
 										<td>{{ $transport->apellido_chofer }}</td>

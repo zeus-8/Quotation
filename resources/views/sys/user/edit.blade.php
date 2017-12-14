@@ -19,7 +19,8 @@
                    <?php $op = 2; ?>
                    @include('sys.user.form.user')
                    <div class="form-group">
-                    {!! Form::submit('Modificar', ['class'=>'btn btn-primary btn-lg btn-block']) !!}
+                    {!! Form::submit('Modificar', ['class'=>'btn btn-primary btn-lg']) !!}
+                    <a href="{{ URL::to('user') }}" class="btn btn-danger btn-lg">Cancelar</a>
                   </div>
                 {!! Form::close() !!}
               </div>

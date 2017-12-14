@@ -20,7 +20,7 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('bed/create') }}" class="btn btn-success"><i class="fa fa-plus">Agregar Habitacion</i></a> <br><br> 
+						 <a href="{{ URL::to('bed/create') }}" class="btn btn-success"><i class="fa fa-bed"> Agregar Habitacion</i></a> <br><br> 
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>

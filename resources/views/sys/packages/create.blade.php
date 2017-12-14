@@ -21,7 +21,8 @@
                    <?php $op = 1; ?>
                      @include('sys.packages.form.package')
                      <div class="form-group">
-                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-lg btn-block']) !!}
+                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-block']) !!}
+                      <a href="{{ URL::to('packages') }}" class="btn btn-danger btn-lg">Cancelar</a>
                     </div>
                   {!! Form::close() !!}
               </div>

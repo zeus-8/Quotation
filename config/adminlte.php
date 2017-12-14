@@ -215,7 +215,7 @@ return [
             'submenu' =>[
                  [
                     'text' => 'Lista de Paquetes',
-                    'url'  => 'transport',
+                    'url'  => 'packages',
                     'icon' => 'list-ol',
                 ],
                 [

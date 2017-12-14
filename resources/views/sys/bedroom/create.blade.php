@@ -20,7 +20,8 @@
                   {!! Form::open(['route'=>'bed.store', 'method'=>'POST']) !!}
                      @include('sys.bedroom.form.bedroom')
                      <div class="form-group">
-                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-lg btn-block']) !!}
+                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-lg']) !!}
+                      <a href="{{ URL::to('bed') }}" class="btn btn-danger btn-lg">Cancelar</a>
                     </div>
                   {!! Form::close() !!}
               </div>

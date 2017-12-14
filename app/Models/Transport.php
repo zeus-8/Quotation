@@ -3,9 +3,12 @@
 namespace hive\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transport extends Model
 {
+    use SoftDeletes;
+
     protected  $table = "transportes";
     protected  $fillable = ['id', 'nombre_chofer', 'apellido_chofer', 'cedula', 'telef_chofer', 'descripcion_trans', 'id_emp', 'id_tt' ];
 

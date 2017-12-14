@@ -3,6 +3,8 @@
 namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
+use hive\Http\Requests;
+use hive\Http\Requests\CreateTransportRequest;
 use hive\Models\Business;
 use hive\Models\Transport;
 use hive\Models\Type_Transport;
@@ -23,6 +25,7 @@ class TransportController extends Controller
                             ->join('empresa', 'transportes.id_emp', '=', 'empresa.id')
                             ->join('tipo_trans', 'transportes.id_tt', '=', 'tipo_trans.id')
                             ->select('transportes.id', 'empresa.nombre', 'transportes.nombre_chofer', 'transportes.apellido_chofer', 'transportes.cedula', 'tipo_trans.descripcion')
+                            ->whereNull('deleted_at')
                             ->orderBy('transportes.cedula')
                             ->get();
                             // dd($transports);
@@ -47,7 +50,7 @@ class TransportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTransportRequest $request)
     {
         // dd($request);
         Transport::create([
@@ -82,7 +85,13 @@ class TransportController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transport1 = Transport::find($id);
+        $transport1->descripcion =  $transport1->descripcion_trans;
+        $transport1->celular = $transport1->telef_chofer;
+        $business = Business::all();
+        $transports = Type_Transport::all();
+        // dd($transport1);
+        return view('sys.transport.edit', compact('transport1', 'business', 'transports'));
     }
 
     /**
@@ -94,7 +103,17 @@ class TransportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transport1 = Transport::find($id);
+        $transport1->id_emp = $request->empresa;
+        $transport1->nombre_chofer = trim(strtoupper($request->nombre_chofer));
+        $transport1->apellido_chofer = trim(strtoupper($request->apellido_chofer));
+        $transport1->cedula = $request->cedula;
+        $transport1->telef_chofer = $request->celular;
+        $transport1->id_tt = $request->transporte;
+        $transport1->descripcion_trans = $request->descripcion;
+        $transport1->save();
+        Session::flash('message','Los datos de ' .  $request->nombre_chofer  . ' fue actualizado con exito');
+        return Redirect::to('transport');
     }
 
     /**
@@ -105,6 +124,9 @@ class TransportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transport = Transport::find($id);
+        $transport->delete();
+        Session::flash('message','Los Datos de ' .  $transport->nombre_chofer . ' fue dado de baja con exito');
+        return Redirect::to('transport');
     }
 }

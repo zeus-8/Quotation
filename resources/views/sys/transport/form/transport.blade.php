@@ -4,7 +4,7 @@
       <option>-- Seleccione --</option>
       @foreach($business as $company)
         @if($op == 2)
-          <option value="{{ $company->id }}" <?php if ($company->id == $user->id_tu){ ?> SELECTED <?php } ?>>{{ $company->nombre }}</option>
+          <option value="{{ $company->id }}" <?php if ($company->id == $transport1->id_emp){ ?> SELECTED <?php } ?>>{{ $company->nombre }}</option>
         @else
           <option value="{{ $company->id }}">{{ $company->nombre }}</option>
         @endif 
@@ -37,7 +37,7 @@
       <option>-- Seleccione --</option>
       @foreach($transports as $transport)
         @if($op == 2)
-          <option value="{{ $transport->id }}" <?php if ($transport->id == $user->id_tu){ ?> SELECTED <?php } ?>>{{ $transport->descripcion }}</option>
+          <option value="{{ $transport->id }}" <?php if ($transport->id == $transport1->id_tt){ ?> SELECTED <?php } ?>>{{ $transport->descripcion }}</option>
         @else
           <option value="{{ $transport->id }}">{{ $transport->descripcion }}</option>
         @endif 
@@ -46,6 +46,6 @@
 </div>
 <div class="form-group has-feedback">
   {!! Form::label('Descripcion') !!}
+  <p class="text-aqua"><i class="fa fa-info-circle"></i> Si no el transporte no lleva descripcion rellene con 3 guiones (---) </p>
   {!! Form::textarea ('descripcion', null, ['class'=>'form-control', 'placeholder'=>'Descripcion']) !!}
-  <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
 </div>
