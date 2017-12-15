@@ -87,6 +87,33 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        
+        Schema::create('tipo_hotel', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('tipo');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+                
+        Schema::create('restaurant', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('direccion');
+            $table->integer('telefono');
+            $table->decimal('costo_desayuno', 5, 2);
+            $table->decimal('costo_almuerzo', 5, 2);
+            $table->decimal('costo_cena', 5, 2);
+            $table->boolean('en_hotel');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+                
+        Schema::create('servi_hotel', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('servicio');
+            $table->timestamps();
+            $table->softDeletes();
+        });
                 
         Schema::create('hoteles', function(Blueprint $table){
             $table->increments('id');
@@ -95,9 +122,13 @@ class CreateUsersTable extends Migration
             $table->bigInteger('celular');
             $table->bigInteger('fijo');
             $table->string('email');
-            $table->decimal('costo_desayuno', 5, 2);
-            $table->decimal('costo_almuerzo', 5, 2);
-            $table->decimal('costo_cena', 5, 2);
+            $table->string('contacto');
+            $table->integer('id_th')->unsigned();//id_tipo_hotel
+            $table->foreign('id_th')->references('id')->on('tipo_hotel')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_res')->unsigned();//id_restaurant
+            $table->foreign('id_res')->references('id')->on('restaurant')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_serh')->unsigned();//id_servicio_hotel
+            $table->foreign('id_serh')->references('id')->on('servi_hotel')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 
