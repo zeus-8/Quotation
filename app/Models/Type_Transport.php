@@ -9,7 +9,9 @@ class Type_Transport extends Model
 	protected  $table = "tipo_trans";
 	protected  $fillable = ['id', 'descripcion'];
 
-	public function transpotation(){
-		return $this->belongsToMany('hive\Models\Transport');
+	public function transports(){
+		return $this->hasmany('hive\Transport.php');
 	}
+
+
 }

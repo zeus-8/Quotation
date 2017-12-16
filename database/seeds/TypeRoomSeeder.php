@@ -16,6 +16,9 @@ class TypeRoomSeeder extends Seeder
 		]); 
 		DB::table('habitaciones')->insert([
 			'descripcion'	=>	'MATRIMONIAL'
+		]);
+		DB::table('habitaciones')->insert([
+			'descripcion'	=>	'DOBLE'
 		]); 
 		DB::table('habitaciones')->insert([
 			'descripcion'	=>	'TRIPLE'

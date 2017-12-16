@@ -11,6 +11,15 @@
                 <span class="glyphicon glyphicon-home form-control-feedback"></span>
               </div>
             </dd>
+            <dt>Tipo de Hotel</dt>
+            <dd>
+            <select name="tipo_hotel" class="form-control select2" style="width: 100%;">
+              <option>--Seleccione--</option>
+              @foreach ($typehotels as $typehotel)
+                <option value="{{ $typehotel->id }}">{{ $typehotel->tipo }}</option>
+              @endforeach
+            </select>              
+            </dd>
             <dt>Direccion</dt>
             <dd>
               <div class="form-group has-feedback">
@@ -43,113 +52,113 @@
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
               </div>
             </dd>
+            <dt>Nombre del Contacto</dt>
+            <dd>
+              <div class="form-group has-feedback">
+                {!! Form::text('telef_fijo', null, ['class'=>'form-control', 'placeholder'=>'Contacto']) !!}
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              </div>
+            </dd>
           </dl>
         </div>
     </div>
   </div>
-  
   <div class="col-xs-12 col-sm-6 col-md-6">
     <div class="panel panel-primary">
-      <div class="panel-heading">Agregar Habitacion</div>
+      <div class="panel-heading">Datos del Restaurant</div>
       <div class="panel-body">
-        <dl>
-        {{-- <dt></dt>
+        <dt></dt>
         <dd>
-          <a class="btn btn-success btn-lg btn-block btn-sm" data-toggle="modal" data-target="#modal-default">Agregar Habitacion</a>
-        </dd><br> --}}
-        <dt>Habitaciones</dt>
-        <dd>
-          <select multiple="" class="form-control" size="13" name="hotel[]">
-            @foreach ($rooms as $room)
-              <option value="{{ $room->id }}">{{ $room->descripcion }}</option>
-            @endforeach
-          </select>
+          <div class="checkbox">
+          <label><input type="checkbox" value="1">Esta en el Hotel?</label>
+        </div>
         </dd>
-        <dt></dt>
-        <dd></dd>
-        <dt></dt>
-        <dd></dd>
-      </dl>
+        <dl>
+          <dt>Nombre</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('nombre_restaurant', null, ['class'=>'form-control', 'placeholder'=>'Nombre']) !!}
+              <span class="glyphicon glyphicon-glass form-control-feedback"></span>
+            </div>
+          </dd>
+          <dt>Direccion</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('direccion_restaurant', null, ['class'=>'form-control', 'placeholder'=>'Direccion']) !!}
+              <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+            </div>
+          </dd>
+          <dt>Celular</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('celular_restaurant', null, ['class'=>'form-control', 'placeholder'=>'Celular']) !!}
+              <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+            </div>
+          </dd>
+          <dt>Fijo</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('fijo_restaurant', null, ['class'=>'form-control', 'placeholder'=>'Fijo']) !!}
+              <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+            </div>
+          </dd>
+          <dt>Costo del Desayuno</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('costo_desayuno', null, ['class'=>'form-control', 'placeholder'=>'Desayuno']) !!}
+              <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+            </div>
+          </dd>
+          <dt>Costo del Almuerso</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('costo_almuerzo', null, ['class'=>'form-control', 'placeholder'=>'Almuerzo']) !!}
+              <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+            </div>
+          </dd>
+          <dt>Costo de la Cena</dt>
+          <dd>
+            <div class="form-group has-feedback">
+              {!! Form::text('costo_cena', null, ['class'=>'form-control', 'placeholder'=>'Cena']) !!}
+              <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+            </div>
+          </dd>
+        </dl>
       </div>
     </div>
-    {{-- <div class="modal fade" id="modal-default">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><i class="fa fa-bed"></i> Agregar Habitación</h4>
-          </div>
-          <div class="modal-body">
-            <div class="box box-primary ">
-              <div class="box-header with-border">
-                <h3 class="box-title">Nueva Habitacion</h3>
-              </div>
-              <div class="box-body">
-                @include('sys.message.request_message')
-                  {!! Form::open(['route'=>'bed.store', 'method'=>'POST']) !!}
-                     @include('sys.bedroom.form.bedroom')
-                     <div class="form-group">
-                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-lg btn-block']) !!}
-                    </div>
-                  {!! Form::close() !!}
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> --}}
   </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">Costo de Alimentación</div>
-        <div class="panel-body">
-          <dl class="dl-horizontal">
-            <dt>Costo del Desayuno</dt>
-            <dd>
-              <div class="form-group has-feedback">
-                {!! Form::text('costo_desayuno', null, ['class'=>'form-control', 'placeholder'=>'Desayuno']) !!}
-                <span class="glyphicon glyphicon-usd form-control-feedback"></span>
-              </div>
-            </dd>
-            <dt>Costo del Almuerso</dt>
-            <dd>
-              <div class="form-group has-feedback">
-                {!! Form::text('costo_almuerzo', null, ['class'=>'form-control', 'placeholder'=>'Almuerzo']) !!}
-                <span class="glyphicon glyphicon-usd form-control-feedback"></span>
-              </div>
-            </dd>
-            <dt>Costo de la Cena</dt>
-            <dd>
-              <div class="form-group has-feedback">
-                {!! Form::text('costo_cena', null, ['class'=>'form-control', 'placeholder'=>'Cena']) !!}
-                <span class="glyphicon glyphicon-usd form-control-feedback"></span>
-              </div>
-            </dd>
-          </dl>
-        </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Costo de Habitacion</div>
+      <div class="panel-body">
+        @foreach ($rooms as $room)
+          <div class="col-xs-6">
+            <div class="form-group has-feedback">
+              {!! Form::label($room->descripcion) !!}
+              {!! Form::text('costo_habitacion', '0', ['class'=>'form-control input-sm']) !!}
+              <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+            </div>
+          </div>
+        @endforeach
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">Costo de Habitación por Noche</div>
-        <div class="panel-body">
-          {{-- <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-          @foreach ($rooms as $room)
-            <option value="{{ $room->id }}">{{ $room->descripcion }}</option>
-          @endforeach
-        </select> --}}
-        Habitaciones seleccionadas
-        </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Costo de Habitación por Noche</div>
+      <div class="panel-body">
+        {{-- <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+        @foreach ($rooms as $room)
+          <option value="{{ $room->id }}">{{ $room->descripcion }}</option>
+        @endforeach
+      </select> --}}
+      Habitaciones seleccionadas
       </div>
     </div>
-  </div>  
+  </div>
+</div>  
   {{-- <div class="col-xs-12 col-sm-6 col-md-6">
     
    </div>  --}}

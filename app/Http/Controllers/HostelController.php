@@ -7,6 +7,7 @@ use hive\Http\Requests;
 use hive\Http\Requests\CreateHostelRequest;
 use hive\Models\Hotels;
 use hive\Models\Type_Room;
+use hive\Models\Type_Hoste;
 use Redirect;
 use Session;
 use DB;
@@ -31,7 +32,8 @@ class HostelController extends Controller
     public function create()
     {
         $rooms = Type_Room::All();
-        return view('sys.hostel.create', compact('rooms'));
+        $typehotels = Type_Hoste::All();
+        return view('sys.hostel.create', compact('rooms', 'typehotels'));
     }
 
     /**
