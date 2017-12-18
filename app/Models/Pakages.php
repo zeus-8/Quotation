@@ -9,23 +9,26 @@ class Pakages extends Model
     protected  $table = "paquetes";
     protected  $fillable = ['id', 'titulo', 'descripcion'];
 
-    public function cot_ven(){
-    	return $this->belongsToMany('hive\Models\Cot_Ven')
-    }
-
     public function services(){
-    	return $this->belongsToMany('hive\Models\Services')
+    	return $this->belongsToMany('hive\Models\Services');
     }
 
     public function guides(){
-    	return $this->belongsToMany('hive\Models\Guides')
+    	return $this->belongsToMany('hive\Models\Guides');
     }
 
     public function transport(){
-        return $this->belongsToMany('hive\Models\Transport')
+        return $this->belongsToMany('hive\Models\Transport');
     }
 
     public function hotels(){
-        return $this->belongsToMany('hive\Models\Hostels')
+        return $this->belongsToMany('hive\Models\Hostels');
     }
+    public function bills2(){
+        return $this->hasmany('hive\Models\Bill');
+    }
+    public function datePakage(){
+        return $this->belongsToMany('hive\Models\Date');
+    }
+
 }

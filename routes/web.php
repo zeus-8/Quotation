@@ -57,3 +57,8 @@ Route::get('packages/{id}/destroy', [
 			'uses'	=>	'PackagesController@destroy',
 			'as'	=>	'packages.destroy'
 		]);
+Route::resource('quotation', 'QuotationController');
+Route::get('quotation/{id}/destroy', [
+			'uses'	=>	'QuotationController@destroy',
+			'as'	=>	'quotation.destroy'
+		]);

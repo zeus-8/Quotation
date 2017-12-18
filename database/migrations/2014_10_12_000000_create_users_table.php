@@ -133,7 +133,32 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
 
         });
-                
+
+        Schema::create('clientes', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->integer('cedula')->unique();
+            $table->bigInteger('celular');
+            $table->bigInteger('fijo');
+            $table->string('email');
+            $table->string('direccion');
+            $table->boolean('sexo');// 0 femenino 1 masculino
+            $table->integer('estado_civil');
+            $table->date('fech_nac');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+                                                
+        Schema::create('fechas', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('descripcion');
+            $table->date('fecha_ini');
+            $table->date('fecha_fin');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+                                
         Schema::create('paquetes', function(Blueprint $table){
             $table->increments('id');
             $table->string('nombre');
@@ -163,15 +188,23 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('cot_ven', function(Blueprint $table){
+        Schema::create('factura', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descripcion');
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('observacion');
+            $table->date('fecha');
+            $table->dateTime('hora');
+            $table->integer('nfactura');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_paq')->unsigned();
+            $table->foreign('id_paq')->references('id')->on('paquetes')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_cli')->unsigned();
+            $table->foreign('id_cli')->references('id')->on('clientes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
-                
-        Schema::create('loc_gui', function(Blueprint $table){
+
+        Schema::create('gui_loc', function(Blueprint $table){
             $table->increments('id');
             $table->integer('localidades_id')->unsigned();
             $table->integer('guias_id')->unsigned();
@@ -190,7 +223,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('paq_hot', function(Blueprint $table){
+        Schema::create('hot_paq', function(Blueprint $table){
             $table->increments('id');
             $table->integer('paquetes_id')->unsigned();
             $table->integer('hoteles_id')->unsigned();
@@ -199,21 +232,12 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('paq_gui', function(Blueprint $table){
+        Schema::create('gui_paq', function(Blueprint $table){
             $table->increments('id');
             $table->integer('paquetes_id')->unsigned();
             $table->integer('guias_id')->unsigned();
             $table->foreign('paquetes_id')->references('id')->on('paquetes')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('guias_id')->references('id')->on('guias')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        Schema::create('cov_paq', function(Blueprint $table){
-            $table->increments('id');
-            $table->integer('cot_ven_id')->unsigned();
-            $table->integer('paquetes_id')->unsigned();
-            $table->foreign('cot_ven_id')->references('id')->on('cot_ven')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('paquetes_id')->references('id')->on('paquetes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -226,13 +250,22 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('hot_hab', function(Blueprint $table){
+        Schema::create('hab_hot', function(Blueprint $table){
             $table->increments('id');
             $table->integer('id_hot')->unsigned();
             $table->integer('id_hab')->unsigned();
             $table->decimal('costo', 6, 2);
             $table->foreign('id_hot')->references('id')->on('hoteles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_hab')->references('id')->on('habitaciones')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('fec_pac', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_fec')->unsigned();
+            $table->foreign('id_fec')->references('id')->on('fechas')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_paq')->unsigned();
+            $table->foreign('id_paq')->references('id')->on('paquetes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

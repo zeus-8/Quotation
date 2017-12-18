@@ -117,7 +117,7 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'home',
-            'icon'        => 'dashboard ',
+            'icon'        => 'dashboard',
             'label'       => 4,
             'label_color' => 'success',
         ],
@@ -224,6 +224,21 @@ return [
                     'icon' => 'plus',
                 ],
             ],
+        ],
+        'COTIZACION',
+        [
+            'text'        => 'Listado',
+            'url'         => 'quotation',
+            'icon'        => 'list-ol',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Cotizacion',
+            'url'         => 'quotation/create',
+            'icon'        => 'ticket',
+            'label'       => 4,
+            'label_color' => 'success',
         ],
         // [
         //     'text' => 'Profile',

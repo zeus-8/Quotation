@@ -32,8 +32,7 @@ class User extends Authenticatable
     public function types_users(){
         return $this->belongsTo('hive\Models\Types_User');
     }
-
-    public function quotations(){
-        return $this->hasmany('hidden\Models\Cot_Ven');
+    public function bills3(){
+        return $this->hasmany('hive\Models\Bill');
     }
 }
