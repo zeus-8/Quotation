@@ -13,13 +13,12 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
         	'name' 		=>	'JUAN',
-        	'apellido'	=>	'SIERRA',
-        	'cedula'	=>	'123456789',
+        	'us_last_name'	=>	'SIERRA',
+        	'us_id_card'	=>	'123456789',
         	'email'		=>	'ZEUS.8.JL@GMAIL.COM',
-        	'celular'	=>	'0995545441',
-        	'direccion'	=>	'---',
+        	'us_cell_phone'	=>	'0995545441',
         	'password'	=>	bcrypt('j15734681***'),
-        	'id_tu'		=>	'1'
+        	'tuser_id'		=>	'1'
         ]);
     }
 }

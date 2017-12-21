@@ -11,44 +11,44 @@ class TypeHostelSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_hotel')->insert([
-        			'tipo'	=>	'AGENCIA DE VIAJES'
+        DB::table('thotels')->insert([
+        			'type_hotel'	=>	'AGENCIA DE VIAJES'
                 ]);
-        DB::table('tipo_hotel')->insert([
-                    'tipo'  =>  'ECO LODGE'
+        DB::table('thotels')->insert([
+                    'type_hotel'  =>  'ECO LODGE'
                 ]);
-		DB::table('tipo_hotel')->insert([
-                    'tipo'  =>  'ECOLODGE Y TOUR'
+		DB::table('thotels')->insert([
+                    'type_hotel'  =>  'ECOLODGE Y TOUR'
                 ]);
-        DB::table('tipo_hotel')->insert([
-                   'tipo'   =>  'ECO LODGE KAPAWI' 
+        DB::table('thotels')->insert([
+                   'type_hotel'   =>  'ECO LODGE KAPAWI' 
                 ]);	
-        DB::table('tipo_hotel')->insert([
-                    'tipo'  =>  'HOSTERIA'            
+        DB::table('thotels')->insert([
+                    'type_hotel'  =>  'HOSTERIA'            
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' =>  'HOTEL'        
+		DB::table('thotels')->insert([
+                    'type_hotel' =>  'HOTEL'        
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' => 'HOTEL CON PISCINA'          
+		DB::table('thotels')->insert([
+                    'type_hotel' => 'HOTEL CON PISCINA'          
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' => 'HOTEL DE PRIMERA'          
+		DB::table('thotels')->insert([
+                    'type_hotel' => 'HOTEL DE PRIMERA'          
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' => 'HOTEL TURISTA'          
+		DB::table('thotels')->insert([
+                    'type_hotel' => 'HOTEL TURISTA'          
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' => 'LODGE'            
+		DB::table('thotels')->insert([
+                    'type_hotel' => 'LODGE'            
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' => 'LODGE 4 ESTRE'            
+		DB::table('thotels')->insert([
+                    'type_hotel' => 'LODGE 4 ESTRE'            
                 ]);			
-		DB::table('tipo_hotel')->insert([
-                    'tipo' => 'LODGE ECONOM'            
+		DB::table('thotels')->insert([
+                    'type_hotel' => 'LODGE ECONOM'            
                 ]);
-        DB::table('tipo_hotel')->insert([
-                    'tipo' => 'TEST'            
+        DB::table('thotels')->insert([
+                    'type_hotel' => 'TEST'            
                 ]);			
     }
 }

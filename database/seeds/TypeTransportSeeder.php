@@ -11,14 +11,14 @@ class TypeTransportSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_trans')->insert([
-        	'descripcion'	=>	'AEREO'
+        DB::table('ttransfers')->insert([
+        	'tt_transfer'	=>	'AEREO'
         ]);
-        DB::table('tipo_trans')->insert([
-        	'descripcion'	=>	'MARITIMO'
+        DB::table('ttransfers')->insert([
+        	'tt_transfer'	=>	'MARITIMO'
         ]);
-        DB::table('tipo_trans')->insert([
-        	'descripcion'	=>	'TERRESTRE'
+        DB::table('ttransfers')->insert([
+        	'tt_transfer'	=>	'TERRESTRE'
         ]);
     }
 }

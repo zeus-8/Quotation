@@ -11,11 +11,11 @@ class TypeUserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_usu')->insert([
-        	'descripcion'	=>	'ADMIN'
+        DB::table('tusers')->insert([
+        	'type_user'	=>	'ADMIN'
         ]);
-        DB::table('tipo_usu')->insert([
-        	'descripcion'	=>	'USUARIO'
+        DB::table('tusers')->insert([
+        	'type_user'	=>	'USUARIO'
         ]);
     }
 }

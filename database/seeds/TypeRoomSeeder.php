@@ -11,20 +11,20 @@ class TypeRoomSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('habitaciones')->insert([
-			'descripcion'	=>	'SENCILLA'
+		DB::table('rooms')->insert([
+			'room'	=>	'SENCILLA'
 		]); 
-		DB::table('habitaciones')->insert([
-			'descripcion'	=>	'MATRIMONIAL'
+		DB::table('rooms')->insert([
+			'room'	=>	'MATRIMONIAL'
 		]);
-		DB::table('habitaciones')->insert([
-			'descripcion'	=>	'DOBLE'
+		DB::table('rooms')->insert([
+			'room'	=>	'DOBLE'
 		]); 
-		DB::table('habitaciones')->insert([
-			'descripcion'	=>	'TRIPLE'
+		DB::table('rooms')->insert([
+			'room'	=>	'TRIPLE'
 		]);
-		DB::table('habitaciones')->insert([
-			'descripcion'	=>	'CUADRUPLE'
+		DB::table('rooms')->insert([
+			'room'	=>	'CUADRUPLE'
 		]);
     }
 }
