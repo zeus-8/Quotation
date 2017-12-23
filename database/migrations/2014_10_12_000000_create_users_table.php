@@ -13,12 +13,6 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        //empresas
-        Schema::create('Business', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('bu_name');
-            $table->timestamps();
-        });
         // clientes
         Schema::create('customers', function(Blueprint $table){
             $table->increments('id');
@@ -34,6 +28,12 @@ class CreateUsersTable extends Migration
             $table->date('cu_brithdate');
             $table->timestamps();
             $table->softDeletes();
+        });
+        //empresas
+        Schema::create('companies', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('co_name');
+            $table->timestamps();
         });
         //fechas
         Schema::create('dates', function(Blueprint $table){
@@ -60,14 +60,15 @@ class CreateUsersTable extends Migration
         //localidades
         Schema::create('localities', function(Blueprint $table){
             $table->increments('id');
-            $table->string('lacalite');
+            $table->string('localite');
             $table->timestamps();
         });
         //paquetes
         Schema::create('packages', function(Blueprint $table){
             $table->increments('id');
             $table->string('pa_name');
-            $table->text('pa_address');
+            $table->text('pa_activities');
+            $table->text('pa_coment');
             $table->decimal('pa_cost', 6, 2);
             $table->text('pa_observations');
             $table->timestamps();
@@ -162,8 +163,8 @@ class CreateUsersTable extends Migration
             $table->integer('tr_id_card');
             $table->integer('tr_cell_phone');
             $table->string('tr_coment');
-            $table->integer('business_id')->unsigned();
-            $table->foreign('business_id')->references('id')->on('business')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('companie_id')->unsigned();
+            $table->foreign('companie_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('ttransfer_id')->unsigned();
             $table->foreign('ttransfer_id')->references('id')->on('ttransfers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

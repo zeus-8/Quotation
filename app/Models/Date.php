@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Date extends Model
 {
-    protected $table = "fechas";
-    protected $fillable = ['id', 'descripcion', 'fecha_ini', 'fecha_fin'];
+    protected $table = "dates";
+    protected $fillable = ['id', 'da_date', 'da_date_init', 'da_date_end'];
 
-    public function pakagesDate(){
-    	return $this->belongsToMany('hive\Models\pakages');
+    public function packages(){
+        return $this->belongsToMany('hive\Models\Packages');
     }
 }

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
-    protected $table = "restaurant";
-    protected $fillable = ['id', 'nombre', 'direccion', 'telefono', 'costo_desayuno', 'costo_almuerzo', 'costo_cena', 'en_hotel'];
+    protected $table = "restaurants";
+    protected $fillable = ['id', 're_name', 're_address', 're_cell_phone', 're_phone', 're_cost_breakfast', 're_cost_lunch', 're_cost_dinner', 're_in_hotel'];
 
-    public function hostels1(){
-    	return $this->hasmany('hive\Hotels.php');
+    public function hotels(){
+        return $this->hasMany('hive\Models\Hotels');
     }
+
 }

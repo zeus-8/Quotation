@@ -3,22 +3,19 @@
 namespace hive\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Bill extends Model
 {
-	use  SoftDeletes;
+    protected $table = "bills";
+    protected $fillable = ['id', 'bi_coment', 'bi_date', 'bi_hour', 'bi_nbill', 'user_id', 'package_id', 'customer_id']
 
-    protected $table = "facturas";
-    protected $fillable = ['id', 'observacion', 'nfactura', 'id_use', 'id_paq', 'id_cli', ''];
-
-    public function client(){
-    	return $this->belongsTo('hive\Models\Client.php');
-    }
-    public function pakage5(){
-    	return $this->belongsTo('hive\Models\Pakages');
-    }
     public function user(){
-    	return $this->belongsTo('hive\User');
+        return $this->belongsTo('hive\Models\User');
+    }
+    public function customer(){
+        return $this->belongsTo('hive\Models\Customer')
+    }
+    public function packages(){
+        return->$this->hasMany('hive\Models\Package');
     }
 }

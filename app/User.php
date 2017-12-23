@@ -16,9 +16,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'id', 'name', 'apellido', 'cedula', 'email', 'celular', 'fijo', 'direccion', 'password', 'id_tu'
-    ];
+    protected $fillable = array(
+        'id', 'name', 'us_last_name', 'us_id_card', 'email', 'us_cell_phone', 'us_phone', 'us_address', 'password', 'tuser_id'
+    );
 
     /**
      * The attributes that should be hidden for arrays.
@@ -29,10 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function types_users(){
-        return $this->belongsTo('hive\Models\Types_User');
+    public function tuser(){
+        return $this->belongsTo('hive\Models\Tusers');
     }
-    public function bills3(){
-        return $this->hasmany('hive\Models\Bill');
+    public function bill(){
+        return $this->belongsTo('hive\Models\Bill');
     }
+
 }
