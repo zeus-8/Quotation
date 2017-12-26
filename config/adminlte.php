@@ -141,18 +141,23 @@ return [
         
         ],
         [
-            'text' => 'Localidad',
+            'text' => 'Gias',
             'url'  => '',
-            'icon' => 'location-arrow',
+            'icon' => 'map-o',
             'submenu' =>[
-                 [
-                    'text' => 'Listade Localidades',
+                [
+                    'text' => 'Localidad',
                     'url'  => 'location',
+                    'icon' => 'location-arrow',
+                ],
+                [
+                    'text' => 'Lista de Guias',
+                    'url'  => '',
                     'icon' => 'list-ol',
                 ],
                 [
                     'text' => 'Nuevo',
-                    'url'  => 'location/create',
+                    'url'  => '',
                     'icon' => 'plus',
                 ],
             ],

@@ -20,7 +20,21 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('location/create') }}" class="btn btn-success"><i class="fa fa-location-arrow"> Nueva Localidad</i></a> <br><br> 
+						{{-- <a href="{{ URL::to('location/create') }}" class="btn btn-success"><i class="fa fa-location-arrow"> Nueva Localidad</i></a> <br><br>  --}}
+
+						<div class="panel panel-primary">
+						  <div class="panel-heading">Agregue una Localidad</div>
+						  <div class="panel-body">
+							@include('sys.message.request_message')
+							{!! Form::open(['route'=>'location.store', 'method'=>'POST']) !!}
+								@include('sys.location.form.location')
+								<div class="form-group">
+								{!! Form::submit('Agregar', ['class'=>'btn btn-primary']) !!}
+								</div>
+							{!! Form::close() !!}
+						  </div>
+						</div>
+
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
