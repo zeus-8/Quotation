@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuarios')
+@section('title', 'Cotización')
 
 @section('content_header')
-    <h1>Lista de Usuarios</h1>
+    <h1>Lista de Cotizaciones</h1>
 @stop
 
 @section('content')
@@ -16,31 +16,30 @@
 			<div class="col-xs-12">
 				<div class="box box-primary">
 					<div class="box-header">
-						<h3 class="box-title">Usuarios Registrados</h3>
+						<h3 class="box-title">Paquetes a Cotizar</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('usuario/create') }}" class="btn btn-success"><i class="fa fa-user-plus"> Nuevo Usiario</i></a> <br><br> 
-						<table id="example2" class="table table-bordered table-striped">
+						 {{-- <a href="{{ URL::to('usuario/create') }}" class="btn btn-success"><i class="fa fa-user-plus"> Nuevo Usiario</i></a> <br><br>  --}}
+						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 								<th>N°</th>
-								<th>Cliente</th>
-								<th>Fecha</th>
+								<th>Nombre</th>
+								<th>Costo</th>
 								<th>ACCION</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($users as $user)
+								@foreach ($pakages as $pakage)
 									<tr>
-										<td>{{ $user->cedula }}</td>
-										<td>{{ $user->name }}</td>
-										<td>{{ $user->apellido }}</td>
-										<td>{{ $user->descripcion }}</td>
+										<td>{{ $pakage->id }}</td>
+										<td>{{ $pakage->pa_name }}</td>
+										<td>{{ $pakage->pa_cost }}</td>
 										<td align="center">
-											{{-- @if ($user->descripcion_tu == 'ADMIN')	 --}}
-												<a href="{{ route('usuario.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
-												<a href="{{ route('usuario.destroy', $user->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
+											{{-- @if ($pakage->descripcion_tu == 'ADMIN')	 --}}
+												<a href="{{ route('quotation.create1', $pakage->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
+												{{-- <a href="{{ route('usuario.destroy', $pakage->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a> --}}
 											{{-- @endif --}}
 										</td>
 									</tr>

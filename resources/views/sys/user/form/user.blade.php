@@ -19,7 +19,7 @@
 </div>
 <div class="form-group has-feedback">
   {!! Form::label('Telefono Casa') !!}
-  {!! Form::text('telef-casa', null, ['class'=>'form-control', 'placeholder'=>'Telefono-Casa']) !!}
+  {!! Form::text('telef_casa', null, ['class'=>'form-control', 'placeholder'=>'Telefono-Casa']) !!}
   <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
 </div>
 <div class="form-group has-feedback">
@@ -27,11 +27,6 @@
   {!! Form::text('celular', null, ['class'=>'form-control', 'placeholder'=>'Telefono-Celular']) !!}
   <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
   </div>
-<div class="form-group has-feedback">
-  {!! Form::label('Direccion') !!}
-  {!! Form::text('direccion', null, ['class'=>'form-control', 'placeholder'=>'Direccion']) !!}
-  <span class="glyphicon glyphicon-user form-control-feedback"></span>
-</div>
 <div class="form-group has-feedback">
   {!! Form::label('Email') !!}
   @if($op == 2)
@@ -47,9 +42,9 @@
       <option>-- Seleccione --</option>
       @foreach($role as $rol)
         @if($op == 2)
-          <option value="{{ $rol->id }}" <?php if ($rol->id == $user->id_tu){ ?> SELECTED <?php } ?>>{{ $rol->descripcion }}</option>
+          <option value="{{ $rol->id }}" <?php if ($rol->id == $user->tuser_id){ ?> SELECTED <?php } ?>>{{ $rol->type_user }}</option>
         @else
-          <option value="{{ $rol->id }}">{{ $rol->descripcion }}</option>
+          <option value="{{ $rol->id }}">{{ $rol->type_user }}</option>
         @endif 
       @endforeach
     </select>

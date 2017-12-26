@@ -33,12 +33,12 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Datos de Alojamientos</div>
       <div class="panel-body">
-        <select class="form-control select2" style="width: 100%;" name="hotel">
-          <option>--Seleccione el Hotel--</option>
+        {{-- <select class="form-control select2" style="width: 100%;" name="hotel">
+          <option>-Seleccione el Hotel-</option>
           @foreach ($hotels as $hotel)
             <option value="{{ $hotel->id }}">{{ $hotel->nombre }}</option>
           @endforeach
-        </select><br><br>
+        </select><br><br> --}}
         <div class="panel box box-primary">
           <div class="box-header with-border">
             <h4 class="box-title">
@@ -50,14 +50,14 @@
           <div id="collapse" class="panel-collapse collapse in">
             <div class="box-body">
               <dl class="dl-horizontal">
-                @foreach ($rooms as $room)
+               {{--  @foreach ($rooms as $room)
                   <dt>{{ $room->descripcion }}</dt>
                   <dd>
                     <div class="form-group has-feedback">
                       {!! Form::checkbox('habitacion', $room->id) !!}
                     </div>
                   </dd>
-                  @endforeach  
+                  @endforeach   --}}
               </dl>
             </div>
           </div>
@@ -72,14 +72,14 @@
       <div class="panel-heading">Datos del Transporte</div>
       <div class="panel-body">
         <dl class="dl-horizontal">
-          @foreach ($transfers as $transfer)
+          {{-- @foreach ($transfers as $transfer)
             <dt>{{ $transfer->nombre }}</dt>
             <dd>
               <div class="form-group has-feedback">
                 {!! Form::checkbox('transporte', $transfer->id) !!}
               </div>
             </dd>
-          @endforeach
+          @endforeach --}}
         </dl>
       </div>
     </div>
@@ -88,14 +88,14 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Datos de los Guias</div>
       <div class="panel-body">
-        @foreach ($guides as $guide)
+        {{-- @foreach ($guides as $guide)
           <dt>{{ $guide->descripcion }}</dt>
           <dd>
             <div class="form-group has-feedback">
               {!! Form::checkbox('guias', $guide->id) !!}
             </div>
           </dd>
-        @endforeach
+        @endforeach --}}
       </div>
     </div>
   </div>

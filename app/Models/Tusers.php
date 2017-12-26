@@ -10,6 +10,6 @@ class Tusers extends Model
     protected $fillable = ['id', 'type_user'];
 
     public function useres(){
-        return $this->hasMany('hive\Models\Users')
+        return $this->hasMany('hive\Models\Users');
     }
 }

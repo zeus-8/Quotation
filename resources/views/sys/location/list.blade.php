@@ -33,7 +33,7 @@
 								@foreach ($localities as $location)
 									<tr>
 										<td>{{ $location->id }}</td>
-										<td>{{ $location->localidad }}</td>
+										<td>{{ $location->localite }}</td>
 										<td align="center">
 											{{-- @if ($user->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('location.edit', $location->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>

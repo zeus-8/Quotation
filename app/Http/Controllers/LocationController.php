@@ -5,7 +5,7 @@ namespace hive\Http\Controllers;
 use Illuminate\Http\Request;
 use hive\Http\Requests;
 use hive\Http\Requests\CreateLocationRequest;
-use hive\Models\Localities;
+use hive\Models\Localitie;
 use Redirect;
 use Session;
 
@@ -18,7 +18,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $localities = Localities::all();
+        $localities = Localitie::all();
         return view ('sys.location.list', compact('localities'));
     }
 
@@ -40,8 +40,8 @@ class LocationController extends Controller
      */
     public function store(CreateLocationRequest $request)
     {
-        localities::create([
-                'localidad'      => trim(strtoupper($request['localidad'])),
+        localitie::create([
+                'localite'      => trim(strtoupper($request['localidad'])),
             ]);
         Session::flash('message', 'Los datos de la LOCALIDAD se guardaron exitosamente');
         return Redirect::to('location');
@@ -66,7 +66,8 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $location = Localities::find($id);
+        $location = Localitie::find($id);
+        $location->localidad = $location->localite;
         return view('sys.location.edit', compact('location'));
     }
 
@@ -79,8 +80,8 @@ class LocationController extends Controller
      */
     public function update(CreateLocationRequest $request, $id)
     {
-        $location = Localities::find($id);
-        $location->localidad     = trim(strtoupper($request->localidad));
+        $location = Localitie::find($id);
+        $location->localite = trim(strtoupper($request->localidad));
         $location->save();
         Session::flash('message','La localidad ' .  $request->localidad . ' fue actualizada con exito');
         return Redirect::to('location');
@@ -94,7 +95,7 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        $location = Localities::find($id);
+        $location = Localitie::find($id);
         $location->delete();
         Session::flash('message','La localidad ' .  $location->localidad . ' fue eliminada con exito');
         return Redirect::to('location');

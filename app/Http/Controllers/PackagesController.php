@@ -30,19 +30,19 @@ class PackagesController extends Controller
      */
     public function create()
     {
-        $hotels = DB::table('hoteles')
+        /*$hotels = DB::table('hoteles')
                     ->select('id', 'nombre')
-                    ->get();
+                    ->get();*/
         /*$rooms = DB::table('hoteles')
                    ->join('hot_hab', 'hoteles.id', '=', 'hot_hab.id_hot')
                    ->join('habitaciones', 'hot_hab.id_hab', '=', 'habitaciones.id')
                    ->select('hoteles.id', 'habitaciones.descripcion', 'hot_hab.costo')
                    ->get();*/
-        $rooms = Type_Room::all();
+        /*$rooms = Type_Room::all();
         $transfers = Transport::all();
-        $guides = Guides::all();
-        // dd($hotels, $rooms, $transfers, $guides);
-        return view('sys.packages.create', compact('hotels', 'rooms', 'transfers', 'guides'));
+        $guides = Guides::all();*/
+        // dd($hotels, $rooms, $transfers, $guides);, compact('hotels', 'rooms', 'transfers', 'guides')
+        return view('sys.packages.create');
     }
 
     /**

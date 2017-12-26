@@ -4,10 +4,11 @@ namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
 use hive\Http\Requests;
-use hive\Http\Requests\CreateTransportRequest;
-use hive\Models\Business;
-use hive\Models\Transport;
-use hive\Models\Type_Transport;
+use hive\Http\Requests\CreateTransferRequest;
+use hive\Http\Requests\UpdateTransferRequest;
+use hive\Models\Companie;
+use hive\Models\Transfer;
+use hive\Models\Ttransfer;
 use Redirect;
 use Session; 
 use DB;
@@ -21,15 +22,15 @@ class TransportController extends Controller
      */
     public function index()
     {
-        $transports = DB::table('transportes')
-                            ->join('empresa', 'transportes.id_emp', '=', 'empresa.id')
-                            ->join('tipo_trans', 'transportes.id_tt', '=', 'tipo_trans.id')
-                            ->select('transportes.id', 'empresa.nombre', 'transportes.nombre_chofer', 'transportes.apellido_chofer', 'transportes.cedula', 'tipo_trans.descripcion')
+        $transfers = DB::table('transfers')
+                            ->join('companies', 'transfers.companie_id', '=', 'companies.id')
+                            ->join('ttransfers', 'transfers.ttransfer_id', '=', 'ttransfers.id')
+                            ->select('transfers.id', 'companies.co_name', 'transfers.tr_name', 'transfers.tr_last_name', 'transfers.tr_id_card', 'ttransfers.tt_transfer')
                             ->whereNull('deleted_at')
-                            ->orderBy('transportes.cedula')
+                            ->orderBy('transfers.tr_id_card')
                             ->get();
-                            // dd($transports);
-        return view('sys.transport.list', compact('transports'));
+                            // dd($transfers);
+        return view('sys.transport.list', compact('transfers'));
     }
 
     /**
@@ -39,9 +40,9 @@ class TransportController extends Controller
      */
     public function create()
     {
-        $business = Business::all();
-        $transports = Type_Transport::all();
-        return view('sys.transport.create', compact('business', 'transports'));
+        $companies = Companie::all();
+        $transfers = Ttransfer::all();
+        return view('sys.transport.create', compact('companies', 'transfers'));
     }
 
     /**
@@ -50,17 +51,17 @@ class TransportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTransportRequest $request)
+    public function store(CreateTransferRequest $request)
     {
         // dd($request);
-        Transport::create([
-                    'id_emp'     => $request['empresa'],
-                    'nombre_chofer'     => trim(strtoupper($request['nombre_chofer'])),
-                    'apellido_chofer'   => trim(strtoupper($request['apellido_chofer'])),
-                    'cedula'    => $request['cedula'],
-                    'telef_chofer'   => $request['celular'],
-                    'descripcion_trans' => $request['descripcion'],
-                    'id_tt'     => $request['transporte'],                    
+        Transfer::create([
+                    'companie_id'     => $request['empresa'],
+                    'tr_name'     => trim(strtoupper($request['nombre_chofer'])),
+                    'tr_last_name'   => trim(strtoupper($request['apellido_chofer'])),
+                    'tr_id_card'    => $request['cedula'],
+                    'tr_cell_phone'   => $request['celular'],
+                    'tr_coment' => $request['descripcion'],
+                    'ttransfer_id'     => $request['transporte'],                    
                 ]);
         Session::flash('message', 'Los datos del TRANSPORTE se guardaron exitosamente');
         return Redirect::to('transport');
@@ -85,13 +86,16 @@ class TransportController extends Controller
      */
     public function edit($id)
     {
-        $transport1 = Transport::find($id);
-        $transport1->descripcion =  $transport1->descripcion_trans;
-        $transport1->celular = $transport1->telef_chofer;
-        $business = Business::all();
-        $transports = Type_Transport::all();
+        $transport1 = Transfer::find($id);
         // dd($transport1);
-        return view('sys.transport.edit', compact('transport1', 'business', 'transports'));
+        $transport1->nombre_chofer =  $transport1->tr_name;
+        $transport1->apellido_chofer =  $transport1->tr_last_name;
+        $transport1->cedula =  $transport1->tr_id_card;
+        $transport1->celular =  $transport1->tr_cell_phone;
+        $transport1->descripcion =  $transport1->tr_coment;
+        $companies = Companie::all();
+        $transfers = Ttransfer::all();
+        return view('sys.transport.edit', compact('transport1', 'companies', 'transfers'));
     }
 
     /**
@@ -101,16 +105,15 @@ class TransportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTransferRequest $request, $id)
     {
-        $transport1 = Transport::find($id);
-        $transport1->id_emp = $request->empresa;
-        $transport1->nombre_chofer = trim(strtoupper($request->nombre_chofer));
-        $transport1->apellido_chofer = trim(strtoupper($request->apellido_chofer));
-        $transport1->cedula = $request->cedula;
-        $transport1->telef_chofer = $request->celular;
-        $transport1->id_tt = $request->transporte;
-        $transport1->descripcion_trans = $request->descripcion;
+        $transport1 = Transfer::find($id);
+        $transport1->companie_id = $request->empresa;
+        $transport1->tr_name = trim(strtoupper($request->nombre_chofer));
+        $transport1->tr_last_name = trim(strtoupper($request->apellido_chofer));
+        $transport1->tr_cell_phone = $request->celular;
+        $transport1->ttransfer_id = $request->transporte;
+        $transport1->tr_coment = trim(strtoupper($request->descripcion));
         $transport1->save();
         Session::flash('message','Los datos de ' .  $request->nombre_chofer  . ' fue actualizado con exito');
         return Redirect::to('transport');
@@ -124,9 +127,10 @@ class TransportController extends Controller
      */
     public function destroy($id)
     {
-        $transport = Transport::find($id);
+        $transport = Transfer::find($id);
         $transport->delete();
         Session::flash('message','Los Datos de ' .  $transport->nombre_chofer . ' fue dado de baja con exito');
         return Redirect::to('transport');
     }
+
 }

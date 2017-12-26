@@ -3,10 +3,11 @@
 namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
-use hive\Models\Pakages;
-use hive\Models\Transport;
-use hive\Models\Hotels;
-use hive\Models\Guides;
+use hive\Models\Package;
+use hive\Models\Transfer;
+use hive\Models\Hotel;
+use hive\Models\Room;
+use hive\Models\Guide;
 use hive\Models\Restaurant;
 use hive\Models\Date;
 use hive\User;
@@ -22,7 +23,8 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        dd('vamos bien');
+        $pakages = Pakage::all();
+        return view('sys.quotation.list', compact('pakages'));//
     }
 
     /**
@@ -33,15 +35,15 @@ class QuotationController extends Controller
     public function create()
     {
         $user = \Auth::User();
-        $pakages = Pakages::all();
-        $transports = Transport::all();
-        $hotels = Hotels::all();
-        $guides = Guides::all();
+        $pakages = Package::all();
+        $transfers = Transfer::all();
+        $hotels = Hotel::all();
+        $guides = Guide::all();
         $dates = Date::all();
         $restaurants = Restaurant::all();
         $carbon = Carbon::now();
-        // dd($user, $pakages, $transports, $hotels, $guides, $dates, $carbon);
-        return view('sys.quotation.create', compact('user', 'pakages', 'transports', 'hotels', 'guides', 'dates', 'restaurants', 'carbon'));
+        // dd($user, $pakages, $transfers, $hotels, $guides, $dates, $carbon); 'transports', 'hotels', 'guides', 'dates', 'restaurants',
+        return view('sys.quotation.create', compact('user', 'pakages', 'carbon'));
     }
 
     /**

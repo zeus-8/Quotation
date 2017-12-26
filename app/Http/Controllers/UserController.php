@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use hive\Http\Requests;
 use hive\Http\Requests\CreateUserRequest;
 use hive\Http\Requests\UpdateUserRequest;
-use hive\Models\Type_User;
+use hive\Models\Tusers;
 use hive\User;
 use Redirect;
 use Session;
@@ -22,8 +22,8 @@ class UserController extends Controller
     public function index()
     {
         $users = DB::table('users')
-                   ->join('tipo_usu', 'users.id_tu', '=', 'tipo_usu.id')
-                   ->select('users.id', 'users.cedula', 'users.name', 'users.apellido', 'users.id_tu', 'tipo_usu.descripcion')
+                   ->join('tusers', 'users.tuser_id', '=', 'tusers.id')
+                   ->select('users.id', 'users.us_id_card', 'users.name', 'users.us_last_name', 'users.tuser_id', 'tusers.type_user')
                    ->whereNull('deleted_at')
                    ->get();
                    // dd($users);
@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $role = Type_User::all();
+        $role = Tusers::all();
         return view('sys.user.create', compact('role'));
     }
 
@@ -52,14 +52,13 @@ class UserController extends Controller
         // dd($request);
         User::create([
                 'name'      => trim(strtoupper($request['nombre'])),
-                'apellido'  => trim(strtoupper($request['apellido'])),
-                'cedula'    => $request['cedula'],
-                'fijo'      => $request['telef-casa'],
-                'celular'   => $request['celular'],
-                'direccion' => trim(strtoupper($request['direccion'])),
+                'us_last_name'  => trim(strtoupper($request['apellido'])),
+                'us_id_card'    => $request['cedula'],
+                'us_phone'      => $request['telef_casa'],
+                'us_cell_phone'   => $request['celular'],
                 'email'     => trim(strtoupper($request['email'])),
                 'password'  => bcrypt($request['cedula']),
-                'id_tu'    => $request['rol'],
+                'tuser_id'    => $request['rol'],
             ]);
         Session::flash('message', 'Los datos del USUARIO se guardaron exitosamente');
         return Redirect::to('usuario');
@@ -86,7 +85,11 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->nombre = $user->name; 
-        $role = Type_User::all();
+        $user->apellido = $user->us_last_name; 
+        $user->cedula = $user->us_id_card; 
+        $user->telef_casa = $user->us_phone; 
+        $user->celular = $user->us_cell_phone; 
+        $role = Tusers::all();
         // dd($user, $role);
         return view('sys.user.edit', compact('user', 'role'));
     }
@@ -103,11 +106,10 @@ class UserController extends Controller
         // dd($request);
         $user           = User::find($id);
         $user->name     = trim(strtoupper($request->nombre));
-        $user->apellido = trim(strtoupper($request->apellido));
-        $user->fijo     = $request->fijo;
-        $user->celular  = $request->celular;
-        $user->direccion= trim(strtoupper($request->direccion));
-        $user->id_tu    = $request->rol;
+        $user->us_last_name = trim(strtoupper($request->apellido));
+        $user->us_phone     = $request->fijo;
+        $user->us_cell_phone  = $request->celular;
+        $user->tuser_id    = $request->rol;
         $user->save();
         Session::flash('message','El usuario ' .  $request->email . ' fue actualizado con exito');
         return Redirect::to('usuario');

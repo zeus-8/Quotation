@@ -33,7 +33,7 @@
 								@foreach ($beds as $bed)
 									<tr>
 										<td>{{ $bed->id }}</td>
-										<td>{{ $bed->descripcion }}</td>
+										<td>{{ $bed->room }}</td>
 										<td align="center">
 											{{-- @if ($bed->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('bed.edit', $bed->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>

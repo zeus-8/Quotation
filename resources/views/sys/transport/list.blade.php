@@ -34,18 +34,18 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($transports as $transport)
+								@foreach ($transfers as $transfer)
 									<tr>
-										<td>{{ $transport->id }}</td>
-										<td>{{ $transport->nombre }}</td>
-										<td>{{ $transport->nombre_chofer }}</td>
-										<td>{{ $transport->apellido_chofer }}</td>
-										<td>{{ $transport->cedula }}</td>
-										<td>{{ $transport->descripcion }}</td>
+										<td>{{ $transfer->id }}</td>
+										<td>{{ $transfer->co_name }}</td>
+										<td>{{ $transfer->tr_name }}</td>
+										<td>{{ $transfer->tr_last_name }}</td>
+										<td>{{ $transfer->tr_id_card }}</td>
+										<td>{{ $transfer->tt_transfer }}</td>
 										<td align="center">
 											{{-- @if ($transport->descripcion_tu == 'ADMIN')	 --}}
-												<a href="{{ route('transport.edit', $transport->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
-												<a href="{{ route('transport.destroy', $transport->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
+												<a href="{{ route('transport.edit', $transfer->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
+												<a href="{{ route('transport.destroy', $transfer->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
 											{{-- @endif --}}
 										</td>
 									</tr>

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         	'name' 		=>	'JUAN',
         	'us_last_name'	=>	'SIERRA',
         	'us_id_card'	=>	'123456789',
-        	'email'		=>	'ADMINL@MAIL.COM',
+        	'email'		=>	'ADMIN@MAIL.COM',
         	'us_cell_phone'	=>	'0995545441',
         	'password'	=>	bcrypt('123456789'),
         	'tuser_id'		=>	'1'

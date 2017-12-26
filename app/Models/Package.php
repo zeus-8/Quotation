@@ -16,7 +16,7 @@ class Package extends Model
         return $this->belongsToMany('hive\Models\Guide');
     }
     public function bill(){
-        return $this->belongsTo('hive\Models\Bill')
+        return $this->belongsTo('hive\Models\Bill');
     }
     public function transfers(){
         return $this->belongsToMany('hive\Models\Transfer');

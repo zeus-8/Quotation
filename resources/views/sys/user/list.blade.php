@@ -34,10 +34,10 @@
 							<tbody>
 								@foreach ($users as $user)
 									<tr>
-										<td>{{ $user->cedula }}</td>
+										<td>{{ $user->us_id_card }}</td>
 										<td>{{ $user->name }}</td>
-										<td>{{ $user->apellido }}</td>
-										<td>{{ $user->descripcion }}</td>
+										<td>{{ $user->us_last_name }}</td>
+										<td>{{ $user->type_user }}</td>
 										<td align="center">
 											{{-- @if ($user->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('usuario.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>

@@ -5,7 +5,7 @@ namespace hive\Http\Controllers;
 use Illuminate\Http\Request;
 use hive\Http\Requests;
 use hive\Http\Requests\TypeRoomRequest;
-use hive\Models\Type_Room;
+use hive\Models\Room;
 use Redirect;
 use Session;
 use DB;
@@ -19,7 +19,7 @@ class BedroomController extends Controller
      */
     public function index()
     {
-        $beds = Type_Room::all();
+        $beds = Room::all();
         return view('sys.bedroom.list', compact('beds'));
     }
 
@@ -42,15 +42,11 @@ class BedroomController extends Controller
     public function store(TypeRoomRequest $request)
     {
          // dd($request);
-         Type_Room::create([
-                'descripcion' => trim(strtoupper($request['descripcion'])),
+         Room::create([
+                'room' => trim(strtoupper($request['descripcion'])),
             ]);
         Session::flash('message', 'La HABITACION se guardo exitosamente');
         return Redirect::to('bed/create');
-       
-        
-        
-        
     }
 
     /**
@@ -72,7 +68,8 @@ class BedroomController extends Controller
      */
     public function edit($id)
     {
-        $bed = Type_Room::find($id);
+        $bed = Room::find($id);
+        $bed->descripcion = $bed->room;
         // dd($bed);
         return view('sys.bedroom.edit', compact('bed'));
     }
@@ -87,8 +84,8 @@ class BedroomController extends Controller
     public function update(TypeRoomRequest $request, $id)
     {
         // dd($request);
-        $bed = Type_Room::find($id);
-        $bed->descripcion = trim(strtoupper($request->descripcion));
+        $bed = Room::find($id);
+        $bed->room = trim(strtoupper($request->descripcion));
         $bed->save();
         Session::flash('message','La habitacion ' .  $request->descripcion . ' fue actualizado con exito');
         return Redirect::to('bed');
@@ -102,7 +99,7 @@ class BedroomController extends Controller
      */
     public function destroy($id)
     {
-        $bed = Type_Room::find($id);
+        $bed = Room::find($id);
         $bed->delete();
         Session::flash('message','El rango ' .  $bed->descripcion_habi . ' fue ELIMINADO con exito');
         return Redirect::to('bed');

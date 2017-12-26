@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ttransfer extends Model
 {
-    protected $table = "transfers";
+    protected $table = "ttransfers";
     protected $fillable = ['id', 'tt_transfer'];
 
     public function transfers(){
