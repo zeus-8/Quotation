@@ -26,7 +26,7 @@ class TransportController extends Controller
                             ->join('companies', 'transfers.companie_id', '=', 'companies.id')
                             ->join('ttransfers', 'transfers.ttransfer_id', '=', 'ttransfers.id')
                             ->select('transfers.id', 'companies.co_name', 'transfers.tr_name', 'transfers.tr_last_name', 'transfers.tr_id_card', 'ttransfers.tt_transfer')
-                            ->whereNull('deleted_at')
+                            ->whereNull('transfers.deleted_at')
                             ->orderBy('transfers.tr_id_card')
                             ->get();
                             // dd($transfers);

@@ -13,14 +13,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-         $this->call(ServiHotelSeeder::class);
-         $this->call(RestaurantSeeder::class);
-         $this->call(TypeHostelSeeder::class);
-         $this->call(TypeTransportSeeder::class);
-         $this->call(TypeRoomSeeder::class);
-         $this->call(TypeUserSeeder::class);
-         $this->call(UserSeeder::class);
-         $this->call(HostelGalapagosSeeder::class);
+            $this->call(ReferenceSeeder::class);
+            $this->call(ServiHotelSeeder::class);
+            $this->call(RestaurantSeeder::class);
+            $this->call(TypeHostelSeeder::class);
+            $this->call(TypeTransportSeeder::class);
+            $this->call(TypeRoomSeeder::class);
+            $this->call(TypeUserSeeder::class);
+            $this->call(UserSeeder::class);
+            $this->call(HostelGalapagosSeeder::class);
         Model::reguard();
     }
 }

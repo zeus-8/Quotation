@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Localitie extends Model
 {
     protected $table = "localities";
-    protected $fillable = ['id', 'localite'];
+    protected $fillable = ['id', 'localitie',];
 
-    public function guides(){
-        return $this->belongsToMany('hive\Models\Guides');
+    public function references(){
+        return $this->hasmany('hive\Models\Reference');
     }
 }

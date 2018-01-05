@@ -41,7 +41,7 @@ class LocationController extends Controller
     public function store(CreateLocationRequest $request)
     {
         localitie::create([
-                'localite'      => trim(strtoupper($request['localidad'])),
+                'localitie'      => trim(strtoupper($request['localidad'])),
             ]);
         Session::flash('message', 'Los datos de la LOCALIDAD se guardaron exitosamente');
         return Redirect::to('location');
@@ -67,7 +67,7 @@ class LocationController extends Controller
     public function edit($id)
     {
         $location = Localitie::find($id);
-        $location->localidad = $location->localite;
+        $location->localidad = $location->localitie;
         return view('sys.location.edit', compact('location'));
     }
 
@@ -81,7 +81,7 @@ class LocationController extends Controller
     public function update(CreateLocationRequest $request, $id)
     {
         $location = Localitie::find($id);
-        $location->localite = trim(strtoupper($request->localidad));
+        $location->localitie = trim(strtoupper($request->localidad));
         $location->save();
         Session::flash('message','La localidad ' .  $request->localidad . ' fue actualizada con exito');
         return Redirect::to('location');

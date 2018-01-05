@@ -20,7 +20,16 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('bed/create') }}" class="btn btn-success"><i class="fa fa-bed"> Agregar Habitacion</i></a> <br><br> 
+		                @include('sys.message.request_message')
+		                  {!! Form::open(['route'=>'bed.store', 'method'=>'POST']) !!}
+		                     @include('sys.bedroom.form.bedroom')
+		                     <div class="form-group">
+		                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary']) !!}
+		                    </div>
+		                  {!! Form::close() !!}
+		              </div>
+					<hr>
+					<div class="box-body">
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>

@@ -3,10 +3,9 @@
 namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
-use hive\Models\Hotels;
-use hive\Models\Type_Room;
-use hive\Models\Transport;
-use hive\Models\Guides;
+use hive\Models\Date;
+use hive\Models\Hotel;
+use hive\Models\Transfer;
 use Redirect;
 use Session;
 use DB;
@@ -30,19 +29,16 @@ class PackagesController extends Controller
      */
     public function create()
     {
-        /*$hotels = DB::table('hoteles')
-                    ->select('id', 'nombre')
-                    ->get();*/
-        /*$rooms = DB::table('hoteles')
-                   ->join('hot_hab', 'hoteles.id', '=', 'hot_hab.id_hot')
-                   ->join('habitaciones', 'hot_hab.id_hab', '=', 'habitaciones.id')
-                   ->select('hoteles.id', 'habitaciones.descripcion', 'hot_hab.costo')
-                   ->get();*/
-        /*$rooms = Type_Room::all();
-        $transfers = Transport::all();
-        $guides = Guides::all();*/
-        // dd($hotels, $rooms, $transfers, $guides);, compact('hotels', 'rooms', 'transfers', 'guides')
-        return view('sys.packages.create');
+        $dates = Date::all(); 
+        $hotels = Hotel::all();
+        $transfers = DB::table('transfers')
+                            ->join('ttransfers', 'ttransfers.id', '=', 'transfers.ttransfer_id')
+                            ->join('companies', 'companies.id', '=', 'transfers.companie_id')
+                            ->select('transfers.id', 'transfers.tr_name', 'transfers.tr_last_name', 'transfers.tr_cost', 'companies.co_name', 'ttransfers.tt_transfer')
+                            ->orderBy('transfers.id')
+                            ->get();      
+        // dd($transfers);
+        return view('sys.packages.create', compact('dates', 'hotels', 'transfers'));
     }
 
     /**

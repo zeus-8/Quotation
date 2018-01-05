@@ -3,9 +3,13 @@
 namespace hive\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Transfer extends Model
 {
+    use SoftDeletes;
+
     protected $table = "transfers";
     protected $fillable = ['id', 'tr_name', 'tr_last_name', 'tr_id_card', 'tr_cell_phone', 'tr_coment', 'companie_id', 'ttransfer_id'];
 
@@ -17,5 +21,8 @@ class Transfer extends Model
     }
     public function packages(){
         return $this->belongsToMany('hive\Models\Pakage');
+    }
+    public function reference(){
+        return $this->belongsTo('hive\Models\Reference.php');
     }
 }

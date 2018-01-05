@@ -15,7 +15,7 @@
               <div class="box-header with-border">
                 <div class="row">
                   <div class="col-xs-6 col-sm-6">
-                    <h6 class="box-title">Esta cotización la realizara: {{ $user->name }}, {{ $user->apellido }}</h6>
+                    <h6 class="box-title">Esta cotización la realizara: {{ $user->name }}, {{ $user->us_last_name }}</h6>
                   </div>  
                   <div  class="col-xs-6 col-sm-6">
                     <label>Fecha: {{ $carbon }}</label>
@@ -30,7 +30,7 @@
                     @include('sys.quotation.form.quotation')
                      <div class="form-group">
                       {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-lg']) !!}
-                      <a href="{{ URL::to('quotation') }}" class="btn btn-danger btn-lg">Cancelar</a>
+                      {{-- <a href="{{ URL::to('quotation') }}" class="btn btn-danger btn-lg">Cancelar</a> --}}
                     </div>
                   {!! Form::close() !!}
               </div>

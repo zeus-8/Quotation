@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('co_name');
             $table->timestamps();
+            $table->softDeletes();
         });
         //fechas
         Schema::create('dates', function(Blueprint $table){
@@ -41,6 +42,21 @@ class CreateUsersTable extends Migration
             $table->string('da_date');
             $table->date('da_date_init');
             $table->date('da_date_end');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        //localidades
+        Schema::create('localities', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('localitie');
+            $table->timestamps();
+        });
+        // referencia
+        Schema::create('references', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('reference');
+            $table->integer('localitie_id')->unsigned();
+            $table->foreign('localitie_id')->references('id')->on('localities')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -54,14 +70,11 @@ class CreateUsersTable extends Migration
             $table->integer('gu_phone');
             $table->string('gu_address');
             $table->string('gu_email');
+            $table->decimal('cost', 6, 2);
+            $table->integer('reference_id')->unsigned();
+            $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
-        });
-        //localidades
-        Schema::create('localities', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('localite');
-            $table->timestamps();
         });
         //paquetes
         Schema::create('packages', function(Blueprint $table){
@@ -69,8 +82,38 @@ class CreateUsersTable extends Migration
             $table->string('pa_name');
             $table->text('pa_activities');
             $table->text('pa_coment');
-            $table->decimal('pa_cost', 6, 2);
+            $table->decimal('pa_cost_a', 6, 2);//costo adulto
+            $table->decimal('pa_cost_n', 6, 2);//costo niño
+            $table->decimal('pa_cost_te', 6, 2);//costo tercera edad
             $table->text('pa_observations');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        //cotizaciones
+        Schema::create('quotations', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('hotel_id');
+            $table->integer('nights');
+            $table->decimal('breakfast', 5, 2);
+            $table->decimal('lunch', 5, 2);
+            $table->decimal('dinner', 5, 2);
+            $table->integer('reference_id');
+            $table->integer('localitie_id');
+            $table->integer('guide_id');
+            $table->integer('transfer_id');
+            $table->decimal('ta', 6, 2);
+            $table->decimal('ia', 6, 2);
+            $table->decimal('tn', 6, 2);
+            $table->decimal('in', 6, 2);
+            $table->decimal('tte', 6, 2);
+            $table->decimal('ite', 6, 2);
+            $table->decimal('te', 6, 2);
+            $table->decimal('ie', 6, 2);
+            $table->integer('cant_a');
+            $table->integer('cant_n');
+            $table->integer('cant_te');
+            $table->integer('cant_e');
+            $table->string('coment');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -152,6 +195,8 @@ class CreateUsersTable extends Migration
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('shotel_id')->unsigned();//id_servicio_hotel
             $table->foreign('shotel_id')->references('id')->on('shotels')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('reference_id')->unsigned();
+            $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -163,6 +208,9 @@ class CreateUsersTable extends Migration
             $table->integer('tr_id_card');
             $table->integer('tr_cell_phone');
             $table->string('tr_coment');
+            $table->string('tr_cost');
+            $table->integer('reference_id')->unsigned();
+            $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('companie_id')->unsigned();
             $table->foreign('companie_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('ttransfer_id')->unsigned();
@@ -199,26 +247,18 @@ class CreateUsersTable extends Migration
             $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('quotation_id')->unsigned();
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
-        });
-        //guia -localidad
-        Schema::create('guide_localitie', function(Blueprint $table){
-            $table->increments('id');
-            $table->integer('localitie_id')->unsigned();
-            $table->integer('guide_id')->unsigned();
-            $table->decimal('cost', 6, 2);
-            $table->foreign('localitie_id')->references('id')->on('localities')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('guide_id')->references('id')->on('guides')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
         });
         //paquete-transporte
         Schema::create('package_transfers', function(Blueprint $table){
             $table->increments('id');
             $table->integer('package_id')->unsigned();
-            $table->integer('transfers_id')->unsigned();
+            $table->integer('transfer_id')->unsigned();
             $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('transfers_id')->references('id')->on('transfers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('transfer_id')->references('id')->on('transfers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
         //guia - paquete
@@ -249,7 +289,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
         //relacion ternaria room_hotel_package
-        Schema::create('room_hotel_package', function(Blueprint $table){
+        Schema::create('hotel_package_room', function(Blueprint $table){
             $table->increments('id');
             $table->integer('hotel_id')->unsigned();
             $table->integer('room_id')->unsigned();

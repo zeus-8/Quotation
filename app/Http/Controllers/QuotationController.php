@@ -23,8 +23,9 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $pakages = Pakage::all();
-        return view('sys.quotation.list', compact('pakages'));//
+        $packages = Package::all();
+        // dd($packages);
+        return view('sys.quotation.list', compact('packages'));//
     }
 
     /**
@@ -34,16 +35,7 @@ class QuotationController extends Controller
      */
     public function create()
     {
-        $user = \Auth::User();
-        $pakages = Package::all();
-        $transfers = Transfer::all();
-        $hotels = Hotel::all();
-        $guides = Guide::all();
-        $dates = Date::all();
-        $restaurants = Restaurant::all();
-        $carbon = Carbon::now();
-        // dd($user, $pakages, $transfers, $hotels, $guides, $dates, $carbon); 'transports', 'hotels', 'guides', 'dates', 'restaurants',
-        return view('sys.quotation.create', compact('user', 'pakages', 'carbon'));
+        
     }
 
     /**
@@ -76,7 +68,19 @@ class QuotationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = \Auth::User();
+        $package = Package::find($id);
+        $dates = Date::all();
+        $guides = Guide::all();
+        // $ho = DB::table('room_hotel_package')
+        //                 ->selec()
+        $hotels = Hotel::all();
+        $rooms = Room::all();
+        $restaurants = Restaurant::all();
+        $transfers = Transfer::all();
+        $carbon = Carbon::now();
+        // dd($user, $package, $dates, $guides, $hotels, $rooms, $restaurants, $transfers, $carbon); 
+        return view('sys.quotation.create', compact('user', 'package', 'date', 'guides', 'hotels', 'rooms', 'restaurants', 'transfers', 'carbon'));
     }
 
     /**

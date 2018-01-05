@@ -3,7 +3,7 @@
 @section('title', 'Cotización')
 
 @section('content_header')
-    <h1>Lista de Cotizaciones</h1>
+    <h1>Paquetes Disponibles</h1>
 @stop
 
 @section('content')
@@ -31,14 +31,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($pakages as $pakage)
+								@foreach ($packages as $package)
 									<tr>
-										<td>{{ $pakage->id }}</td>
-										<td>{{ $pakage->pa_name }}</td>
-										<td>{{ $pakage->pa_cost }}</td>
+										<td>{{ $package->id }}</td>
+										<td>{{ $package->pa_name }}</td>
+										<td class="success" align="right"><b>{{ $package->pa_cost_a }}</b></td>
 										<td align="center">
 											{{-- @if ($pakage->descripcion_tu == 'ADMIN')	 --}}
-												<a href="{{ route('quotation.create1', $pakage->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
+												<a href="{{ route('quotation.edit', $package->id) }}" class="btn btn-success btn-sm" title="Cotizar"><span class="glyphicon glyphicon-send"></span> </a>
 												{{-- <a href="{{ route('usuario.destroy', $pakage->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a> --}}
 											{{-- @endif --}}
 										</td>
@@ -56,7 +56,14 @@
 @section('js')
     <script>
     	$(function () {
-    $('#example1').DataTable()
+    $('#example1').DataTable({
+		'paging'      : true,
+		'lengthChange': false,
+		'searching'   : true,
+		'ordering'    : true,
+		'info'        : true,
+		'autoWidth'   : false
+    })
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,

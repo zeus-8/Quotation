@@ -5,9 +5,9 @@ namespace hive\Http\Controllers;
 use Illuminate\Http\Request;
 use hive\Http\Requests;
 use hive\Http\Requests\CreateHostelRequest;
-use hive\Models\Hotels;
-use hive\Models\Type_Room;
-use hive\Models\Type_Hoste;
+use hive\Models\Hotel;
+use hive\Models\Room;
+use hive\Models\Thotel;
 use Redirect;
 use Session;
 use DB;
@@ -21,7 +21,8 @@ class HostelController extends Controller
      */
     public function index()
     {
-         // return view('sys.hostel.list', compact('hotels'));
+        $hotels = Hotel::all();
+        return view('sys.hostel.list', compact('hotels'));
     }
 
     /**
@@ -31,9 +32,9 @@ class HostelController extends Controller
      */
     public function create()
     {
-        $rooms = Type_Room::All();
-        $typehotels = Type_Hoste::All();
-        return view('sys.hostel.create', compact('rooms', 'typehotels'));
+        $rooms = Room::All();
+        $thotels = Thotel::All();
+        return view('sys.hostel.create', compact('rooms', 'thotels'));
     }
 
     /**

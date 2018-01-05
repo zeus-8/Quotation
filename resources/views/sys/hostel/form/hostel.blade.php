@@ -15,8 +15,8 @@
             <dd>
             <select name="tipo_hotel" class="form-control select2" style="width: 100%;">
               <option>--Seleccione--</option>
-              @foreach ($typehotels as $typehotel)
-                <option value="{{ $typehotel->id }}">{{ $typehotel->tipo }}</option>
+              @foreach ($thotels as $thotel)
+                <option value="{{ $thotel->id }}">{{ $thotel->type_hotel }}</option>
               @endforeach
             </select>              
             </dd>
@@ -133,28 +133,9 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Costo de Habitacion</div>
       <div class="panel-body">
-        @foreach ($rooms as $room)
-          <div class="col-xs-6">
-            <div class="form-group has-feedback">
-              {!! Form::label($room->descripcion) !!}
-              {!! Form::text('costo_habitacion', '0', ['class'=>'form-control input-sm']) !!}
-              <span class="glyphicon glyphicon-usd form-control-feedback"></span>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-6">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Costo de Habitación por Noche</div>
-      <div class="panel-body">
-        {{-- <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-        @foreach ($rooms as $room)
-          <option value="{{ $room->id }}">{{ $room->descripcion }}</option>
-        @endforeach
-      </select> --}}
-      Habitaciones seleccionadas
+        <div class="well">
+          AQUI SE APLICA LO MISMO QUE SE APLICA EN LA SELECCION DE HOTELES EN CONTIZACION DE 0
+        </div>
       </div>
     </div>
   </div>

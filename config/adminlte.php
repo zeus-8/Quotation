@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'Hive',
 
     'title_prefix' => '',
 
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => null,
+    'layout' => 'boxed',
 
     /*
     |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => false,
+    'collapse_sidebar' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -127,7 +127,7 @@ return [
             'url'  => '',
             'icon' => 'user',
             'submenu' =>[
-                 [
+                [
                     'text' => 'Lista de Usuarios',
                     'url'  => 'usuario',
                     'icon' => 'list-ol',
@@ -141,23 +141,23 @@ return [
         
         ],
         [
+            'text' => 'Localidad',
+            'url'  => 'location',
+            'icon' => 'location-arrow',
+        ],
+        [
             'text' => 'Gias',
             'url'  => '',
             'icon' => 'map-o',
             'submenu' =>[
                 [
-                    'text' => 'Localidad',
-                    'url'  => 'location',
-                    'icon' => 'location-arrow',
-                ],
-                [
                     'text' => 'Lista de Guias',
-                    'url'  => '',
+                    'url'  => 'guide',
                     'icon' => 'list-ol',
                 ],
                 [
                     'text' => 'Nuevo',
-                    'url'  => '',
+                    'url'  => 'guide/create',
                     'icon' => 'plus',
                 ],
             ],
@@ -169,22 +169,10 @@ return [
             'submenu' =>[
                 [
                     'text' => 'Habitacion',
-                    'url'  => '',
+                    'url'  => 'bed',
                     'icon' => 'bed',
-                    'submenu' =>[
-                         [
-                            'text' => 'Lista de Habitaciones',
-                            'url'  => 'bed',
-                            'icon' => 'list-ol',
-                        ],
-                        [
-                            'text' => 'Nuevo',
-                            'url'  => 'bed/create',
-                            'icon' => 'plus',
-                        ],
-                    ],
                 ],
-                 [
+                [
                     'text' => 'Lista de Hoteles',
                     'url'  => 'hostel',
                     'icon' => 'list-ol',
@@ -201,7 +189,12 @@ return [
             'url'  => '',
             'icon' => 'car',
             'submenu' =>[
-                 [
+                [
+                    'text' =>  'Compañia',
+                    'url'  =>  'company',
+                    'icon' => 'industry',
+                ],
+                [
                     'text' => 'Lista de Transpote',
                     'url'  => 'transport',
                     'icon' => 'list-ol',
@@ -218,11 +211,6 @@ return [
             'url'  => '',
             'icon' => 'cubes',
             'submenu' =>[
-                 [
-                    'text' => 'Lista de Paquetes',
-                    'url'  => 'packages',
-                    'icon' => 'list-ol',
-                ],
                 [
                     'text' => 'Nuevo Paquete',
                     'url'  => 'packages/create',
@@ -240,7 +228,7 @@ return [
         ],
         [
             'text'        => 'Cotizacion',
-            'url'         => 'quotation/create',
+            'url'         => 'quotationC/create',
             'icon'        => 'ticket',
             'label'       => 4,
             'label_color' => 'success',
@@ -295,12 +283,14 @@ return [
         // ],
         'LABELS',
         [
-            'text'       => 'Important',
+            'text'       => 'Cotizaciones',
             'icon_color' => 'red',
+            'label' => 22
         ],
         [
-            'text'       => 'Warning',
+            'text'       => 'Paquetes',
             'icon_color' => 'yellow',
+            'label' => 45
         ],
         [
             'text'       => 'Information',

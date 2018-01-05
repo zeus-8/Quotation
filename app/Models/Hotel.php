@@ -21,4 +21,7 @@ class Hotel extends Model
     public function rooms(){
         return $this->belongsToMany('hive\Models\Room');
     }
+    public function reference(){
+        return $this->belongsTo('hive\Models\Reference');
+    }
 }
