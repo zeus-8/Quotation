@@ -4,8 +4,9 @@ namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
 use hive\Models\Date;
-use hive\Models\Hotel;
 use hive\Models\Transfer;
+use hive\Models\Localitie;
+use hive\Models\Hotel;
 use Redirect;
 use Session;
 use DB;
@@ -30,15 +31,16 @@ class PackagesController extends Controller
     public function create()
     {
         $dates = Date::all(); 
-        $hotels = Hotel::all();
         $transfers = DB::table('transfers')
                             ->join('ttransfers', 'ttransfers.id', '=', 'transfers.ttransfer_id')
                             ->join('companies', 'companies.id', '=', 'transfers.companie_id')
                             ->select('transfers.id', 'transfers.tr_name', 'transfers.tr_last_name', 'transfers.tr_cost', 'companies.co_name', 'ttransfers.tt_transfer')
                             ->orderBy('transfers.id')
-                            ->get();      
+                            ->get();
+        $localities = Localitie::all();
+        $hotels = Hotel::all();      
         // dd($transfers);
-        return view('sys.packages.create', compact('dates', 'hotels', 'transfers'));
+        return view('sys.packages.create', compact('dates', 'localities', 'transfers', 'hotels'));
     }
 
     /**
