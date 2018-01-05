@@ -1,6 +1,5 @@
 <div class="form-group has-feedback">
   {!! Form::label('Empresa') !!}
-  <label for=""><a href="" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Agregar Empresa</a></label>
   <select class="form-control" name="empresa">
     <option>- Seleccione -</option>
     @foreach($companies as $companie)

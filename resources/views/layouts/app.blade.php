@@ -83,9 +83,13 @@
     </div>
 
     <!-- Scripts -->
+    {!! Html::script('js/jquery.min.js') !!}
+    {!! Html::script('js/comboDependiente.js') !!}
+    {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('jq/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/dataTables.js') }}"></script>
-    <script src="{{ asset('js/') }}"></script>
+    {{-- <script src="{{ asset('js/comboDependiente.js') }}"></script> --}}
 </body>
 </html>
