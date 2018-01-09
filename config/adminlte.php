@@ -174,13 +174,30 @@ return [
                 ],
                 [
                     'text' => 'Lista de Hoteles',
-                    'url'  => 'hostel',
+                    'url'  => 'hotel',
                     'icon' => 'list-ol',
                 ],
                 [
-                    'text' => 'Nuevo',
-                    'url'  => 'hostel/create',
+                    'text' => 'Nuevo Hotel',
+                    'url'  => 'hotel/create',
                     'icon' => 'plus',
+                ],
+                [
+                    'text' => 'Restaurant',
+                    'url'  => '',
+                    'icon' => 'cutlery',
+                    'submenu' =>[
+                        [
+                            'text' => 'Nuevo',
+                            'url'  => 'restaurant/create',
+                            'icon' => 'plus',
+                        ],
+                        [
+                            'text' => 'Lista de Restaurantes',
+                            'url'  => 'restaurant',
+                            'icon' => 'list-ol',
+                        ],
+                    ],
                 ],
             ],
         ],
