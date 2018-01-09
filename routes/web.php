@@ -26,14 +26,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resources([
 	'usuario' => 'UserController',
 	'bed' => 'BedroomController',
-	'hostel' => 'HostelController',
+	'hotel' => 'HostelController',
 	'location' => 'LocationController',
 	'transport' => 'TransportController',
 	'packages' => 'PackagesController',
 	'quotation'=> 'QuotationController',
 	'quotationC' => 'QuotationCeroController',
 	'guide'	=>	'GuideController',
-	'company' => 'CompanyController'
+	'company' => 'CompanyController',
+	'restaurant' => 'RestaurantController'
 ]);
 Route::get('usuario/{id}/destroy', [
 			'uses'	=>	'UserController@destroy',
@@ -66,4 +67,8 @@ Route::get('quotation/{id}/destroy', [
 Route::get('guide/{id}/destroy', [
 			'uses'	=>	'GuideController@destroy',
 			'as'	=>	'guide.destroy'
+		]);
+Route::get('restaurant/{id}/destroy', [
+			'uses'	=>	'RestaurantController@destroy',
+			'as'	=>	'restaurant.destroy'
 		]);
