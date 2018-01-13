@@ -10,6 +10,6 @@ class Room extends Model
     protected $fillable = ['id', 'room'];
 
     public function hotels(){
-        return $this->belongsToMany('hive\Modles\Hotel');
+        return $this->belongsToMany('hive\Modles\Hotel', 'hotel_room');
     }
 }

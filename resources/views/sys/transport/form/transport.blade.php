@@ -37,7 +37,7 @@
 </div>
 <div class="form-group has-feedback">
   {!! Form::label('Tipo de Transporte') !!}
-  <select class="form-control" name="transporte">
+  <select class="form-control" name="tipo_transporte">
     <option>- Seleccione -</option>
     @foreach($transfers as $transfer)
       @if($op == 2)
@@ -47,6 +47,11 @@
       @endif 
     @endforeach
   </select>    
+</div>
+<div class="form-group has-feedback">
+  {!! Form::label('Costo del Servicio') !!}
+  {!! Form::text('costo', null, ['class'=>'form-control', 'placeholder'=>'Costo del Servicio']) !!}
+  <span class="glyphicon glyphicon-usd form-control-feedback"></span>
 </div>
 <div class="form-group has-feedback">
   {!! Form::label('Descripcion') !!}

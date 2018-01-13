@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('cu_name');
             $table->string('cu_last_name');
-            $table->integer('cu_id_card')->unique();
+            $table->integer('cu_id_card_ruc')->unique();
             $table->bigInteger('cu_cell_phone');
             $table->bigInteger('cu_phone');
             $table->string('cu_email');
@@ -114,6 +114,10 @@ class CreateUsersTable extends Migration
             $table->integer('cant_te');
             $table->integer('cant_e');
             $table->string('coment');
+            $table->string('activities');
+            $table->boolean('status');//0 sin cotizar 1 cotizado
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -241,6 +245,7 @@ class CreateUsersTable extends Migration
             $table->date('bi_date');
             $table->dateTime('bi_hour');
             $table->integer('bi_nbill');
+            $table->integer('bi_bill_ref');//numero de factura fisica
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('package_id')->unsigned();
@@ -288,19 +293,34 @@ class CreateUsersTable extends Migration
             $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
-        //relacion ternaria room_hotel_package
-        Schema::create('hotel_package_room', function(Blueprint $table){
+        //relacion hoteles habitaciones
+        Schema::create('hotel_room', function(Blueprint $table){
             $table->increments('id');
             $table->integer('hotel_id')->unsigned();
             $table->integer('room_id')->unsigned();
             $table->decimal('cost', 6, 2);
-            $table->integer('package_id')->unsigned();
-            $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('room_id')->references('id')->on('rooms')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
-
+        //relacion hotel paquete
+        Schema::create('hotel_package', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('hotel_id')->unsigned();
+            $table->integer('package_id')->unsigned();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+        //relacion entre cliente-paquete
+        Schema::create('customer_package', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('customer_id')->unsigned();
+            $table->integer('package_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -25,7 +25,7 @@ class TransportController extends Controller
         $transfers = DB::table('transfers')
                             ->join('companies', 'transfers.companie_id', '=', 'companies.id')
                             ->join('ttransfers', 'transfers.ttransfer_id', '=', 'ttransfers.id')
-                            ->select('transfers.id', 'companies.co_name', 'transfers.tr_name', 'transfers.tr_last_name', 'transfers.tr_id_card', 'ttransfers.tt_transfer')
+                            ->select('transfers.id', 'companies.co_name', 'transfers.tr_name', 'transfers.tr_cost', 'ttransfers.tt_transfer')
                             ->whereNull('transfers.deleted_at')
                             ->orderBy('transfers.tr_id_card')
                             ->get();
@@ -61,7 +61,8 @@ class TransportController extends Controller
                     'tr_id_card'    => $request['cedula'],
                     'tr_cell_phone'   => $request['celular'],
                     'tr_coment' => $request['descripcion'],
-                    'ttransfer_id'     => $request['transporte'],                    
+                    'ttransfer_id'     => $request['tipo_transporte'],
+                    'tr_cost'   => $request['costo'],                    
                 ]);
         Session::flash('message', 'Los datos del TRANSPORTE se guardaron exitosamente');
         return Redirect::to('transport');
@@ -112,7 +113,8 @@ class TransportController extends Controller
         $transport1->tr_name = trim(strtoupper($request->nombre_chofer));
         $transport1->tr_last_name = trim(strtoupper($request->apellido_chofer));
         $transport1->tr_cell_phone = $request->celular;
-        $transport1->ttransfer_id = $request->transporte;
+        $transport1->ttransfer_id = $request->tipo_transporte;
+        $transport1->tr_cost = $request->costo;
         $transport1->tr_coment = trim(strtoupper($request->descripcion));
         $transport1->save();
         Session::flash('message','Los datos de ' .  $request->nombre_chofer  . ' fue actualizado con exito');

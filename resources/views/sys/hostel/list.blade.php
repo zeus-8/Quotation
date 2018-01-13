@@ -20,13 +20,14 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						 <a href="{{ URL::to('hostel/create') }}" class="btn btn-success"><i class="fa fa-building-o"> Nuevo Hotel</i></a> <br><br> 
+						 <a href="{{ URL::to('hotel/create') }}" class="btn btn-success"><i class="fa fa-building-o"> Nuevo Hotel</i></a> <br><br> 
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 								<th>#</th>
 								<th>Nombre</th>
-								<th>Direccion</th>
+								<th>Contacto</th>
+								<th>Telefono</th>
 								<th>ACCION</th>
 								</tr>
 							</thead>
@@ -35,12 +36,12 @@
 									<tr>
 										<td>{{ $hotel->id }}</td>
 										<td>{{ $hotel->ho_name }}</td>
-										<td>{{ $hotel->ho_address }}</td>
+										<td>{{ $hotel->ho_contac }}</td>
 										<td>{{ $hotel->ho_phone }}</td> 
 										<td align="center">
 											{{-- @if ($hotel->descripcion_tu == 'ADMIN')	 --}}
-												<a href="{{ route('hostel.edit', $hotel->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
-												<a href="{{ route('hostel.destroy', $hotel->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
+												<a href="{{ route('hotel.edit', $hotel->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
+												<a href="{{ route('hotel.destroy', $hotel->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
 											{{-- @endif --}}
 										</td>
 									</tr>

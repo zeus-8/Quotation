@@ -26,7 +26,7 @@ class CreateGuideRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:50|min:3|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
             'apellido' => 'required|string|max:50|min:4|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
-            'cedula' => 'required|numeric|digits_between:7,8|unique:users,us_id_card', 
+            'cedula' => 'required|numeric|digits_between:10,11|unique:users,us_id_card', 
             'celular' => 'required|numeric', 
             'telef_fijo' => 'required|numeric', 
             'email' => 'required|unique:users,email',

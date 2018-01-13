@@ -23,6 +23,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route::pattern('bill', '[0-9]+');
+
+Route::post('bill/search', [
+			'uses'	=>	'BillController@search',
+			'as'	=>	'bill.search'
+		]);
 Route::resources([
 	'usuario' => 'UserController',
 	'bed' => 'BedroomController',
@@ -34,7 +40,9 @@ Route::resources([
 	'quotationC' => 'QuotationCeroController',
 	'guide'	=>	'GuideController',
 	'company' => 'CompanyController',
-	'restaurant' => 'RestaurantController'
+	'restaurant' => 'RestaurantController',
+	'bill'	=> 'BillController',
+	'customer'	=>	'CustomerController'
 ]);
 Route::get('usuario/{id}/destroy', [
 			'uses'	=>	'UserController@destroy',
@@ -72,3 +80,4 @@ Route::get('restaurant/{id}/destroy', [
 			'uses'	=>	'RestaurantController@destroy',
 			'as'	=>	'restaurant.destroy'
 		]);
+

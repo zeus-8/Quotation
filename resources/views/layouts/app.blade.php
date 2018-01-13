@@ -85,11 +85,17 @@
     <!-- Scripts -->
     {!! Html::script('js/jquery.min.js') !!}
     {!! Html::script('js/comboDependiente.js') !!}
-    {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('jq/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/dataTables.js') }}"></script>
-    {{-- <script src="{{ asset('js/comboDependiente.js') }}"></script> --}}
+    <script src="{{ {{ asset('js/icheck.min.js') }} }}"></script>
+    <script>
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+          checkboxClass: 'icheckbox_minimal-blue',
+          radioClass   : 'iradio_minimal-blue'
+        })
+    </script>
 </body>
 </html>

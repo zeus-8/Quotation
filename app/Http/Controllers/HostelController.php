@@ -8,6 +8,8 @@ use hive\Http\Requests\CreateHostelRequest;
 use hive\Models\Hotel;
 use hive\Models\Room;
 use hive\Models\Thotel;
+use hive\Models\Reference;
+use hive\Models\Restaurant;
 use Redirect;
 use Session;
 use DB;
@@ -34,7 +36,9 @@ class HostelController extends Controller
     {
         $rooms = Room::All();
         $thotels = Thotel::All();
-        return view('sys.hostel.create', compact('rooms', 'thotels'));
+        $references = Reference::all();
+        $restaurants = Restaurant::all();
+        return view('sys.hostel.create', compact('rooms', 'thotels', 'references', 'restaurants'));
     }
 
     /**
@@ -43,24 +47,31 @@ class HostelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateHostelRequest $request)
+    public function store(Request $request)
     {
-        dd($request);
-        $request['fijo'] = trim(strtoupper($request['telef_fijo']));
-        $hostel = new Hotels($request->all());
-        $hostel->save();
+        $request->new = array_filter($request->room);
+        $hotel = Hotel::create([
+                        'reference_id' => $request['ref'],
+                        'thotel_id' => $request['tipo_hotel'],
+                        'ho_name' => trim(strtoupper($request['nombre'])),
+                        'ho_address' => trim(strtoupper($request['direccion'])),
+                        'ho_cell_phone' => $request['celular'],
+                        'ho_phone' => $request['telef_fijo'],
+                        'ho_email' => trim(strtoupper($request['email'])),
+                        'ho_contac' => trim(strtoupper($request['contacto'])),
+                        'restaurant_id' => $request['restaurant'],
+                    ]);
+        foreach($request->new as $key=>$value) {
 
-        //LLENADO DE LA TABLA PIVOTE
-        // $hostel->typeroom()->sync($request->costo);
-        // $hostel->typeroom()->attach('costo[]',['menu_id'=>'id menu', 'status'=>true]);
-       
-        $hostel->typeroom()->sync([
-            $idHabitacion => [ 'costo' => $costoHabitacion],
-            $idOtraHabitacion => ['costo' => $costoOtraHabitacion],
-        ]);
+         $array_sync[] = [$key => ['cost' => $value]];
+
+        }
+        // dd($request, $array_para_sync);
+        
+        $hotel->rooms()->sync($array_sync); 
 
         Session::flash('message', 'Los datos del HOTEL' .$request->nombre. ' se guardaron exitosamente');
-        return Redirect::to('hostel');
+        return Redirect::to('hotel');
         
     }
 

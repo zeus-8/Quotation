@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => true,
+    'collapse_sidebar' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -224,20 +224,20 @@ return [
             ],
         ],
         [
-            'text' => 'Paquetes',
-            'url'  => '',
+            'text' => 'Paquete',
+            'url'  => 'packages/create',
             'icon' => 'cubes',
-            'submenu' =>[
-                [
-                    'text' => 'Nuevo Paquete',
-                    'url'  => 'packages/create',
-                    'icon' => 'plus',
-                ],
-            ],
         ],
         'COTIZACION',
         [
-            'text'        => 'Listado',
+            'text'        => 'Clientes',
+            'url'         => 'customer',
+            'icon'        => 'user',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Paquetes',
             'url'         => 'quotation',
             'icon'        => 'list-ol',
             'label'       => 4,
@@ -247,6 +247,13 @@ return [
             'text'        => 'Cotizacion',
             'url'         => 'quotationC/create',
             'icon'        => 'ticket',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Facturar',
+            'url'         => 'bill',
+            'icon'        => 'credit-card',
             'label'       => 4,
             'label_color' => 'success',
         ],
