@@ -102,12 +102,12 @@ class BillController extends Controller
         {
             $res = DB:: table('customers')
                         ->join('quotations', 'quotations.id', '=', 'customers.id')
-                        ->select('customers.cu_id_card_ruc', 'customers.cu_id_card_ruc', 'customers.cu_last_name', 'customers.cu_cell_phone', 'customers.cu_phone', 'customers.cu_email', 'customers.cu_address', 'quotations.id', 'quotations.coment')
+                        ->select('customers.cu_id_card_ruc', 'customers.cu_name', 'customers.cu_last_name', 'customers.cu_cell_phone', 'customers.cu_phone', 'customers.cu_email', 'customers.cu_address', 'quotations.id', 'quotations.coment')
                         ->where('customers.cu_id_card_ruc', '=', $request->cedula)
                         ->whereNull('quotations.status')
                         ->get();
 
-            // $res->op = 1;
+            $res->op = 1;
 
                         // dd($res);
         } 
@@ -120,10 +120,10 @@ class BillController extends Controller
         //                 ->where('customers.cu_id_card_ruc', '=', $request->cedula)
         //                 ->get();
         //     $res->op = 2;
-        //                 dd($res);
+        //                 dd($res);, 
         // }
         
-        // dd($res, 'res fuera de ciclo');
+        // dd($res->items);
         return view('sys.bill.create', compact('res', 'carbon', 'user'));
     }
     // public function billing(Request $)

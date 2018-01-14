@@ -29,6 +29,19 @@ Route::post('bill/search', [
 			'uses'	=>	'BillController@search',
 			'as'	=>	'bill.search'
 		]);
+
+Route::post('prueba', [
+			'uses' => 'QuotationCeroController@metodoprueba',
+			'as' => 'prueba.metodoprueba'
+		]);
+Route::post('locali', [
+			'uses' => 'QuotationCeroController@localidad',
+			'as' => 'locali.localidad'
+		]);
+Route::post('noches', 'QuotationCeroController@noche');
+Route::post('probando', 'QuotationCeroController@probando');
+
+
 Route::resources([
 	'usuario' => 'UserController',
 	'bed' => 'BedroomController',

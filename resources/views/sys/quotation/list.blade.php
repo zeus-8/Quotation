@@ -3,7 +3,7 @@
 @section('title', 'Cotización')
 
 @section('content_header')
-    <h1>Paquetes Disponibles</h1>
+    <h1>Paquetes Disponiblesss</h1>
 @stop
 
 @section('content')

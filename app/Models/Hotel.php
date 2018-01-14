@@ -19,7 +19,7 @@ class Hotel extends Model
         return $this->belongsTo('hive\Models\Shotel');
     }
     public function rooms(){
-        return $this->belongsToMany('hive\Models\Room');
+        return $this->belongsToMany('hive\Models\Room')->withPivot('hotel_room', 'cost');
     }
     public function reference(){
         return $this->belongsTo('hive\Models\Reference');

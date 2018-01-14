@@ -50,6 +50,8 @@ class HostelController extends Controller
     public function store(Request $request)
     {
         $request->new = array_filter($request->room);
+        // dd($request);
+        
         $hotel = Hotel::create([
                         'reference_id' => $request['ref'],
                         'thotel_id' => $request['tipo_hotel'],
@@ -61,14 +63,20 @@ class HostelController extends Controller
                         'ho_contac' => trim(strtoupper($request['contacto'])),
                         'restaurant_id' => $request['restaurant'],
                     ]);
+        
+       
+        $array_sync = [];
         foreach($request->new as $key=>$value) {
 
-         $array_sync[] = [$key => ['cost' => $value]];
+            $array_sync[] = [$key => ['cost' => $value]];
+            DB::table('hotel_room')
+                            ->insert([
+                                'hotel_id' => $hotel->id,
+                                'room_id' => $key,
+                                'Cost' => $value,
+                            ]);
 
         }
-        // dd($request, $array_para_sync);
-        
-        $hotel->rooms()->sync($array_sync); 
 
         Session::flash('message', 'Los datos del HOTEL' .$request->nombre. ' se guardaron exitosamente');
         return Redirect::to('hotel');
