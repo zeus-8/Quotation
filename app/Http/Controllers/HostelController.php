@@ -23,7 +23,8 @@ class HostelController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::all();
+        $hotels = DB::table('hotels')->select('hotels.id', 'hotels.ho_name', 'hotels.ho_contac', 'hotels.ho_cell_phone')->whereNull('deleted_at')->get();
+        // dd($hotels);
         return view('sys.hostel.list', compact('hotels'));
     }
 
@@ -73,7 +74,7 @@ class HostelController extends Controller
                             ->insert([
                                 'hotel_id' => $hotel->id,
                                 'room_id' => $key,
-                                'Cost' => $value,
+                                'cost' => $value,
                             ]);
 
         }
@@ -102,7 +103,27 @@ class HostelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rooms = Room::All();
+        $thotels = Thotel::All();
+        $references = Reference::all();
+        $restaurants = Restaurant::all();
+        $hotel = Hotel::find($id);
+        $hotel->nombre = $hotel->ho_name;
+        $hotel->direccion = $hotel->ho_address;
+        $hotel->celular = $hotel->ho_cell_phone;
+        $hotel->telef_fijo = $hotel->ho_phone;
+        $hotel->email = $hotel->ho_email;
+        $hotel->contacto = $hotel->ho_contac;
+        $roomf = DB::table('rooms')
+                        ->join('hotel_room', 'hotel_room.room_id', '=', 'rooms.id')
+                        ->join('hotels', 'hotels.id', '=', 'hotel_room.hotel_id')
+                        ->select('rooms.id', 'rooms.room', 'hotel_room.cost')
+                        ->where('hotel_room.hotel_id', '=', $id)
+                        ->get();
+
+        // dd($rooms, $roomf);
+        return view('sys.hostel.edit', compact('rooms', 'thotels', 'references', 'restaurants', 'hotel', 'roomf'));
+
     }
 
     /**
@@ -114,7 +135,35 @@ class HostelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->new = array_filter($request->room);
+        // dd($request);
+        $hotel = Hotel::find($id);
+        $hotel->ho_name = trim(strtoupper($request['nombre']));
+        $hotel->ho_address = trim(strtoupper($request['direccion']));
+        $hotel->ho_cell_phone = $request['celular'];
+        $hotel->ho_phone = $request['telef_fijo'];
+        $hotel->ho_email = trim(strtoupper($request['email']));
+        $hotel->ho_contac = trim(strtoupper($request['contacto']));
+        $hotel->reference_id = $request['ref'];
+        $hotel->thotel_id = $request['tipo_hotel'];
+        $hotel->restaurant_id = $request['restaurant'];
+        $hotel->save();
+        $array1[] = DB::table('hotel_room')
+                        ->select('hotel_room.cost')
+                        ->where('hotel_room.hotel_id', '=', $hotel->id)
+                        ->get();
+        // dd($array1);
+        $array_sync = [];
+        foreach($request->new as $key=>$value) {
+            $array_sync[] = [$key => ['cost' => $value]];
+            DB::table('hotel_room')
+                            ->where('hotel_room.hotel_id', '=', $hotel->id)
+                            ->update([
+                                'cost' => $value,
+                            ]);
+        }
+        Session::flash('message','El Hotel ' .  $request->nombre . ' fue actualizado con exito');
+        return Redirect::to('hotel');
     }
 
     /**
@@ -125,6 +174,9 @@ class HostelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->delete();
+        Session::flash('message','El hotel ' .  $hotel->ho_name . ' fue dado de baja con exito');
+        return Redirect::to('hotel');
     }
 }

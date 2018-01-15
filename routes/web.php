@@ -65,9 +65,9 @@ Route::get('bed/{id}/destroy', [
 			'uses'	=>	'BedroomController@destroy',
 			'as'	=>	'bed.destroy'
 		]);
-Route::get('hostel/{id}/destroy', [
+Route::get('hotel/{id}/destroy', [
 			'uses'	=>	'HostelController@destroy',
-			'as'	=>	'hostel.destroy'
+			'as'	=>	'hotel.destroy'
 		]);
 Route::get('location/{id}/destroy', [
 			'uses'	=>	'LocationController@destroy',
@@ -93,4 +93,7 @@ Route::get('restaurant/{id}/destroy', [
 			'uses'	=>	'RestaurantController@destroy',
 			'as'	=>	'restaurant.destroy'
 		]);
-
+Route::get('customer/{id}/destroy', [
+			'uses'	=>	'CustomerController@destroy',
+			'as'	=>	'customer.destroy'
+		]);

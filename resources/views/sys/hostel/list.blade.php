@@ -37,7 +37,7 @@
 										<td>{{ $hotel->id }}</td>
 										<td>{{ $hotel->ho_name }}</td>
 										<td>{{ $hotel->ho_contac }}</td>
-										<td>{{ $hotel->ho_phone }}</td> 
+										<td>{{ $hotel->ho_cell_phone }}</td> 
 										<td align="center">
 											{{-- @if ($hotel->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('hotel.edit', $hotel->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
