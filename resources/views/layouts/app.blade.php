@@ -84,20 +84,14 @@
 
     <!-- Scripts -->
     {!! Html::script('js/jquery.min.js') !!}
-    {!! Html::script('js/comboDependiente.js') !!}
-    {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
-
-
-
-
-
-
-
     <script src="{{ asset('js/real.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('jq/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/dataTables.js') }}"></script>
-    {{-- <script src="{{ asset('js/comboDependiente.js') }}"></script> --}}
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+
 </body>
 </html>
