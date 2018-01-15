@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('cu_email');
             $table->string('cu_address');
             $table->boolean('cu_sex');// 0 femenino 1 masculino
-            $table->integer('cu_civil_status');
+            $table->integer('cu_civil_status', 1);
             $table->date('cu_brithdate');
             $table->timestamps();
             $table->softDeletes();
