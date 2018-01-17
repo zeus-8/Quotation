@@ -14,7 +14,7 @@
           <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
         <div class="form-group">
-          <label>Rango de Fechas:</label>
+          <label>Fechas:</label>
           <div class="well">
             <div class="input-group">
               <div class="input-group-addon">

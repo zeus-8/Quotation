@@ -12,6 +12,9 @@ class ServiHotelSeeder extends Seeder
     public function run()
     {
         DB::table('shotels')->insert([
+                    'sh_service'    =>  'N/T'
+                ]);
+        DB::table('shotels')->insert([
         			'sh_service'	=>	'TEST SERVICIO'
         		]);
     }

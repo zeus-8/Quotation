@@ -4,7 +4,7 @@ namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
 use hive\Http\Requests;
-use hive\Http\Requests\CreateHostelRequest;
+use hive\Http\Requests\CreateHotelRequest;
 use hive\Models\Hotel;
 use hive\Models\Room;
 use hive\Models\Thotel;
@@ -39,6 +39,7 @@ class HostelController extends Controller
         $thotels = Thotel::All();
         $references = Reference::all();
         $restaurants = Restaurant::all();
+        // dd($rooms, $thotels, $references, $restaurants);
         return view('sys.hostel.create', compact('rooms', 'thotels', 'references', 'restaurants'));
     }
 
@@ -48,7 +49,7 @@ class HostelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateHotelRequest $request)
     {
         $request->new = array_filter($request->room);
         // dd($request);
@@ -60,6 +61,7 @@ class HostelController extends Controller
                         'ho_address' => trim(strtoupper($request['direccion'])),
                         'ho_cell_phone' => $request['celular'],
                         'ho_phone' => $request['telef_fijo'],
+                        'ho_ext' => $request['ext'],
                         'ho_email' => trim(strtoupper($request['email'])),
                         'ho_contac' => trim(strtoupper($request['contacto'])),
                         'restaurant_id' => $request['restaurant'],
@@ -112,6 +114,7 @@ class HostelController extends Controller
         $hotel->direccion = $hotel->ho_address;
         $hotel->celular = $hotel->ho_cell_phone;
         $hotel->telef_fijo = $hotel->ho_phone;
+        $hotel->ext = $hotel->ho_ext;
         $hotel->email = $hotel->ho_email;
         $hotel->contacto = $hotel->ho_contac;
         $roomf = DB::table('rooms')
@@ -142,6 +145,7 @@ class HostelController extends Controller
         $hotel->ho_address = trim(strtoupper($request['direccion']));
         $hotel->ho_cell_phone = $request['celular'];
         $hotel->ho_phone = $request['telef_fijo'];
+        $hotel->ho_ext = $request['ext'];
         $hotel->ho_email = trim(strtoupper($request['email']));
         $hotel->ho_contac = trim(strtoupper($request['contacto']));
         $hotel->reference_id = $request['ref'];

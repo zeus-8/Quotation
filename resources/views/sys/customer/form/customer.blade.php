@@ -74,7 +74,10 @@
                         <div class="well">
                             <select class="form-control" name="edo_civil">
                                 <option value="">Seleccione</option>
-                                <option value="1">Soltero(a)</option>
+                               {{--  @foreach ($select as $opc)
+                                    <option value="1"></option>
+                                    
+                                @endforeach --}}
                                 <option value="2">Casado(a)</option>
                                 <option value="3">Divorciado(a)</option>
                                 <option value="4">Viudo(a)</option>

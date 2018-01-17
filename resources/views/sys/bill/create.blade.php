@@ -10,20 +10,27 @@
     <section class="content">
         <div class="row">
           <!-- Default box -->
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-10 col-md-offset-1">
             <div class="box box-primary ">
               <div class="box-header with-border">
                 <h3 class="box-title">Facturar</h3><br>
                 <div class="row">
-                  <div class="col-md-6">
-                    <dl>
+                  <div class="col-md-8">
+                    
+
+
+
+
+
+
+                    {{-- <dl class="dl-horizontal">
                       <dt>Usuario:</dt>
-                      <dd>{{ $user->name }} {{ $user->us_last_name }}</dd>
+                      <dd><h4>{{ $user->name }} {{ $user->us_last_name }}</h4></dd>
                       <dt>Fecha:</dd>
-                      <dd>{{ $carbon }}</dd>
-                    </dl>
+                      <dd><h4>{{ $carbon }}</h4></dd>
+                    </dl> --}}
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <dl>
                       <dt>Referencia</dt>
                       <dd>

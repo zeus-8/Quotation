@@ -10,7 +10,7 @@ class Hotel extends Model
     use SoftDeletes;        
 
     protected $table = 'hotels';
-    protected $fillable = ['id', 'ho_name', 'ho_address', 'ho_cell_phone', 'ho_phone', 'ho_email', 'ho_contac', 'thotel_id', 'restaurant_id', 'shotel_id', 'reference_id'];
+    protected $fillable = ['id', 'ho_name', 'ho_address', 'ho_cell_phone', 'ho_phone', 'ho_email', 'ho_contac', 'ext', 'thotel_id', 'restaurant_id', 'shotel_id', 'reference_id'];
 
     public function thotel(){
         return $this->belongsTo('hive\Models\Thotel');

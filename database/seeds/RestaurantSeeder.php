@@ -12,12 +12,21 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         DB::table('restaurants')->insert([
-        			're_name'	=>	'test',
+                    're_name'   =>  'N/T',
+                    're_address'    =>  '---',
+                    're_phone'  =>  '0',
+                    're_cost_breakfast' => '0',
+                    're_cost_lunch' => '0',
+                    're_cost_dinner' => '0',
+                    're_in_hotel' => '0',
+                    ]);
+        DB::table('restaurants')->insert([
+        			're_name'	=>	'TEST RESTAURANT',
         			're_address'	=>	'---',
         			're_phone'	=>	'0',
-        			're_cost_breakfast' => '1',
-        			're_cost_lunch' => '1',
-        			're_cost_dinner' => '1',
+        			're_cost_breakfast' => '10',
+        			're_cost_lunch' => '11.50',
+        			're_cost_dinner' => '12.99',
         			're_in_hotel' => '1',
         			]);
     }

@@ -15,7 +15,4 @@ class Bill extends Model
     public function customer(){
         return $this->belongsTo('hive\Models\Customer')
     }
-    public function packages(){
-        return->$this->hasMany('hive\Models\Package');
-    }
 }

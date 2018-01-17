@@ -3,6 +3,7 @@
 namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
+use hive\Http\Requests\CreateCustomerRequest;
 use hive\Models\Customer;
 use Session;
 use Redirect;
@@ -32,7 +33,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('sys.customer.create');
+        $select= ['op'=>'soltero(a)', 'op'=>'Casado(a)', 'op'=>'Divorciado(a)', 'op'=>'Viudo(a)'];
+        return view('sys.customer.create', compact('select'));
     }
 
     /**
@@ -41,7 +43,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCustomerRequest $request)
     {
         // dd($request);
         Customer::create([

@@ -15,10 +15,10 @@ class Package extends Model
     public function guides(){
         return $this->belongsToMany('hive\Models\Guide');
     }
-    public function bill(){
-        return $this->belongsTo('hive\Models\Bill');
-    }
     public function transfers(){
         return $this->belongsToMany('hive\Models\Transfer');
+    }
+    public function quotations(){
+        return $this->hasmany('hive\Models\Qotation');
     }
 }

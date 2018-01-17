@@ -97,6 +97,7 @@ class BillController extends Controller
     public function search(Request $request)
     {
        $carbon = Carbon::now();
+       $carbon = $carbon->format('d-m-Y');
        $user = \Auth::User();
         if ($request->find == 1) 
         {

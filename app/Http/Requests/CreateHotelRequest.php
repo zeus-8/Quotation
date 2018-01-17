@@ -4,7 +4,7 @@ namespace hive\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateGuideRequest extends FormRequest
+class CreateHotelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,15 @@ class CreateGuideRequest extends FormRequest
     public function rules()
     {
         return [
+            'ref' => 'required|exists:references,id',
+            'tipo_hotel' => 'required|exists:thotels,id',
             'nombre' => 'required|string|max:50|min:3|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
-            'apellido' => 'required|string|max:50|min:4|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
+            'direccion' => 'required|string|max:50|min:3|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
             'celular' => 'required|numeric', 
-            'email' => 'required|unique:guides,gu_email',
-            'costo' => 'required|numeric', 
+            'email' => 'required|unique:hotels,ho_email', 
+            'contacto' => 'required|string|min:3|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
+            // 'room' => 'required|numeric', 
+
         ];
     }
 }

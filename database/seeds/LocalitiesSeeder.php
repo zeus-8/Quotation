@@ -12,20 +12,13 @@ class LocalitiesSeeder extends Seeder
     public function run()
     {
         DB::table('localities')->insert([
-        			'localitie'	=>	'HUMEDALES'
-        			'reference_id' => '1'
+        			'localitie'	=>	'GALAPAGOS'
         		]);
         DB::table('localities')->insert([
-        			'localitie'	=>	'S. NEGRA-CONCHA PERLA'
-        			'reference_id' => '1'
+        			'localitie'	=>	'QUITO'
         		]);
         DB::table('localities')->insert([
-        			'localitie'	=>	'TINTORERAS-GALAPAGUERA'
-        			'reference_id' => '1'
+        			'localitie'	=>	'OTAVALO'
         		]);
-        DB::table('localitie')->insert([
-        			'localitie'	=>	'ECCD + P. ALTA',
-        			'reference_id' => '1'
-    			]);
     }
 }

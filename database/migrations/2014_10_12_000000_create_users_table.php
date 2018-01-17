@@ -24,8 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('cu_email');
             $table->string('cu_address');
             $table->boolean('cu_sex');// 0 femenino 1 masculino
-            $table->integer('cu_civil_status', 1);
-            $table->date('cu_brithdate');
+            $table->integer('cu_civil_status');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -85,6 +84,8 @@ class CreateUsersTable extends Migration
             $table->decimal('pa_cost_a', 6, 2);//costo adulto
             $table->decimal('pa_cost_n', 6, 2);//costo niño
             $table->decimal('pa_cost_te', 6, 2);//costo tercera edad
+            $table->decimal('pa_cost_e', 6, 2);//costo tercera edad
+            $table->decimal('pa_cost_ne', 6, 2);//costo tercera edad
             $table->text('pa_observations');
             $table->timestamps();
             $table->softDeletes();
@@ -92,15 +93,11 @@ class CreateUsersTable extends Migration
         //cotizaciones
         Schema::create('quotations', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('hotel_id');
+            $table->string('coment');
             $table->integer('nights');
             $table->decimal('breakfast', 5, 2);
             $table->decimal('lunch', 5, 2);
             $table->decimal('dinner', 5, 2);
-            $table->integer('reference_id');
-            $table->integer('localitie_id');
-            $table->integer('guide_id');
-            $table->integer('transfer_id');
             $table->decimal('ta', 6, 2);
             $table->decimal('ia', 6, 2);
             $table->decimal('tn', 6, 2);
@@ -109,17 +106,24 @@ class CreateUsersTable extends Migration
             $table->decimal('ite', 6, 2);
             $table->decimal('te', 6, 2);
             $table->decimal('ie', 6, 2);
+            $table->decimal('tne', 6, 2);
+            $table->decimal('ine', 6, 2);
             $table->integer('cant_a');
             $table->integer('cant_n');
             $table->integer('cant_te');
             $table->integer('cant_e');
-            $table->string('coment');
-            $table->string('activities');
+            $table->integer('cant_ne');
             $table->boolean('status');//0 sin cotizar 1 cotizado
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('reference_id')->unsigned();
+            $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('package_id')->unsigned();
+            $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
+            // $table->string('activities');
+            // $table->integer('localitie_id');
         });
         //restaurante
         Schema::create('restaurants', function(Blueprint $table){
@@ -191,6 +195,7 @@ class CreateUsersTable extends Migration
             $table->string('ho_address');
             $table->bigInteger('ho_cell_phone');
             $table->bigInteger('ho_phone');
+            $table->integer('ho_ext');
             $table->string('ho_email');
             $table->string('ho_contac');
             $table->integer('thotel_id')->unsigned();//id_tipo_hotel
@@ -319,6 +324,33 @@ class CreateUsersTable extends Migration
             $table->integer('package_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+        //relacion cotizacion-hotel
+        Schema::create('hotel_quotation', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('hotel_id')->unsigned();
+            $table->integer('quotation_id')->unsigned();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+        //relacion cotizacion-guia
+        Schema::create('guide_quotation', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('guide_id')->unsigned();
+            $table->integer('quotation_id')->unsigned();
+            $table->foreign('guide_id')->references('id')->on('guides')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+        //relacion cotizacion-transporte
+        Schema::create('quotation_transfer', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('quotation_id')->unsigned();
+            $table->integer('transfer_id')->unsigned();
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('transfer_id')->references('id')->on('transfers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
