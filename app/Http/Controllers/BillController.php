@@ -26,7 +26,7 @@ class BillController extends Controller
      */
     public function create()
     {
-        //dd($request);
+        dd($request);
         // $user = \Auth::User();
         // $carbon = Carbon::now();
         // return view('sys.bill.create', compact('user', 'carbon'));
