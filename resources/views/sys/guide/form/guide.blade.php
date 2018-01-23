@@ -47,7 +47,20 @@
   <span class="glyphicon glyphicon-usd form-control-feedback"></span>
 </div>
 <div class="form-group has-feedback">
-  {!! Form::label('Referencia') !!}
+    {!! Form::label('Localidad') !!}
+    <select class="form-control" name="local">
+      <option>-- Seleccione --</option>
+        @foreach($localities as $local)
+            @if($op == 2)
+                <option value="{{ $local->id }}" <?php if ($local->id == $guide->reference_id){ ?> SELECTED <?php } ?>>{{ $local->localitie }}</option>
+            @else
+                <option value="{{ $local->id }}">{{ $local->localitie }}</option>
+            @endif 
+        @endforeach
+    </select>
+</div>
+<div class="form-group has-feedback">
+    {!! Form::label('Referencia') !!}
     <select class="form-control" name="ref">
       <option>-- Seleccione --</option>
         @foreach($references as $ref)

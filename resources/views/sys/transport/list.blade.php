@@ -38,8 +38,8 @@
 										<td>{{ $transfer->id }}</td>
 										<td>{{ $transfer->co_name }}</td>
 										<td>{{ $transfer->tr_name }}</td>
-										<td>{{ $transfer->tr_cost }}</td>
-										<td>{{ $transfer->tt_transfer }}</td>
+										<td><label>{{ $transfer->tr_cost }}</label></td>
+										<td><label>{{ $transfer->tt_transfer }}</label></td>
 										<td align="center">
 											{{-- @if ($transport->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('transport.edit', $transfer->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>

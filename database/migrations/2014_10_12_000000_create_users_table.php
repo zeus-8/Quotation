@@ -86,6 +86,16 @@ class CreateUsersTable extends Migration
             $table->decimal('pa_cost_te', 6, 2);//costo tercera edad
             $table->decimal('pa_cost_e', 6, 2);//costo tercera edad
             $table->decimal('pa_cost_ne', 6, 2);//costo tercera edad
+            $table->decimal('pa_ta', 6, 2);
+            $table->decimal('pa_ia', 6, 2);
+            $table->decimal('pa_tn', 6, 2);
+            $table->decimal('pa_in', 6, 2);
+            $table->decimal('pa_tte', 6, 2);
+            $table->decimal('pa_ite', 6, 2);
+            $table->decimal('pa_te', 6, 2);
+            $table->decimal('pa_ie', 6, 2);
+            $table->decimal('pa_tne', 6, 2);
+            $table->decimal('pa_ine', 6, 2);
             $table->text('pa_observations');
             $table->timestamps();
             $table->softDeletes();
@@ -93,6 +103,7 @@ class CreateUsersTable extends Migration
         //cotizaciones
         Schema::create('quotations', function(Blueprint $table){
             $table->increments('id');
+            $table->string('n_quotation');
             $table->string('coment');
             $table->integer('nights');
             $table->decimal('breakfast', 5, 2);
@@ -114,6 +125,8 @@ class CreateUsersTable extends Migration
             $table->integer('cant_e');
             $table->integer('cant_ne');
             $table->boolean('status');//0 sin cotizar 1 cotizado
+            $table->date('date_travel_init');
+            $table->date('date_travel_end');
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('reference_id')->unsigned();

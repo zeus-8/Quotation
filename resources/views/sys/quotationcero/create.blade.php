@@ -14,12 +14,11 @@
             <div class="box box-primary ">
               <div class="box-header with-border">
                 <div class="row">
-                  <div class="col-xs-6 col-sm-6">
-                    <h6 class="box-title">Esta cotizacioón la realizara: {{ $user->name }}, {{ $user->us_last_name }}</h6>
+                  <div class="col-sm-6">
+                    <h4><label>Counter:</label> {{ $user->name }}, {{ $user->us_last_name }}</h6>
                   </div>  
-                  <div  class="col-xs-6 col-sm-6">
-                    <label>Fecha: {{ $carbon }}</label>
-                    <h5></h5>
+                  <div  class="col-sm-6">
+                    <h4><label>Fecha: {{ $carbon }}</label></h4>
                   </div>
                 </div>
               </div>

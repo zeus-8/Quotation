@@ -3,11 +3,15 @@
 namespace hive\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Reference extends Model
 {
+    use SoftDeletes;
+
     protected $table = "references";
-    protected $fillable = ['id', 'reference'];
+    protected $fillable = ['id', 'reference', 'localite_id'];
 
     public function guides(){
     	return $this->hasmany('hive\Models\guide');

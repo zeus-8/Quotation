@@ -57,7 +57,7 @@
                   <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                 </div>
             </dd>
-            <div class="row">
+           {{--  <div class="row">
                 <div class="col-md-6">
                     <dt>Sexo</dt>
                     <dd>
@@ -74,10 +74,10 @@
                         <div class="well">
                             <select class="form-control" name="edo_civil">
                                 <option value="">Seleccione</option>
-                               {{--  @foreach ($select as $opc)
+                                @foreach ($select as $opc)
                                     <option value="1"></option>
                                     
-                                @endforeach --}}
+                                @endforeach
                                 <option value="2">Casado(a)</option>
                                 <option value="3">Divorciado(a)</option>
                                 <option value="4">Viudo(a)</option>
@@ -85,7 +85,7 @@
                         </div>
                     </dd>
                 </div>
-                {{-- <div class="col-md-4">
+                <div class="col-md-4">
                     <dt>Cumpleaños</dt>
                     <dd>
                         <div class="well">
@@ -97,17 +97,14 @@
                             </div>
                         </div>
                     </dd>
-                </div> --}}
-            </div>
-                
-                
-            </dd>
-            <dt></dt>
+                </div>
+            </div> --}}
+            {{-- <dt></dt>
             <dd></dd>
             <dt></dt>
             <dd></dd>
             <dt></dt>
-            <dd></dd>
+            <dd></dd> --}}
         </dl>
     </div>
 </div>

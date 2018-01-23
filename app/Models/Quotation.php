@@ -9,7 +9,7 @@ class Quotation extends Model
     protected $table = "quotations";
     protected $fillable = [
 					    	'id', 
-					    	'hotel_id', 
+					    	'n_quotation', 
 					    	'nights', 
 					    	'breakfast', 
 					    	'lunch', 

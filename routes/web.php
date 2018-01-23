@@ -25,10 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::pattern('bill', '[0-9]+');
 
-Route::post('bill/search', [
+/*Route::post('bill/search', [
 			'uses'	=>	'BillController@search',
 			'as'	=>	'bill.search'
-		]);
+		]);*/
 
 Route::post('prueba', [
 			'uses' => 'QuotationCeroController@metodoprueba',
@@ -41,7 +41,7 @@ Route::post('locali', [
 Route::post('noches', 'QuotationCeroController@noche');
 Route::post('probando', 'QuotationCeroController@probando');
 
-
+Route::post('localidadpa', 'PackagesController@localidad');
 Route::resources([
 	'usuario' => 'UserController',
 	'bed' => 'BedroomController',
@@ -55,7 +55,8 @@ Route::resources([
 	'company' => 'CompanyController',
 	'restaurant' => 'RestaurantController',
 	'bill'	=> 'BillController',
-	'customer'	=>	'CustomerController'
+	'customer'	=>	'CustomerController',
+	'reference' => 'ReferenceController'
 ]);
 Route::get('usuario/{id}/destroy', [
 			'uses'	=>	'UserController@destroy',
@@ -96,4 +97,8 @@ Route::get('restaurant/{id}/destroy', [
 Route::get('customer/{id}/destroy', [
 			'uses'	=>	'CustomerController@destroy',
 			'as'	=>	'customer.destroy'
+		]);
+Route::get('reference/{id}/destroy', [
+			'uses'	=>	'ReferenceController@destroy',
+			'as'	=>	'reference.destroy'
 		]);

@@ -25,9 +25,7 @@
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
- 
- 
+
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
@@ -50,34 +48,9 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
- <script src="{{ asset('js/enviar.js') }}"></script>
-
-
-<style type="text/css">
-    
-#sub1,#sub2,#sub3{
-border:none;
-background-color:transparent;
-}
-#impuesto1,#impuesto2,#impuesto3,#impuesto4,#impuesto5{
-    width:48%;
-    float:left;
-
-}
-#subtotal1,#subtotal2,#subtotal3,#subtotal4,#subtotal5{
-    width:48%;
-    float:left;
-    border:none;
-    background-color:transparent;  
-    margin-left:1%; 
-}
-label{
-    width:100%;
-}
-</style>
-
-
+<script src="{{ asset('js/enviar.js') }}"></script>
+<script src="{{ asset('js/enviar2.js') }}"></script>
+<script src="{{ asset('js/agregar.js') }}"></script>
 </head>
 <body class="hold-transition @yield('body_class')">
 
@@ -103,6 +76,32 @@ label{
 <!-- DataTables -->
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+<style type="text/css">
+#impuesto1,#impuesto2,#impuesto3,#impuesto4,#impuesto5{
+    width:48%;
+    float:left;
+
+}
+#subtotal1,#subtotal2,#subtotal3,#subtotal4,#subtotal5{
+    width:48%;
+    float:left;
+    border:none;
+    background-color:transparent;  
+    margin-left:1%; 
+}
+    .sub1{
+        border:none;
+        background-color:transparent;
+        font-size:30px;
+    }
+    table,td,th{
+        border:none;
+    }
+#labe{ 
+width:100%;
+ }
+</style>
+
 
 @yield('adminlte_js')
 
@@ -152,13 +151,12 @@ label{
 </script>
 
 
-
 <script src="{{ asset('js/ajax.js') }}"></script>
-<script src="{{ asset('js/chosen.jquery.js') }}"></script>
+<script src="{{ asset('js/ajax2.js') }}"></script>
+<script src="{{ asset('js/icheck.min.js') }}"></script>
+<script src="{{ asset('js/choosen.js') }}"></script>
 <script src="{{ asset('docsuppor/prism.js') }}"></script>
 <script src="{{ asset('docsupport/init.js') }}"></script>
-
-
 
 </body>
 </html>

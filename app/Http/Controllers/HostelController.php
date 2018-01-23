@@ -8,6 +8,7 @@ use hive\Http\Requests\CreateHotelRequest;
 use hive\Models\Hotel;
 use hive\Models\Room;
 use hive\Models\Thotel;
+use hive\Models\Localitie;
 use hive\Models\Reference;
 use hive\Models\Restaurant;
 use Redirect;
@@ -37,10 +38,11 @@ class HostelController extends Controller
     {
         $rooms = Room::All();
         $thotels = Thotel::All();
+        $localities = Localitie::all();
         $references = Reference::all();
         $restaurants = Restaurant::all();
         // dd($rooms, $thotels, $references, $restaurants);
-        return view('sys.hostel.create', compact('rooms', 'thotels', 'references', 'restaurants'));
+        return view('sys.hostel.create', compact('rooms', 'thotels', 'localities', 'references', 'restaurants'));
     }
 
     /**
@@ -107,6 +109,7 @@ class HostelController extends Controller
     {
         $rooms = Room::All();
         $thotels = Thotel::All();
+        $localities = Localitie::all();
         $references = Reference::all();
         $restaurants = Restaurant::all();
         $hotel = Hotel::find($id);
@@ -120,12 +123,12 @@ class HostelController extends Controller
         $roomf = DB::table('rooms')
                         ->join('hotel_room', 'hotel_room.room_id', '=', 'rooms.id')
                         ->join('hotels', 'hotels.id', '=', 'hotel_room.hotel_id')
-                        ->select('rooms.id', 'rooms.room', 'hotel_room.cost')
+                        ->select('rooms.id', 'rooms.room', 'hotel_room.room_id', 'hotel_room.cost')
                         ->where('hotel_room.hotel_id', '=', $id)
                         ->get();
 
         // dd($rooms, $roomf);
-        return view('sys.hostel.edit', compact('rooms', 'thotels', 'references', 'restaurants', 'hotel', 'roomf'));
+        return view('sys.hostel.edit', compact('rooms', 'thotels', 'localities', 'references', 'restaurants', 'hotel', 'roomf'));
 
     }
 
@@ -136,7 +139,7 @@ class HostelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateHotelRequest $request, $id)
     {
         $request->new = array_filter($request->room);
         // dd($request);

@@ -2,6 +2,20 @@
     <div class="panel-heading">Datos del Hotel</div>
     <div class="panel-body">
         <dl>
+            <dt>Localidad</dt>
+            <dd>
+                <select name="localidad" class="form-control select2" style="width: 100%;">
+                    <option>--Seleccione--</option>
+                    @foreach ($localities as $localitie)
+                        <option value="{{ $localitie->id }}" {{-- @if ($op == 2)
+                                                                @if ($localitie->id == $hotel->localitieerence_id)
+                                                                SELECTED
+                                                                @endif
+                                                            @endif--}}> 
+                                                        {{ $localitie->localitie }}</option>
+                    @endforeach
+                </select>              
+            </dd><br>
             <dt>Referencia</dt>
             <dd>
                 <select name="ref" class="form-control select2" style="width: 100%;">
@@ -142,11 +156,12 @@
                 @endforeach
             </div>
         @endif
-        {{-- <br>
-        <h4>Habitaciones para Agregar</h4>
+         <br>
+        {{-- <h4>Habitaciones para Agregar</h4>
         <div class="well">
             @foreach ($rooms as $room_new)
-               @if ($room_new->id == $room->id)
+               @if ($room_new->id <> $room->room_id)
+                    {{ $roomf->id }} {{ $room->room->id }}
                     <dl>
                       <dt>{{ $room_new->room }}</dt>
                       <dd>
@@ -159,7 +174,7 @@
                 @endif 
             @endforeach
         </div> 
-    @endif--}}
+    @endif --}}
     </div>
 </div>
 

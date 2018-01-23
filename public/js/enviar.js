@@ -23,3 +23,15 @@
       document.formulario3.submit() ;
     }
   }
+
+    function enviar4(seleccion4)
+  {
+    if(seleccion4>0)
+    {
+      document.formulario4.submit() ;
+    }
+  }
+
+
+ 
+

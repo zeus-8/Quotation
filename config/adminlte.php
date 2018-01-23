@@ -146,6 +146,11 @@ return [
             'icon' => 'location-arrow',
         ],
         [
+            'text' => 'Referencia',
+            'url'  => 'reference',
+            'icon' => 'location-arrow',
+        ],
+        [
             'text' => 'Gias',
             'url'  => '',
             'icon' => 'map-o',

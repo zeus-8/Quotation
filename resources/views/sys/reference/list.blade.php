@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Localidad')
+@section('title', 'Referencias')
 
 @section('content_header')
-    <h1>Lista de Localidades</h1>
+    <h1>Lista de Referencias</h1>
 @stop
 
 @section('content')
@@ -16,18 +16,19 @@
 			<div class="col-xs-12">
 				<div class="box box-primary">
 					<div class="box-header">
-						<h3 class="box-title">Lista de localidades</h3>
+						<h3 class="box-title">Lista de Referencias</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
 						{{-- <a href="{{ URL::to('location/create') }}" class="btn btn-success"><i class="fa fa-location-arrow"> Nueva Localidad</i></a> <br><br>  --}}
 
 						<div class="panel panel-primary">
-						  <div class="panel-heading">Agregue una Localidad</div>
+						  <div class="panel-heading">Agregue una Referencia</div>
 						  <div class="panel-body">
 							@include('sys.message.request_message')
-							{!! Form::open(['route'=>'location.store', 'method'=>'POST']) !!}
-								@include('sys.location.form.location')
+							{!! Form::open(['route'=>'reference.store', 'method'=>'POST']) !!}
+								<?php $op = 1; ?>
+								@include('sys.reference.form.reference')
 								<div class="form-group">
 								{!! Form::submit('Agregar', ['class'=>'btn btn-primary']) !!}
 								</div>
@@ -35,28 +36,28 @@
 						  </div>
 						</div>
 
-						<table id="example1" class="table table-bordered table-striped">
+						 <table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 								<th>Id.</th>
-								<th>Localidad</th>
+								<th>Referencias</th>
 								<th>ACCION</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($localities as $location)
+								@foreach ($references as $reference)
 									<tr>
-										<td>{{ $location->id }}</td>
-										<td>{{ $location->localitie }}</td>
+										<td>{{ $reference->id }}</td>
+										<td>{{ $reference->reference }}</td>
 										<td align="center">
 											{{-- @if ($user->descripcion_tu == 'ADMIN')	 --}}
-												<a href="{{ route('location.edit', $location->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
-												<a href="{{ route('location.destroy', $location->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
+												<a href="{{ route('reference.edit', $reference->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
+												<a href="{{ route('reference.destroy', $reference->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
 											{{-- @endif --}}
 										</td>
 									</tr>
 								@endforeach
-							</tbody>
+							</tbody> 
 						</table>
 					</div>
 				</div>

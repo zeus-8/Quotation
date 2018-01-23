@@ -15,7 +15,7 @@
               <div class="box-header with-border">
                 <div class="row">
                   <div class="col-xs-6 col-sm-6">
-                    <h6 class="box-title">Esta cotizacioón la realizara: {{ $user->name }}, {{ $user->us_last_name }}</h6>
+                    <h6 class="box-title">Esta cotización la realizara: {{ $user->name }}, {{ $user->us_last_name }}</h6>
                   </div>  
                   <div  class="col-xs-6 col-sm-6">
                     <label>Fecha: {{ $carbon }}</label>
@@ -24,7 +24,6 @@
                 </div>
               </div>
               <div class="box-body">
-
 
 
 
@@ -107,13 +106,13 @@
       
 @if(isset($_POST['referencia']))<input type='hidden' name='referencia'  value='{{ $refe }}' onchange="enviar2(this.value)"/>@endif
 @if(isset($_POST['localidad']))<input type='hidden' name='localidad' value='{{ $idloca }}'  onchange="enviar2(this.value)"/>@endif
-  <select class="form-control select2" style="width: 100%;" multiple="true" name="hotel[]" placeholder="Hoteles">
-           <option>--Hotel--</option>
+  <select class="chosen-select"  style="width: 90%;" multiple="true" name="hotel[]" data-placeholder="Selecciona los hoteles que desees">
+        
         @foreach ($hotels as $hotel)
 
 
-          <option  value="{{ $hotel->id }}">{{ $hotel->ho_name }} </option>
 
+<option  value="{{ $hotel->id }}">{{ $hotel->ho_name }} </option>
 
         @endforeach
       </select>
@@ -137,10 +136,6 @@
 
 
 
-
-
-
-
     <div class="panel panel-primary">
          @if(isset($_POST['hotel']))
       <div class="panel-heading">Habitaciones</div>
@@ -156,7 +151,27 @@
 <h3> Hoteles seleccionados </h3>
 @foreach ($seleccionados as $s) 
 
- {{$s->ho_name}}
+ <h4> {{$s->ho_name}} </h4>
+
+
+ @foreach ($hotels2 as $ho2 )
+
+    @if($s->ho_name==$ho2->ho_name)
+
+ <b> Habitacionn : </b> {{  $ho2->room }} / <b> Precio </b> :{{  $ho2->cost }}
+     
+<input type="checkbox" id="chk_1" name='opcion[]' value="{{  $ho2->cost }}"  onclick="calcular(this.checked, this.value);" />  
+
+       
+       <br>
+    @else
+
+
+    @endif
+
+ @endforeach
+
+
  <input type="hidden"  value="{{ $s->id }}"  name="hoteles[]"  /> 
 
 <br>
@@ -178,8 +193,17 @@
 
 
 
+
+
      {!! Form::close() !!}
 
+  <div align="right">
+ <div class="well" div style=width:20%;>
+
+<input type="text" readonly id="txtValor"  name="uno" value="0" div style="border:none;background-color:transparent;font-size:30px;" />
+
+</div>
+</div>
 
 
 
@@ -193,31 +217,7 @@
 
       <div class="panel-body">
 
-        <div class="well">
-      
-
-
-
- @foreach ($hotels2 as $ho2 )
-
-
-
- {{ $ho2->ho_name }} - <b> Habitacion : </b> {{  $ho2->room }} / <b> Precio </b> :{{  $ho2->cost }}
-<input type="checkbox" id="chk_1" name='opcion' value="{{  $ho2->cost }}"  onclick="calcular(this.checked, this.value);" />  <br>
-
- @endforeach
-
-
-
-        </div>
-    <div align="right">
- <div class="well" div style=width:20%;>
-
-<input type="text" readonly id="txtValor"  name="uno" value="0" div style="border:none;background-color:transparent;font-size:30px;" />
-
-</div>
-</div>
-
+  
 
 @endif
 
@@ -372,20 +372,20 @@
   <div class="panel-heading">Ticket Aereo</div>
   <div class="panel-body">
     <div class="form-group col-md-6">
-      {!! Form::label('Ticket Adulto') !!}
+      {!! Form::label('Ticket Adulto',0, ['id'=>'labe']) !!}
       {!! Form::text('neto', 0, ['class'=>'form-control','placeholder'=>'Ticket Adulto','id'=>'pasaje1','onkeyup'=>'calcula()']) !!}
     </div>
     <div class="form-group col-md-6">
-      {!! Form::label('Impuesto Adulto') !!}
+      {!! Form::label('Impuesto Adulto',0, ['id'=>'labe']) !!}
       {!! Form::text('iva', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Adulto','id'=>'impuesto1','onkeyup'=>'calcula()']) !!}
       {!! Form::text('iva', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Adulto','disabled','id'=>'subtotal1','onkeyup'=>'calcula()']) !!}
      </div>
     <div class="form-group col-md-6">
-      {!! Form::label('Ticket Niño') !!}
+      {!! Form::label('Ticket Niño',0, ['id'=>'labe']) !!}
       {!! Form::text('ticket_nino', 0, ['class'=>'form-control', 'placeholder'=>'Ticket Niño','id'=>'pasaje2','onkeyup'=>'calcula()']) !!}
     </div>
     <div class="form-group col-md-6">
-      {!! Form::label('Impuesto Niño') !!}
+      {!! Form::label('Impuesto Niño',0, ['id'=>'labe']) !!}
       {!! Form::text('impuesto_nino', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Niño','id'=>'impuesto2','onkeyup'=>'calcula()']) !!}
       {!! Form::text('iva', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Adulto','disabled','id'=>'subtotal2','onkeyup'=>'calcula()']) !!}
     
@@ -396,7 +396,7 @@
       
     </div>
     <div class="form-group col-md-6">
-      {!! Form::label('Impuesto Tercera Edad') !!}
+      {!! Form::label('Impuesto Tercera Edad',0, ['id'=>'labe']) !!}
       {!! Form::text('impuesto_tercera_edad', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Tercera Edad','id'=>'impuesto3','onkeyup'=>'calcula()']) !!}
       {!! Form::text('iva', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Adulto','disabled','id'=>'subtotal3','onkeyup'=>'calcula()']) !!}
     
@@ -406,7 +406,7 @@
       {!! Form::text('ticket_extranjero', 0, ['class'=>'form-control', 'placeholder'=>'Ticket Extranjero','id'=>'pasaje4','onkeyup'=>'calcula()']) !!}
     </div>
     <div class="form-group col-md-6">
-      {!! Form::label('Impuesto Extranjero') !!}
+      {!! Form::label('Impuesto Extranjero',0, ['id'=>'labe']) !!}
       {!! Form::text('impuesto_extranjero', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Extranjero','id'=>'impuesto4','onkeyup'=>'calcula()']) !!}
       {!! Form::text('iva', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Adulto','disabled','id'=>'subtotal4','onkeyup'=>'calcula()']) !!}
     
@@ -416,7 +416,7 @@
       {!! Form::text('ticket_extranjero', 0, ['class'=>'form-control', 'placeholder'=>'Ticket Extranjero','id'=>'pasaje5','onkeyup'=>'calcula()']) !!}
     </div>
     <div class="form-group col-md-6">
-      {!! Form::label('Impuesto Niño Extranjero') !!}
+      {!! Form::label('Impuesto Niño Extranjero',0, ['id'=>'labe']) !!}
       {!! Form::text('impuesto_noño_extranjero', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Extranjero','id'=>'impuesto5','onkeyup'=>'calcula()']) !!}
        {!! Form::text('iva', 0, ['class'=>'form-control', 'placeholder'=>'Impuesto Adulto','disabled','id'=>'subtotal5','onkeyup'=>'calcula()']) !!}
     
@@ -491,12 +491,24 @@
 
 <div align="right">
  <div class="well" div style=width:20%;margin-right:2%;>
-<input type="text" name="sub3" id="sub3" value="0" onkeyup="calcula8()" disabled="true" div style="border:none;background-color:transparent;font-size:30px;"/>
+<input type="text" name="sub7" id="sub7" value="0"  disabled="true" div style="border:none;background-color:transparent;font-size:30px;"/>
 </div>
 </div>
 
 
 
+<div align="right">
+
+<div style=width:25%;>
+      {!! Form::label('Agregar porcentaje') !!}
+      {!! Form::text('extranjero',0, ['class'=>'form-control', 'placeholder'=>'Porcentaje','id'=>'porcentaje','onkeyup'=>'porcentaje()']) !!}
+</div>
+
+<b> Total con porcentaje</b>
+ <div class="well" div style=width:20%;margin-right:2%;>
+<input type="text" name="su" id="sub8" value="0"  disabled="true" div style="border:none;background-color:transparent;font-size:30px;"/>
+</div>
+</div>
 
 
 
@@ -526,6 +538,8 @@
         <!-- /.box -->
     </section>
     <!-- /.content -->
+
+
 @stop
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use hive\Http\Requests\CreateGuideRequest;
 use hive\Http\Requests\UpdateGuideRequest;
 use hive\Models\Guide;
+use hive\Models\Localitie;
 use hive\Models\Reference;
 use Session;
 use Redirect;
@@ -22,7 +23,7 @@ class GuideController extends Controller
     {
         
         $guides = DB::table('guides')
-                        ->select('guides.id', 'guides.gu_id_card', 'guides.gu_name', 'guides.gu_last_name', 'references.reference')
+                        ->select('guides.id', 'guides.gu_id_card', 'guides.gu_name', 'guides.gu_last_name', 'references.reference', 'guides.cost')
                         ->join('references', 'guides.reference_id', '=', 'references.id')
                         ->whereNull('guides.deleted_at')
                         ->get();
@@ -38,7 +39,8 @@ class GuideController extends Controller
     public function create()
     {
         $references = Reference::all();
-        return view('sys.guide.create', compact('references'));
+        $localities = Localitie::all();
+        return view('sys.guide.create', compact('localities', 'references'));
     }
 
     /**
@@ -85,6 +87,7 @@ class GuideController extends Controller
     public function edit($id)
     {
         $guide = Guide::find($id);
+        $localities = Localitie::all();
         $guide->nombre = $guide->gu_name;
         $guide->apellido = $guide->gu_last_name;
         $guide->cedula = $guide->gu_id_card;
@@ -95,7 +98,7 @@ class GuideController extends Controller
         $guide->costo = $guide->cost;
         $guide->ref = $guide->reference_id;
         $references = Reference::all();
-        return view('sys.guide.edit', compact('guide', 'references'));
+        return view('sys.guide.edit', compact('localities', 'guide', 'references'));
     }
 
     /**

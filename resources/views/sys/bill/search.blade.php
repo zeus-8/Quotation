@@ -19,7 +19,7 @@
                 @include('sys.message.request_message')
                   {!! Form::open(['route'=>'bill.search', 'method'=>'POST']) !!}
                     <div class="form-group has-feedback">
-                      {!! Form::label('N° de cedula') !!}
+                      {!! Form::label('Nombre /  N° de Cotizacion') !!}
                       {!! Form::text('cedula', null, ['class'=>'form-control', 'placeholder'=>'Nombre']) !!}
                       <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>

@@ -12,19 +12,27 @@
           <!-- Default box -->
           <div class="col-md">
             <div class="box box-primary ">
+
+
+
+
+
+
+
               <div class="box-header with-border">
                 <h3 class="box-title">Nuevo Paquete</h3>
               </div>
+
+ 
+
+
               <div class="box-body">
                 @include('sys.message.request_message')
-                  {!! Form::open(['route'=>'packages.store', 'method'=>'POST']) !!}
+               
                    <?php $op = 1; ?>
                      @include('sys.packages.form.package')
-                     <div class="form-group">
-                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary']) !!}
-                      <a href="{{ URL::to('packages') }}" class="btn btn-danger">Cancelar</a>
-                    </div>
-                  {!! Form::close() !!}
+                  
+            
               </div>
               <!-- /.box-body -->
             </div>

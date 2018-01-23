@@ -25,9 +25,9 @@
 							<thead>
 								<tr>
 								<th>C. I.</th>
-								<th>Nombre</th>
-								<th>Apellido</th>
+								<th>Nombre y Apellido</th>
 								<th>Referencia</th>
+								<th>Costo</th>
 								<th>ACCION</th>
 								</tr>
 							</thead>
@@ -35,9 +35,9 @@
 								@foreach ($guides as $guide)
 									<tr>
 										<td>{{ $guide->gu_id_card }}</td>
-										<td>{{ $guide->gu_name }}</td>
-										<td>{{ $guide->gu_last_name }}</td>
+										<td>{{ $guide->gu_name }} {{ $guide->gu_last_name }}</td>
 										<td>{{ $guide->reference }}</td>
+										<td><label>{{ $guide->cost }}</label></td>
 										<td align="center">
 											{{-- @if ($guide->descripcion_tu == 'ADMIN')	 --}}
 												<a href="{{ route('guide.edit', $guide->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
@@ -55,10 +55,3 @@
 	</section>
 @stop
 
-@section('js')
-    <script>
-    	$(function () {
-    $('#example1').DataTable()
-  })
-    </script>
-@stop

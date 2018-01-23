@@ -3,7 +3,7 @@
 @section('title', 'Facturacion')
 
 @section('content_header')
-    <h1>Lista de ...</h1>
+    <h1>Lista de Cotizaciones</h1>
 @stop
 
 @section('content')
@@ -16,7 +16,7 @@
 			<div class="col-md-12">
 				<div class="box box-primary">
 					<div class="box-header">
-						<h3 class="box-title"> Registrados</h3>
+						<h3 class="box-title">Registro de Cotizaciones</h3>
 
 					</div>
 					<!-- /.box-header -->
@@ -24,25 +24,24 @@
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
+								<th>N° Cotizacion</th>
 								<th>Nombre</th>
 								<th>ACCION</th>
 								</tr>
 							</thead>
 							<tbody>
-								{{-- @foreach ($users as $user)
+								@foreach ($quotations as $coti)
 									<tr>
-										<td>{{ $user->us_id_card }}</td>
-										<td>{{ $user->name }}</td>
-										<td>{{ $user->us_last_name }}</td>
-										<td>{{ $user->type_user }}</td>
+										<td><b>{{ $coti->n_quotAtion }}</b></td>
+										<td>{{ $coti->cu_name }} {{ $coti->cu_last_name }}</td>
 										<td align="center">
-											@if ($user->descripcion_tu == 'ADMIN')	
-												<a href="{{ route('usuario.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Modificar"><span class="glyphicon glyphicon-wrench"></span> </a>
-												<a href="{{ route('usuario.destroy', $user->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a>
-											@endif
+											{{-- @if ($coti->descripcion_tu == 'ADMIN')	 --}}
+												<a href="{{ route('bill.edit', $coti->id) }}" class="btn btn-success btn-sm" title="Modificar"><span class="glyphicon glyphicon-usd"></span> </a>
+												{{-- <a href="{{ route('quotation.destroy', $coti->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger btn-sm" title="Eliminar"><span class="glyphicon glyphicon-trash"></span> </a> --}}
+											{{-- @endif --}}
 										</td>
 									</tr>
-								@endforeach --}}
+								@endforeach
 							</tbody>
 						</table>
 					</div>
@@ -50,20 +49,4 @@
 			</div>
 		</div>
 	{{-- </section> --}}
-@stop
-
-@section('js')
-    <script>
-    	$(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-    </script>
 @stop

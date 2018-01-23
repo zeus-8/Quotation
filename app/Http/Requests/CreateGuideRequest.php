@@ -29,6 +29,7 @@ class CreateGuideRequest extends FormRequest
             'celular' => 'required|numeric', 
             'email' => 'required|unique:guides,gu_email',
             'costo' => 'required|numeric', 
+            'ref' => 'required|exists:references,id'
         ];
     }
 }

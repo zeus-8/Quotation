@@ -111,7 +111,7 @@ class UserController extends Controller
         $user->us_cell_phone  = $request->celular;
         $user->tuser_id    = $request->rol;
         $user->save();
-        Session::flash('message','El usuario ' .  $request->email . ' fue actualizado con exito');
+        Session::flash('message','El usuario ' . $request->email . ' fue actualizado con exito');
         return Redirect::to('usuario');
     }
 
