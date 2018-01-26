@@ -32,7 +32,7 @@
 							<tbody>
 								@foreach ($quotations as $coti)
 									<tr>
-										<td><b>{{ $coti->n_quotAtion }}</b></td>
+										<td><b>{{ $coti->n_quotation }}</b></td>
 										<td>{{ $coti->cu_name }} {{ $coti->cu_last_name }}</td>
 										<td align="center">
 											{{-- @if ($coti->descripcion_tu == 'ADMIN')	 --}}

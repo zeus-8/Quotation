@@ -25,11 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::pattern('bill', '[0-9]+');
 
-/*Route::post('bill/search', [
-			'uses'	=>	'BillController@search',
-			'as'	=>	'bill.search'
-		]);*/
-
 Route::post('prueba', [
 			'uses' => 'QuotationCeroController@metodoprueba',
 			'as' => 'prueba.metodoprueba'
@@ -40,7 +35,7 @@ Route::post('locali', [
 		]);
 Route::post('noches', 'QuotationCeroController@noche');
 Route::post('probando', 'QuotationCeroController@probando');
-
+Route::post('hoteles', 'QuotationCeroController@hoteles');
 Route::post('localidadpa', 'PackagesController@localidad');
 Route::resources([
 	'usuario' => 'UserController',

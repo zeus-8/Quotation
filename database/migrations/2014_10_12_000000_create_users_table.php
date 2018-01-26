@@ -105,6 +105,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('n_quotation');
             $table->string('coment');
+            $table->integer('days');
             $table->integer('nights');
             $table->decimal('breakfast', 5, 2);
             $table->decimal('lunch', 5, 2);
@@ -124,6 +125,8 @@ class CreateUsersTable extends Migration
             $table->integer('cant_te');
             $table->integer('cant_e');
             $table->integer('cant_ne');
+            $table->integer('cost_q');
+            $table->decimal('gain', 6, 2);
             $table->boolean('status');//0 sin cotizar 1 cotizado
             $table->date('date_travel_init');
             $table->date('date_travel_end');
@@ -228,9 +231,11 @@ class CreateUsersTable extends Migration
             $table->string('tr_name');
             $table->string('tr_last_name');
             $table->integer('tr_id_card');
+            $table->string('type_service');
             $table->integer('tr_cell_phone');
             $table->string('tr_coment');
             $table->string('tr_cost');
+            $table->integer('cap_max');
             $table->integer('reference_id')->unsigned();
             $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('companie_id')->unsigned();
@@ -260,9 +265,7 @@ class CreateUsersTable extends Migration
         Schema::create('bills', function(Blueprint $table){
             $table->increments('id');
             $table->string('bi_coment');
-            $table->date('bi_date');
-            $table->dateTime('bi_hour');
-            $table->integer('bi_nbill');
+            $table->string('bi_nbill');
             $table->integer('bi_bill_ref');//numero de factura fisica
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -344,6 +347,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('hotel_id')->unsigned();
             $table->integer('quotation_id')->unsigned();
+            $table->integer('room_id');
+            $table->integer('nights');
+            $table->decimal('cost_room', 6, 2);
+            $table->integer('cant_room');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
@@ -353,6 +360,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('guide_id')->unsigned();
             $table->integer('quotation_id')->unsigned();
+            $table->integer('cant_guide');
             $table->foreign('guide_id')->references('id')->on('guides')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
@@ -362,6 +370,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('quotation_id')->unsigned();
             $table->integer('transfer_id')->unsigned();
+            $table->integer('cant_transfer');
             $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('transfer_id')->references('id')->on('transfers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

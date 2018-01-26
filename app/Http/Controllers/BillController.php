@@ -24,9 +24,10 @@ class BillController extends Controller
         
         $quotations = DB::table('quotations')
                             ->join('customers', 'customers.id', '=', 'quotations.customer_id')
-                            ->select('quotations.id', 'quotations.n_quotAtion', 'customers.cu_name', 'customers.cu_last_name')
+                            ->select('quotations.id', 'quotations.n_quotation', 'customers.cu_name', 'customers.cu_last_name')
                             ->where('quotations.status', '=', '0')
                             ->get();
+        // dd($quotations);
         return view('sys.bill.list', compact('quotations'));
     }
 
@@ -71,44 +72,59 @@ class BillController extends Controller
      */
     public function edit($id)
     {
-        
+        $op = 0;
         $coti = Quotation::find($id);
-        // $find = DB::table('quotations')
-        //                 ->select('quotations.package_id')
-        //                 ->where('quotations.id', '=', $coti->id)
-        //                 ->get();
-
+        $customer = DB:: table('quotations')
+                        ->join('customers', 'customers.id', '=', 'quotations.id')
+                        ->select('quotations.id', DB::raw('customers.id as customer'), 'customers.cu_id_card_ruc', 'customers.cu_name', 
+                            'customers.cu_last_name', 'customers.cu_cell_phone', 'customers.cu_phone', 
+                            'customers.cu_email', 'customers.cu_address')
+                        ->where('quotations.id', '=', $coti->id)
+                        ->get();
         if ($coti->package_id == ''){
-            $result = DB:: table('quotations')
-                            ->join('customers', 'customers.id', '=', 'quotations.id')
-                            ->select('quotations.id', DB::raw('customers.id as customer'), 'customers.cu_name', 
-                                'customers.cu_last_name', 'customers.cu_cell_phone', 'customers.cu_phone', 
-                                'customers.cu_email', 'customers.cu_address', 'quotations.n_quotation', 
-                                'quotations.cant_a', 'quotations.cant_n', 'quotations.cant_te', 'quotations.cant_e', 
-                                'quotations.cant_ne', 'quotations.date_travel_init', 'quotations.date_travel_end',
-                                'quotations.coment')
+            $search1 = DB::table('quotations')
+                            ->join('hotel_quotation', 'hotel_quotation.quotation_id', '=', 'quotations.id')
+                            ->select('hotel_quotation.nights', 'hotel_quotation.cost_room', 'hotel_quotation.cant_room')
                             ->where('quotations.id', '=', $coti->id)
                             ->get();
+            foreach ($search1 as $h){
+                $hotel = $h;
+            } 
+            $lodging = ($hotel->cost_room * $hotel->cant_room) * $hotel->nights;
+            $search2 = DB::table('quotations')
+                            ->join('guide_quotation', 'guide_quotation.quotation_id', '=', 'quotations.id')
+                            ->join('guides', 'guide_quotation.guide_id', '=', 'guides.id')
+                            ->Select('guide_quotation.cant_guide', 'guides.cost')
+                            ->where('quotations.id', '=', $coti->id)
+                            ->get();
+            foreach ($search2 as $g ) {
+                $guide = $g;
+                $cost_guide = $guide->cost * $guide->cant_guide;
+            }
+            $search3 = DB::table('quotations')
+                            ->join('quotation_transfer', 'quotation_transfer.quotation_id', '=', 'quotations.id')
+                            ->join('transfers', 'quotation_transfer.transfer_id', '=', 'transfers.id')
+                            ->select('quotation_transfer.id', 'quotation_transfer.cant_transfer', 'transfers.tr_cost')
+                            ->where('quotations.id', '=', $coti->id)
+                            ->get();
+            $cost_transfer = 0;
+            foreach ($search3 as $t) {
+                $transfer = $t;
+                $cost_transfer = $cost_transfer + ($t->cant_transfer * $t->tr_cost);
+            }
+            $op = 1;
         }
         else{
-            $result = DB:: table('quotations')
-                            ->join('customers', 'customers.id', '=', 'quotations.id')
-                            ->join('packages', 'packages.id', '=', 'quotations.package_id')
-                            ->select('quotations.id', DB::raw('customers.id as customer'), 'customers.cu_name', 
-                                'customers.cu_last_name', 'customers.cu_cell_phone', 'customers.cu_phone', 
-                                'customers.cu_email', 'customers.cu_address', 'quotations.coment', 'quotations.n_quotation',
-                                'quotations.cant_a', 'quotations.cant_n', 'quotations.cant_te', 'quotations.cant_e', 
-                                'quotations.cant_ne', 'quotations.date_travel_init', 'quotations.date_travel_end', 
-                                'packages.pa_name', 'packages.pa_cost_a', 'packages.pa_cost_n', 'packages.pa_cost_te',
-                                'packages.pa_cost_e', 'packages.pa_cost_ne')
-                            ->where('quotations.id', '=', $coti->id)
-                            ->get();
+            
+            
         }
+        $sub = $lodging + $cost_guide + $cost_transfer + $coti->breakfast + $coti->lunch + $coti->dinner;
         $date = Carbon::now();
         $date = $date->format('d-m-Y');
         $user = \Auth::User();
-        // dd('Cotizacion', $coti, 'Resultado', $result, 'user', $user, 'date', $date);
-        return view('sys.bill.edit', compact('coti', 'result', 'date', 'user'));
+        // dd('op', $op, 'cotizacion', $coti, 'Cliente', $customer, 'Hotel', $search1, 'Guia', $search2, 'Transporte', $search3, 
+        //         'alojamiento', $lodging, 'guia', $cost_guide, 'transporte', $cost_transfer, 'fecha', $date, 'usuario', $user);
+        return view('sys.bill.edit', compact('coti', 'customer', 'date', 'user', 'sub', 'op'));
     }
 
     /**
@@ -120,7 +136,7 @@ class BillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $customer = Customer::find($request->customer);
+        $customer = Customer::find($request->customer_id);
         $customer->cu_name = trim(strtoupper($request['nombre']));
         $customer->cu_last_name = trim(strtoupper($request['apellido']));
         $customer->cu_id_card_ruc = $request['cedula'];
@@ -130,7 +146,7 @@ class BillController extends Controller
         $customer->cu_address = trim(strtoupper($request['direccion']));
         $customer->save();
 
-        $quotation = Quotation::find($request->quotation);
+        $quotation = Quotation::find($request->quotation_id);
         $quotation->status = 1;
         $quotation->save();
 
@@ -138,7 +154,7 @@ class BillController extends Controller
                     'bi_coment' => trim(strtoupper($request['notes'])),
                     'bi_nbill' => $request['nquotation'],
                     'bi_bill_ref' => $request['ref'],
-                    'user_id' => $request['user'],
+                    'user_id' => $request['user_id'],
                     'customer_id' => $request['customer'],
                     'quotation_id' => $request['cotizacion']
                 ]);

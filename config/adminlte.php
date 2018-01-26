@@ -262,6 +262,13 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Buscar Facturar',
+            'url'         => '',
+            'icon'        => 'search',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
         // [
         //     'text' => 'Profile',
         //     'url'  => 'admin/settings',
