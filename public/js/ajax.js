@@ -1,5 +1,4 @@
 
-
 var total1=0;
 var total2=0;
 var total3=0;
@@ -7,10 +6,10 @@ var total6=0;
 var total7=0;
 var total8=0;
 var total9=0;
-
-
-
-
+var totalg=0;
+var totalg2=0;
+var porcen=0;
+var porcen2=0;
 
 function calcular(estaChequeado, valor) { 
   
@@ -43,7 +42,7 @@ valor = parseInt(valor);
 
 
 
-sumando=suma_actual+ne;
+sumando=suma_actual;
 
 campo_resultado.value = sumando;
 
@@ -52,7 +51,12 @@ to=2;
 
 
 total1=sumando;
-var subtotal1 = document.getElementById("sub1").value=total1;
+
+
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
+
 } 
  
 
@@ -85,11 +89,12 @@ function calculo(estaChequeado, valor2,estaChequeado2, valor3) {
   }
 
 
-  resultado.value = suma;
+resultado.value = suma;
+
 total2=suma;
-
-
-  var subtotal2 = document.getElementById("sub").value=total2;
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
 
 } 
 
@@ -127,6 +132,11 @@ function calculo2(estaChequeado2, valor3) {
 
 total7=suma2;
 
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
+
+
 } 
 
 
@@ -138,15 +148,37 @@ var suma_actual = 0;
 
 valor = parseInt(valor);
 
-suma_actual = suma_actual + valor;
-sumando=suma_actual;
 
-campo_resultado.value = sumando;
+  try {
+    if (campo_resultado != null) {
+
+      if (isNaN(campo_resultado.value)) {
+        campo_resultado.value = 0;
+      }
+
+      suma_actual = parseInt(campo_resultado.value);
+    }
+  } catch (ex) {
+    alert('No existe el campo de la suma.');
+  }
+
+  if (estaChequeado == true) {
+    suma_actual = suma_actual + valor;
+  } else {
+    suma_actual = suma_actual - valor;
+  }
+
+campo_resultado.value = suma_actual;
 
 total9=suma_actual; 
 
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
 
 var iva = document.getElementById("subiva").value=total9+total7;
+
+
 
 } 
 
@@ -177,12 +209,15 @@ impuesto=im1+im2+im3+im4+im5;
   mul5 = p5 + im5;
 
 mul6 = mul1+mul2+mul3+mul4+mul5; 
-
+total3=pasaje+impuesto;
+tiva=total3*0.12;
+totaliva=tiva+total3; 
 
 document.getElementById('total4').value=pasaje; 
 document.getElementById('total5').value=impuesto; 
+document.getElementById('tiva').value=tiva; 
+document.getElementById('totalconiva').value=totaliva; 
 
-total3=pasaje+impuesto;
 
 var subtotal1 = document.getElementById("subtotal1").value=mul1;
 var subtotal2 = document.getElementById("subtotal2").value=mul2;
@@ -192,8 +227,9 @@ var subtotal5 = document.getElementById("subtotal5").value=mul5;
 var subtotal6 = document.getElementById("subtotal6").value=mul6;
 var subtotal7 = document.getElementById("subtotal7").value=mul6;
 
-var subtotal3 = document.getElementById("sub2").value=total3;
-
+totalg=total1+total2+total7+total3+total6;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
 } 
 
   
@@ -220,7 +256,9 @@ document.getElementById('sub3').value=multi3;
 document.getElementById('totalali').value=alitotal; 
 
 
-
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
 
 
 
@@ -238,14 +276,33 @@ u4=eval(document.getElementById('persona4').value);
 todos = u1+u2+u3+u4; 
 
 sumasub=total2+total1+total3+total6+total7;
-total4=sumasub*todos
+total4=todos
 
 
 document.getElementById('subtotal').value=todos; 
 var subtotal3 = document.getElementById("sub3").value=total4;
 
 
-
+totalg=total1+total2+total7+total3+total6;
+totalg2=totalg*total4;
+document.getElementById("sub7").value=totalg2;
 
 
 } 
+
+
+function porcentaje() { 
+por=eval(document.getElementById('porcentaje').value); 
+
+
+
+
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+porcen=totalg2/100*por;
+porcen2=porcen+totalg2;
+document.getElementById("sub8").value=porcen2;
+
+
+} 
+ 

@@ -40,7 +40,7 @@ Route::post('locali', [
 		]);
 Route::post('noches', 'QuotationCeroController@noche');
 Route::post('probando', 'QuotationCeroController@probando');
-
+Route::post('hoteles', 'QuotationCeroController@hoteles');
 
 Route::resources([
 	'usuario' => 'UserController',
