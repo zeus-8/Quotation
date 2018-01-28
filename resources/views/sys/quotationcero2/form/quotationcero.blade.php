@@ -90,7 +90,8 @@
         <!-- Aqui comprobamos a traves del isset si se envio o no una referencia para mostrare el select-->
         @if(isset($_POST['localidad']))
         <div class="form-group">
-            {!! Form::open(['url'=>'hoteles', 'method'=>'POST','name'=>'formulario1']) !!}     
+            {{-- GUSTAVO, cambie URL hoteles a hotels_test --}}
+            {!! Form::open(['url'=>'hotels_test', 'method'=>'POST','name'=>'formulario1']) !!}
                 @if(isset($_POST['localidad']))
                     <input type='hidden' name='localidad' value='{{ $idloca }}'  onchange="enviar2(this.value)"/>
                 @endif
@@ -135,7 +136,7 @@
                                 <label>Habitaciones</label><br>
                                 @foreach ($hotels2 as $ho2 )
                                     @if($s->ho_name==$ho2->ho_name)
-                                            <input type="checkbox" id="chk_1" name='opcion[]' value="{{  $ho2->cost }}"  onclick="calcular(this.checked, this.value);" />                          
+                                            <input type="checkbox" id="chk_1" name="opcion_[]" value="{{  $ho2->cost }}"  onclick="calcular(this.checked, this.value);" />
                                             {{  $ho2->room }} / <b> Precio </b>: {{  $ho2->cost }}&nbsp;&nbsp;&nbsp;&nbsp;                            
                                             <input type="text" id="habitaciones" placeholder="Cnt.Habitaciones.." value=""/>
                                             <br>

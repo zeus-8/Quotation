@@ -63,11 +63,11 @@ class CreateUsersTable extends Migration
         Schema::create('guides', function(Blueprint $table){
             $table->increments('id');
             $table->string('gu_name');
-            $table->string('gu_last_name');
-            $table->bigInteger('gu_id_card');
-            $table->bigInteger('gu_cell_phone');
-            $table->integer('gu_phone');
-            $table->string('gu_address');
+            $table->string('gu_last_name')->nullable();
+            $table->bigInteger('gu_id_card')->nullable();
+            $table->bigInteger('gu_cell_phone')->nullable();
+            $table->integer('gu_phone')->nullable();
+            $table->string('gu_address')->nullable();
             $table->string('gu_email');
             $table->decimal('cost', 6, 2);
             $table->integer('reference_id')->unsigned();
@@ -79,14 +79,14 @@ class CreateUsersTable extends Migration
         Schema::create('packages', function(Blueprint $table){
             $table->increments('id');
             $table->string('pa_name');
-            $table->text('pa_activities');
-            $table->text('pa_coment');
+            $table->text('pa_activities')->nullable();
+            $table->text('pa_coment')->nullable();
             $table->decimal('pa_cost_a', 6, 2);//costo adulto
             $table->decimal('pa_cost_n', 6, 2);//costo niño
             $table->decimal('pa_cost_te', 6, 2);//costo tercera edad
             $table->decimal('pa_cost_e', 6, 2);//costo tercera edad
             $table->decimal('pa_cost_ne', 6, 2);//costo tercera edad
-            $table->text('pa_observations');
+            $table->text('pa_observations')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -130,7 +130,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('re_name');
             $table->string('re_address');
-            $table->integer('re_cell_phone');
+            $table->integer('re_cell_phone')->nullable();
             $table->integer('re_phone');
             $table->decimal('re_cost_breakfast', 5, 2);
             $table->decimal('re_cost_lunch', 5, 2);
@@ -195,7 +195,7 @@ class CreateUsersTable extends Migration
             $table->string('ho_address');
             $table->bigInteger('ho_cell_phone');
             $table->bigInteger('ho_phone');
-            $table->integer('ho_ext');
+            $table->integer('ho_ext')->nullable();
             $table->string('ho_email');
             $table->string('ho_contac');
             $table->integer('thotel_id')->unsigned();//id_tipo_hotel
@@ -204,7 +204,7 @@ class CreateUsersTable extends Migration
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('shotel_id')->unsigned();//id_servicio_hotel
             $table->foreign('shotel_id')->references('id')->on('shotels')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('reference_id')->unsigned();
+            $table->integer('reference_id')->unsigned()->nullable();
             $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
@@ -214,15 +214,15 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('tr_name');
             $table->string('tr_last_name');
-            $table->integer('tr_id_card');
-            $table->integer('tr_cell_phone');
-            $table->string('tr_coment');
-            $table->string('tr_cost');
+            $table->integer('tr_id_card')->nullable();
+            $table->integer('tr_cell_phone')->nullable();
+            $table->string('tr_coment')->nullable();
+            $table->string('tr_cost')->nullable();
             $table->integer('reference_id')->unsigned();
             $table->foreign('reference_id')->references('id')->on('references')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('companie_id')->unsigned();
+            $table->integer('companie_id')->unsigned()->nullable();
             $table->foreign('companie_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('ttransfer_id')->unsigned();
+            $table->integer('ttransfer_id')->unsigned()->nullable();
             $table->foreign('ttransfer_id')->references('id')->on('ttransfers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
@@ -235,7 +235,7 @@ class CreateUsersTable extends Migration
             $table->integer('us_id_card')->unique();
             $table->string('email', 40)->unique();
             $table->bigInteger('us_cell_phone');
-            $table->bigInteger('us_phone');
+            $table->bigInteger('us_phone')->nullable();
             $table->string('password');
             $table->integer('tuser_id')->unsigned();
             $table->foreign('tuser_id')->references('id')->on('tusers')->onUpdate('cascade')->onDelete('cascade');

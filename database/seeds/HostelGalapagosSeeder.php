@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class HostelGalapagosSeeder extends Seeder
 {
@@ -34,5 +35,22 @@ class HostelGalapagosSeeder extends Seeder
        			'restaurant_id' => '1',
        			'shotel_id' => '1',
 	       		]);
+
+	    $hotel_room = [];
+
+	    for ($hotel = 1; $hotel <= 2; $hotel++) {
+
+	        for ($room = 1; $room <= 5; $room++) {
+
+                $hotel_room[] = [
+
+                    'hotel_id' => $hotel,
+                    'room_id'  => $room,
+                    'cost'     => $hotel * $room
+                ];
+            }
+        }
+
+        DB::table('hotel_room')->insert($hotel_room);
     }
 }

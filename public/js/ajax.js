@@ -12,7 +12,9 @@ var porcen=0;
 var porcen2=0;
 
 function calcular(estaChequeado, valor) { 
-  
+
+  console.log(valor);
+
 ne=eval(document.getElementById('neto').value); 
 
 var suma_actual = 0;
@@ -42,7 +44,7 @@ valor = parseInt(valor);
 
 
 
-sumando=suma_actual;
+var sumando=suma_actual;
 
 campo_resultado.value = sumando;
 

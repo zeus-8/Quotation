@@ -42,6 +42,8 @@ Route::post('noches', 'QuotationCeroController@noche');
 Route::post('probando', 'QuotationCeroController@probando');
 Route::post('hoteles', 'QuotationCeroController@hoteles');
 
+Route::post('hotels_test', 'QuotationCeroController@test_gust');
+
 Route::resources([
 	'usuario' => 'UserController',
 	'bed' => 'BedroomController',
