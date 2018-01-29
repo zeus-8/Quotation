@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             $this->call(TransferSeeder::class);
             $this->call(PackageSeeder::class);
             $this->call(UserSeeder::class);
-            $this->call(HostelGalapagosSeeder::class);
+            //$this->call(HostelGalapagosSeeder::class); esta definido mas arriba
         Model::reguard();
     }
 }

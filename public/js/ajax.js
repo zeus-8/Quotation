@@ -12,7 +12,13 @@ var porcen=0;
 var porcen2=0;
 
 function calcular(estaChequeado, valor) { 
+<<<<<<< HEAD
   
+=======
+
+  console.log(valor);
+
+>>>>>>> ad7dd850ea76cdb42a90241fd7176f02358c6c42
 ne=eval(document.getElementById('neto').value); 
 
 var suma_actual = 0;
@@ -42,7 +48,11 @@ valor = parseInt(valor);
 
 
 
+<<<<<<< HEAD
 sumando=suma_actual;
+=======
+var sumando=suma_actual;
+>>>>>>> ad7dd850ea76cdb42a90241fd7176f02358c6c42
 
 campo_resultado.value = sumando;
 
@@ -148,10 +158,27 @@ var suma_actual = 0;
 
 valor = parseInt(valor);
 
-suma_actual = suma_actual + valor;
-sumando=suma_actual;
 
-campo_resultado.value = sumando;
+  try {
+    if (campo_resultado != null) {
+
+      if (isNaN(campo_resultado.value)) {
+        campo_resultado.value = 0;
+      }
+
+      suma_actual = parseInt(campo_resultado.value);
+    }
+  } catch (ex) {
+    alert('No existe el campo de la suma.');
+  }
+
+  if (estaChequeado == true) {
+    suma_actual = suma_actual + valor;
+  } else {
+    suma_actual = suma_actual - valor;
+  }
+
+campo_resultado.value = suma_actual;
 
 total9=suma_actual; 
 
@@ -192,12 +219,15 @@ impuesto=im1+im2+im3+im4+im5;
   mul5 = p5 + im5;
 
 mul6 = mul1+mul2+mul3+mul4+mul5; 
-
+total3=pasaje+impuesto;
+tiva=total3*0.12;
+totaliva=tiva+total3; 
 
 document.getElementById('total4').value=pasaje; 
 document.getElementById('total5').value=impuesto; 
+document.getElementById('tiva').value=tiva; 
+document.getElementById('totalconiva').value=totaliva; 
 
-total3=pasaje+impuesto;
 
 var subtotal1 = document.getElementById("subtotal1").value=mul1;
 var subtotal2 = document.getElementById("subtotal2").value=mul2;
@@ -266,6 +296,7 @@ var subtotal3 = document.getElementById("sub3").value=total4;
 totalg=total1+total2+total7+total3+total6;
 totalg2=totalg*total4;
 document.getElementById("sub7").value=totalg2;
+<<<<<<< HEAD
 
 
 } 
@@ -285,3 +316,25 @@ document.getElementById("sub8").value=porcen2;
 
 
 } 
+=======
+
+
+} 
+
+
+function porcentaje() { 
+por=eval(document.getElementById('porcentaje').value); 
+
+
+
+
+totalg=total1+total2+total7+total3+total6+total9;
+totalg2=totalg*total4;
+porcen=totalg2/100*por;
+porcen2=porcen+totalg2;
+document.getElementById("sub8").value=porcen2;
+
+
+} 
+ 
+>>>>>>> ad7dd850ea76cdb42a90241fd7176f02358c6c42
