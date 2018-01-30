@@ -115,8 +115,24 @@ class BillController extends Controller
             $op = 1;
         }
         else{
-            
-            
+           $search1 = DB::table('packages')
+                            ->join('hotel_package', 'hotel_package.package_id', '=', 'packages.id')
+                            ->select('hotel_package.nights', 'hotel_package.cost_room', 'hotel_package.cant_room')
+                            ->where('packages.id', '=', $coti->id)
+                            ->get();
+            foreach ($search1 as $h){
+                $hotel = $h;
+            }  
+            $lodging = ($hotel->cost_room * $hotel->cant_room) * $hotel->nights;
+            $search2 = DB::table('packages')
+                            ->join('guide_package', 'guide_package.package', '=', 'packages.id')
+                            ->Select('guide_package.cant_guide', 'guide_package.cost_guide')
+                            ->where('packages.id', '=', $coti->id)
+                            ->get();
+            foreach ($search2 as $g ) {
+                $guide = $g;
+                $cost_guide = $guide->cost * $guide->cant_guide;
+            }
         }
         $sub = $lodging + $cost_guide + $cost_transfer + $coti->breakfast + $coti->lunch + $coti->dinner;
         $date = Carbon::now();

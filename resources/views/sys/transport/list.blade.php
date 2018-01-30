@@ -26,7 +26,7 @@
 								<tr>
 								<th>Id</th>
 								<th>Empresa</th>
-								<th>Nombre</th>
+								<th>Tipo de Servicio</th>
 								<th>Costo</th>
 								<th>Tipo</th>
 								<th>ACCION</th>
@@ -37,8 +37,8 @@
 									<tr>
 										<td>{{ $transfer->id }}</td>
 										<td>{{ $transfer->co_name }}</td>
-										<td>{{ $transfer->tr_name }}</td>
-										<td><label>{{ $transfer->tr_cost }}</label></td>
+										<td>{{ $transfer->type_service }}</td>
+										<td class="text-right"><label>{{ $transfer->tr_cost }}</label></td>
 										<td><label>{{ $transfer->tt_transfer }}</label></td>
 										<td align="center">
 											{{-- @if ($transport->descripcion_tu == 'ADMIN')	 --}}

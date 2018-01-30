@@ -248,7 +248,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('us_last_name');
-            $table->integer('us_id_card')->unique();
+            $table->bigInteger('us_id_card')->unique();
             $table->string('email', 40)->unique();
             $table->bigInteger('us_cell_phone');
             $table->bigInteger('us_phone');

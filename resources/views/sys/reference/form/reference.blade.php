@@ -1,5 +1,5 @@
  {!! Form::label('Referencia') !!}
-<select class="form-control" name="localitie">
+<select class="form-control" name="localidad">
   <option>-- Seleccione --</option>
     @foreach($localities as $local)
         @if($op == 2)

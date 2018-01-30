@@ -11,7 +11,7 @@ class Reference extends Model
     use SoftDeletes;
 
     protected $table = "references";
-    protected $fillable = ['id', 'reference', 'localite_id'];
+    protected $fillable = ['id', 'reference', 'localitie_id'];
 
     public function guides(){
     	return $this->hasmany('hive\Models\guide');

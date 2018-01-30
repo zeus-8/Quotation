@@ -27,7 +27,6 @@ class CreateRestaurantRequest extends FormRequest
             'nombre_restaurant' => 'required|string|max:50|min:3|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
             'direccion_restaurant' => 'required|string|max:50|min:3|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\.\- ]+$/i', 
             'celular_restaurant' => 'required|numeric|digits_between:9,10', 
-            'fijo_restaurant' => 'required|numeric|digits_between:7,8', 
             'costo_desayuno' => 'required|numeric', 
             'costo_almuerzo' => 'required|numeric', 
             'costo_cena' => 'required|numeric',

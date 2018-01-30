@@ -5,6 +5,7 @@ namespace hive\Http\Controllers;
 use Illuminate\Http\Request;
 use hive\Http\Requests;
 use hive\Http\Requests\CreateHotelRequest;
+use hive\Http\Requests\UpdateHotelRequest;
 use hive\Models\Hotel;
 use hive\Models\Room;
 use hive\Models\Thotel;
@@ -123,7 +124,7 @@ class HostelController extends Controller
         $roomf = DB::table('rooms')
                         ->join('hotel_room', 'hotel_room.room_id', '=', 'rooms.id')
                         ->join('hotels', 'hotels.id', '=', 'hotel_room.hotel_id')
-                        ->select('rooms.id', 'rooms.room', 'hotel_room.room_id', 'hotel_room.cost')
+                        ->select('hotel_room.room_id', 'rooms.room', 'hotel_room.cost')
                         ->where('hotel_room.hotel_id', '=', $id)
                         ->get();
 
@@ -139,33 +140,29 @@ class HostelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateHotelRequest $request, $id)
+    public function update(UpdateHotelRequest $request, $id)
     {
         $request->new = array_filter($request->room);
-        // dd($request);
         $hotel = Hotel::find($id);
         $hotel->ho_name = trim(strtoupper($request['nombre']));
         $hotel->ho_address = trim(strtoupper($request['direccion']));
         $hotel->ho_cell_phone = $request['celular'];
         $hotel->ho_phone = $request['telef_fijo'];
         $hotel->ho_ext = $request['ext'];
-        $hotel->ho_email = trim(strtoupper($request['email']));
         $hotel->ho_contac = trim(strtoupper($request['contacto']));
         $hotel->reference_id = $request['ref'];
         $hotel->thotel_id = $request['tipo_hotel'];
         $hotel->restaurant_id = $request['restaurant'];
         $hotel->save();
-        $array1[] = DB::table('hotel_room')
-                        ->select('hotel_room.cost')
-                        ->where('hotel_room.hotel_id', '=', $hotel->id)
-                        ->get();
-        // dd($array1);
+        DB::table('hotel_room')->where('hotel_id', '=', $hotel->id)->delete();
+        // dd($hotel);
         $array_sync = [];
         foreach($request->new as $key=>$value) {
             $array_sync[] = [$key => ['cost' => $value]];
             DB::table('hotel_room')
-                            ->where('hotel_room.hotel_id', '=', $hotel->id)
-                            ->update([
+                            ->insert([
+                                'hotel_id' => $hotel->id,
+                                'room_id' => $key,
                                 'cost' => $value,
                             ]);
         }

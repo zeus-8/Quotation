@@ -3,6 +3,7 @@
 namespace hive\Http\Controllers;
 
 use Illuminate\Http\Request;
+use hive\Http\Requests\CreateReferenceRequest;
 use hive\Models\Localitie;
 use hive\Models\Reference;
 use DB;
@@ -44,12 +45,12 @@ class ReferenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateReferenceRequest $request)
     {
         // dd($request);
-        References::create([
+        Reference::create([
                 'reference' => trim(strtoupper($request['referencia'])),
-                'localitie_id' => $request['localitie']
+                'localitie_id' => $request['localidad'],
         ]);
         Session::flash('message', 'Los datos de la REFRENCIA se guardaron exitosamente');
         return Redirect::to('reference');
@@ -92,7 +93,7 @@ class ReferenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateReferenceRequest $request, $id)
     {
         $reference = Reference::find($id);
         $reference->reference = trim(strtoupper($request['referencia']));

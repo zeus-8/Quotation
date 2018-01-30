@@ -74,7 +74,7 @@ class RestaurantController extends Controller
     {
         $res = Restaurant::find($id);
         $res->nombre_restaurant = $res->re_name;
-        $res->direccion_restaurant = $res->address;
+        $res->direccion_restaurant = $res->re_address;
         $res->celular_restaurant = $res->re_cell_phone;
         $res->fijo_restaurant = $res->re_phone;
         $res->costo_desayuno = $res->re_cost_breakfast;

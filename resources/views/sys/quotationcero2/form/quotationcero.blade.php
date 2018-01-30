@@ -118,7 +118,7 @@
                     @if(isset($_POST['localidad']))
                         <input type='hidden' name='localidad' value='{{ $idloca }}'  onchange="enviar2(this.value)"/>
                     @endif
-                    <select class="chosen-select"  style="width: 90%;" multiple="true" name="hotel[]" data-placeholder="Selecciona los hoteles que desees">       
+                    {{-- <select class="chosen-select"  style="width: 90%;" multiple="true" name="hotel[]" data-placeholder="Selecciona los hoteles que desees">        --}}
                     <!-- Aqui comprobamos a traves del isset si se envio o no una referencia para mostrare el select-->
             @if(isset($_POST['localidad']))
                 <div class="form-group">
