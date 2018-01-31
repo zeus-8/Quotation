@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => 'boxed',
+    'layout' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -232,6 +232,11 @@ return [
             'text' => 'Paquete',
             'url'  => 'packages/create',
             'icon' => 'cubes',
+        ],
+        [
+            'text' => 'Medios',
+            'url'  => 'comunication',
+            'icon' => 'newspaper-o',
         ],
         'COTIZACION',
         [

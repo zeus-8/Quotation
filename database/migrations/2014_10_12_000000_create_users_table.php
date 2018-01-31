@@ -33,6 +33,20 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        //excurciones
+        Schema::create('excursions', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('excursion');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        //comunicacion
+        Schema::create('comunications', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('media');
+            $table->timestamps();
+            $table->softDeletes();
+        });
         //fechas
         Schema::create('dates', function(Blueprint $table){
             $table->increments('id');
@@ -371,6 +385,25 @@ class CreateUsersTable extends Migration
             $table->integer('cant_transfer');
             $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('transfer_id')->references('id')->on('transfers')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+        //relacion comunucacion-cliente
+        Schema::create('comunication_customer', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('comunication_id')->unsigned();
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('comunication_id')->references('id')->on('comunications')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
+        //relacion cotizacion-excurcion
+        Schema::create('excursion_quotation', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('excursion_id')->unsigned();
+            $table->integer('quotation_id')->unsigned();
+            $table->decimal('cost');
+            $table->foreign('excursion_id')->references('id')->on('excursions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
