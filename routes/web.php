@@ -33,12 +33,13 @@ Route::post('locali', [
 			'uses' => 'QuotationCeroController@localidad',
 			'as' => 'locali.localidad'
 		]);
+
 Route::post('noches', 'QuotationCeroController@noche');
 Route::post('probando', 'QuotationCeroController@probando');
 Route::post('hoteles', 'QuotationCeroController@hoteles');
 Route::post('localidadpa', 'PackagesController@localidad');
 
-Route::post('hotels_test', 'QuotationCeroController@test_gust');
+//Route::post('hotels_test', 'QuotationCeroController@test_gust');
 
 Route::resources([
 	'usuario' => 'UserController',

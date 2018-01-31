@@ -6,10 +6,6 @@
     <h1>Nueva Cotización</h1>
 @stop
 
-@section('js')
-    <script>  </script>
-@stop
-
 @section('content')
     <section class="content">
         <div class="row">

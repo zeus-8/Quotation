@@ -15,11 +15,7 @@
               <div class="box-header with-border">
                 <div class="row">
                   <div class="col-xs-6 col-sm-6">
-<<<<<<< HEAD
                     <h6 class="box-title">Esta cotización laa realizara: {{ $user->name }}, {{ $user->us_last_name }}</h6>
-=======
-                    <h6 class="box-title">Counter: {{ $user->name }}, {{ $user->us_last_name }}</h6>
->>>>>>> ad7dd850ea76cdb42a90241fd7176f02358c6c42
                   </div>  
                   <div  class="col-xs-6 col-sm-6">
                     <label>Fecha: {{ $carbon }}</label>
