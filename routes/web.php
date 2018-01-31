@@ -54,7 +54,8 @@ Route::resources([
 	'restaurant' => 'RestaurantController',
 	'bill'	=> 'BillController',
 	'customer'	=>	'CustomerController',
-	'reference' => 'ReferenceController'
+	'reference' => 'ReferenceController',
+	'communication' => 'ComunicationController'
 ]);
 Route::get('usuario/{id}/destroy', [
 			'uses'	=>	'UserController@destroy',

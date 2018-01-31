@@ -68,7 +68,8 @@
 					<div class="box-header with-border">
 						<h4 class="box-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-							Cmbiar Datos del Cliente
+								CAMBIAR DATOS PARA FACTURA
+								
 							</a>
 						</h4>
 					</div>
@@ -230,7 +231,7 @@
 						@if ($coti['cant_te'] <> '')
 							<tr>
 								<td>Tercera Edad</td>
-								<td class="text-right text-success">{{ $rcoti['cant_te'] }}</td>
+								<td class="text-right text-success">{{ $coti['cant_te'] }}</td>
 								<td class="text-right text-success"><label> 
 																		@if ($op == 1)
 																			{{ $cost3 = $sub + $coti['tee'] + $coti['iee'] }}
