@@ -238,6 +238,11 @@ return [
             'url'  => 'comunication',
             'icon' => 'newspaper-o',
         ],
+        [
+            'text' => 'Medios',
+            'url'  => 'comunication',
+            'icon' => 'newspaper-o',
+        ],
         'COTIZACION',
         [
             'text'        => 'Clientes',
